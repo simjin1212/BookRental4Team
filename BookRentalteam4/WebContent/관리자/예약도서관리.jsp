@@ -25,7 +25,7 @@
 		<th>문자발송</th>
 		</tr>
 		
-		<tr>
+		<tr bgcolor=white>
 		<th>005.133-남16ㅈ</th>
 		<th>자바의 정석</th>
 		<th>홍길동</th>
