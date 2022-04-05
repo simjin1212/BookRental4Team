@@ -41,7 +41,7 @@ public class qna_board_dao {
 				con = getConnection();
 			
 				//String sql = "~~~"
-				//pstmt = con.prepareStatement(sql);
+				//pstmt = con.prepareStatement(sql);-+
 				//pstmt.setString
 				       
 				
