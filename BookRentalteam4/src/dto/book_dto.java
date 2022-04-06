@@ -7,7 +7,7 @@ import java.sql.Date;
 public class book_dto {
 	/* 도서 */
 	
-		private String book_Num;
+		private int book_Num;
 		private String book_Name;/* 도서명 */
 		private String book_Cover; /* 책표지 */
 		private String writer; /* 저자 */
@@ -15,10 +15,11 @@ public class book_dto {
 		private String genre; /* 장르 */
 		private Date book_regDate; /* 등록일 */
 		private String wirter_Talks;/* 작가의말 */
-		public String getBook_Num() {
+		
+		public int getBook_Num() {
 			return book_Num;
 		}
-		public void setBook_Num(String book_Num) {
+		public void setBook_Num(int book_Num) {
 			this.book_Num = book_Num;
 		}
 		public String getBook_Name() {

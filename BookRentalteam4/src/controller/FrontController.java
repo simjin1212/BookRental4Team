@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.Booksearchaction;
+import service.booklistaction;
 import service.bookupdateAction;
 
 
@@ -42,8 +43,17 @@ public class FrontController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+			//도서 리스트
+		}else if(command.equals("/booklistaction.do")) {
+				try {
+					action = new booklistaction();
+					forward = action.execute(request, response);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		
+			
 		//도서 검색
 				if(command.equals("/Booksearch.do")) {
 					try {
@@ -53,6 +63,8 @@ public class FrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
+		
+		
 				
 				
 		// 포워딩 처리

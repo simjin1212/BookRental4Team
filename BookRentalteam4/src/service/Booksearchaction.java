@@ -16,7 +16,7 @@ public class Booksearchaction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		book_dto book = new book_dto();
-		book.setBook_Num(request.getParameter("book_num"));
+		book.setBook_Num(Integer.parseInt(request.getParameter("book_num")));
 		book.setBook_Name(request.getParameter("book_name"));
 		book.setBook_Cover(request.getParameter("cover"));
 		book.setWriter(request.getParameter("writer"));

@@ -43,7 +43,15 @@ public class book_dao {
 				//String sql = "~~~"
 				//pstmt = con.prepareStatement(sql);
 				//pstmt.setString
-				       
+				String sql = "insert into book values(book_seq.nextval,?,?,?,?,?,sysdate,?)";
+			       pstmt = con.prepareStatement(sql);
+			       pstmt.setString(1, book.getBook_Name());
+			       pstmt.setString(2, book.getBook_Cover());
+			       pstmt.setString(3, book.getWriter());
+			       pstmt.setString(4, book.getPublisher());
+			       pstmt.setString(5, book.getGenre());
+			       pstmt.setString(6, book.getWirter_Talks());
+			result = pstmt.executeUpdate();   // SQL문 실행      
 				
 				
 				result = pstmt.executeUpdate();   // SQL문 실행
@@ -91,6 +99,79 @@ public class book_dao {
 			
 			return result;
 		}
+		
+		// 총 데이터 갯수 구하기
+		public int getCount() {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql="select count(*) from book";
+				
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();		// SQL문 실행
+				
+				if(rs.next()) {
+//					result = rs.getInt(1);
+					result = rs.getInt("count(*)");
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try { rs.close();}catch(Exception e) {}
+				if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+				if(con != null) try { con.close();}catch(Exception e) {}
+			}		
+			return result;
+		}
+		//도서리스트
+		public List<book_dto> getList(){
+			List<book_dto> list = new ArrayList<book_dto>();
+			Connection con  = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+
+	String sql = "select * from book order by book_num desc";
+		   
+		   		pstmt = con.prepareStatement(sql);
+		   		rs = pstmt.executeQuery();		// SQL문 실행
+		   		System.out.println("sql실행");
+		   		while(rs.next()) {
+		   			book_dto book = new book_dto();
+		   			
+		   			book.setBook_Num(rs.getInt("book_num"));
+		   			book.setBook_Name(rs.getString("book_Name"));
+		   			book.setBook_Cover(rs.getString("book_Cover"));
+		   			book.setWriter(rs.getString("writer"));
+		   			book.setPublisher(rs.getString("publisher"));
+		   			book.setGenre(rs.getString("genre"));
+		   			book.setBook_regDate(rs.getDate("book_regDate"));
+		   			book.setWirter_Talks(rs.getString("witer_Talks"));
+		   			
+		   			
+		   			list.add(book);
+		   			System.out.println("데이터 리스트에 저장완료");
+		   		}
+		   
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try { rs.close();}catch(Exception e) {}
+				if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+				if(con != null) try { con.close();}catch(Exception e) {}
+			}		
+			return list;
+		}
+		
+		
 	
 	
 }

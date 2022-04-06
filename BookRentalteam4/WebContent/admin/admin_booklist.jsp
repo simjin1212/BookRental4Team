@@ -12,46 +12,31 @@
         <input type="submit" value="검색"></caption>
         
 		<tr bgcolor=lightgrey>
-		<th>분류기호</th>
+		<th>도서번호</th>
 		<th>도서명</th>
-		<th>회원명</th>
-		<th>대출일</th>
-		<th>반납예정일</th>
-		<th>문자발송</th>
+		<th>글쓴이</th>
+		<th>출판사</th>
+		<th>장르</th>
+		
 		</tr>
 		
-		<c:set var="num" value="${listcount - (page-1) * 10}" />
-	<c:forEach var="b" items="${admin_booklist}">
-	<tr>
-		<td>${num}
-			<c:set var="num" value="${num-1}" />
-		</td>
-		<td>
-			<!-- 댓글 제목 앞에 여백 처리 -->
-			<c:if test="${b.book_re_lev > 0}">
-				<c:forEach var="i" begin="0" end="${b.book_re_lev}">
-					&nbsp;
-				</c:forEach>
-			</c:if>
+	<c:forEach var="b" items="${booklist}">
+		<tr>
+			<td>${b.book_Num}</td>
+			<td>
+			<a href="">${b.book_Name}</a>
+			</td>
+			<td>${b.writer}</td>
+			<td>${b.publisher}</td>
+			<td>${b.genre}</td>
 			
-<a href="./admin_bookmanagement.do&page=${page}">			
-			${b.board_subject}
-		</a>	
-			
-		</td>
-		<td>${b.board_name}</td>
-		<td>
-			<fmt:formatDate value="${b.board_date}"
-				            pattern="yyyy-MM-dd HH:mm:ss EEE요일"/>
-		</td>
-		<td>${b.board_readcount}</td>
-	</tr>
-	</c:forEach>
-
+		</tr>
+		
+</c:forEach>
 </table> <br><br>
 		
-</table>
-</form>
+
+
 
 
 
