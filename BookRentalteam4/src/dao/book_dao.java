@@ -43,14 +43,9 @@ public class book_dao {
 				//String sql = "~~~"
 				//pstmt = con.prepareStatement(sql);
 				//pstmt.setString
-			String sql = "insert into book values(book_seq.nextval,?,?,?,?,?,sysdate,?)";
-				       pstmt = con.prepareStatement(sql);
-				       pstmt.setString(1, book.getBook_Name());
-				       pstmt.setString(2, book.getBook_Cover());
-				       pstmt.setString(3, book.getWriter());
-				       pstmt.setString(4, book.getPublisher());
-				       pstmt.setString(5, book.getGenre());
-				       pstmt.setString(6, book.getWirter_Talks());
+				       
+				
+				
 				result = pstmt.executeUpdate();   // SQL문 실행
 				       
 			}catch(Exception e) {
@@ -62,7 +57,40 @@ public class book_dao {
 			return result;
 		}
 		
-	
+	//도서 검색
+		public int booksearch(String book_Name) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select * from book where book_name=?";
+						
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, book_Name);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result = 1;		//도서 있음
+				}else {
+					result = -1;	//도서 없음
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(pstmt != null) try { pstmt.close();
+				}catch(Exception e) {	
+					}if(con != null) try { con.close();}catch(Exception e) {
+						}if(rs != null) try { rs.close();
+							}catch(Exception e) {
+								}
+			}
+			
+			return result;
+		}
 	
 	
 }

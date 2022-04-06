@@ -8,20 +8,7 @@
 </head>
 
 <body>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- -------------------------------------------------- -->
-	<form action="" method="" align=center>
+	<form action="./book_search.jsp" method="" align=center>
 		<caption>도서 검색 목록</caption> <br>
 			<select name="">
 	    	<option value="">전체</option>
@@ -29,9 +16,8 @@
 	    	<option value="">저자</option>
 	    	<option value="">출판사</option>
 	    	</select>
-	    	<input type="hidden" name="page" value="1">
-	    	<input type="text" name="text" placeholder="검색어">
-	    	<input type="submit" value="검색">
+	    	<input type="text" name="search" placeholder="검색어">
+	    	<input type="submit" value="검색" id="booksearch">
 	</form>
 	
 	<form method="post" action="">

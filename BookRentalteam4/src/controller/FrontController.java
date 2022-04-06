@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.Booksearch;
 import service.bookupdateAction;
 
 
@@ -42,6 +43,18 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		//도서 검색
+				if(command.equals("/Booksearch.do")) {
+					try {
+						action = new Booksearch();
+						forward = action.execute(request, response);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
 		// 포워딩 처리
 		if(forward != null) {
 			if(forward.isRedirect()) {	// redirect 방식으로 포워딩
