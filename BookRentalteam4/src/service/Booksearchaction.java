@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import dto.book_dto;
 import sun.security.action.GetIntegerAction;
 
-public class Booksearch implements Action{
+public class Booksearchaction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,11 +22,7 @@ public class Booksearch implements Action{
 		book.setWriter(request.getParameter("writer"));
 		book.setPublisher(request.getParameter("publisher"));
 		book.setGenre(request.getParameter("genre"));
-		book.setBook_regDate(request.get);
-		book.setRent_Bool(request.geti);
-		book.setReserve_Bool(GetIntegerAction());
 		book.setWirter_Talks(request.getParameter("wirter_talks"));
-		book.setMember_Num(request.getParameter("member_num"));
 		
 		
 		

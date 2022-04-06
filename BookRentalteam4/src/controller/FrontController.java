@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
-import service.Booksearch;
+import service.Booksearchaction;
 import service.bookupdateAction;
 
 
@@ -47,7 +47,7 @@ public class FrontController extends HttpServlet {
 		//도서 검색
 				if(command.equals("/Booksearch.do")) {
 					try {
-						action = new Booksearch();
+						action = new Booksearchaction();
 						forward = action.execute(request, response);
 					}catch (Exception e) {
 						e.printStackTrace();
