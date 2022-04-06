@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>도서 관리 시스템</title>
 </head>
 <body>
-처음작성하는 jsp
+
+
+<script>
+	location.href="./loginform.do";
+</script>
 </body>
 </html>

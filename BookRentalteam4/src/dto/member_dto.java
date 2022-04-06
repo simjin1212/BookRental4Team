@@ -3,8 +3,24 @@
 package dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class member_dto {
+	private String id;
+	private String name;
+	private String passwd;
+	private String jumin;
+	private String jumin2;
+	private String phone1;
+	private String phone2;
+	private String phone3;
+	private String post;
+	private String address;
+	private String mailid;
+	private String domain;
+	private Timestamp reg_Date;
+	private String member_Grade;
+	
 	public String getId() {
 		return id;
 	}
@@ -53,23 +69,35 @@ public class member_dto {
 	public void setPhone3(String phone3) {
 		this.phone3 = phone3;
 	}
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getEmail() {
-		return email;
+	public String getMailid() {
+		return mailid;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMailid(String mailid) {
+		this.mailid = mailid;
 	}
-	public Date getReg_Date() {
+	public String getDomain() {
+		return domain;
+	}
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+	public Timestamp getReg_Date() {
 		return reg_Date;
 	}
-	public void setReg_Date(Date reg_Date) {
-		this.reg_Date = reg_Date;
+	public void setReg_Date(Timestamp timestamp) {
+		this.reg_Date = timestamp;
 	}
 	public String getMember_Grade() {
 		return member_Grade;
@@ -77,17 +105,7 @@ public class member_dto {
 	public void setMember_Grade(String member_Grade) {
 		this.member_Grade = member_Grade;
 	}
-	private String id;
-	private String name;
-	private String passwd;
-	private String jumin;
-	private String jumin2;
-	private String phone1;
-	private String phone2;
-	private String phone3;
-	private String address;
-	private String email;
-	private Date reg_Date;
-	private String member_Grade;
+	
+	
 
 }

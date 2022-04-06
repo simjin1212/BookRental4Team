@@ -13,8 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import service.Action;
 import service.ActionForward;
 import service.Booksearchaction;
+import service.Delete;
+import service.Idcheck;
+import service.Login;
+import service.Update;
+import service.UpdateMember;
 import service.booklistaction;
 import service.bookupdateAction;
+import service.memberJoin;
 
 
 @WebServlet("*.do")  // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -63,20 +69,102 @@ public class FrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
-		
-		
-				
-				
-		// 포워딩 처리
-		if(forward != null) {
-			if(forward.isRedirect()) {	// redirect 방식으로 포워딩
-				response.sendRedirect(forward.getPath());
-			}else {						// dispatcher 방식으로 포워딩
-				RequestDispatcher dispatcher =
-						request.getRequestDispatcher(forward.getPath());
-				dispatcher.forward(request, response);
-			}
-		}	
+		// 회원 가입
+				if (command.equals("/memberjoin.do")) {
+					try {
+						action = new memberJoin();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// ID중복 검사(ajax)
+				} else if (command.equals("/Idcheck.do")) {
+					try {
+						action = new Idcheck();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+					// 회원가입 폼
+				} else if (command.equals("/joinform.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/joinform.jsp");
+
+					// 로그인(회원인증)
+				} else if (command.equals("/Login.do")) {
+					try {
+						action = new Login();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// 로그 아웃
+				} else if (command.equals("/Logout.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/logout.jsp");
+
+					// 로그인 폼
+				} else if (command.equals("/loginform.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/loginform.jsp");
+					
+					// 대출 목록
+				} else if (command.equals("/RentList.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/rentList.jsp");
+					
+					// 예약 목록
+				} else if (command.equals("/ReserveList.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/reserveList.jsp");
+					
+					// 내 정보 보기
+				} else if (command.equals("/UpdateForm.do")) {
+					try {
+						action = new UpdateMember();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// 회원정보 수정
+				} else if (command.equals("/Update.do")) {
+					try {
+						action = new Update();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// 회원탈퇴 폼
+				} else if (command.equals("/DeleteMember.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/deleteform.jsp");
+					
+					// 회원 탈퇴
+				} else if (command.equals("/Delete.do")) {
+					try {
+						action = new Delete();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				// 포워딩 처리
+				if(forward != null) {
+					if(forward.isRedirect()) {	// redirect 방식으로 포워딩
+						response.sendRedirect(forward.getPath());
+					}else {						// dispatcher 방식으로 포워딩
+						RequestDispatcher dispatcher =
+								request.getRequestDispatcher(forward.getPath());
+						dispatcher.forward(request, response);
+					}
+				}
 	
 	} // doProcess() end
 	

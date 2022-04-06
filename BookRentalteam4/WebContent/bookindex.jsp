@@ -7,13 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-관리자 도서관리
-
+book 인덱스
 <script>
-	location.href="./booklistaction.do";
+location.href="./booklistaction.do";
 </script>
-
-
 </body>
 </html>
