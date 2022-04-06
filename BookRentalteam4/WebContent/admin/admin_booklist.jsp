@@ -10,7 +10,7 @@
 
 <body>
 <form method="post">
-	<h3 align=center>대출도서 관리</h3>
+	<h3 align=center>도서 관리</h3>
       <table border=1 width=700 align=center>
         <caption align="right">
         <input type="text" name="text" placeholder="검색어">

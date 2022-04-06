@@ -1,17 +1,14 @@
 $(document).ready(function(){	
-	
-
+	 document.getElementById('book_regdate').value = new Date().toISOString().substring(0, 10);;
 	// 유효성 검사
-	$("form").submit(function(){
-		
-		if($("#book_num").val() == ""){
-			alert("책이름를 입력하세요");
-			$("#book_num").focus();
-			return false;
-		}		
-		if($("#ganre").val()==""){
-			alert("장르를 입력하세요");
-			$("#ganre").focus();
+	$("form").submit(function(){	
+//		if($("#book_num").val() == ""){
+//			alert("책번호를 입력하세요");
+//			$("#book_num").focus();
+//			return false;
+//		}		
+		if($("#phone1").val()==""){
+			alert("장르를 선택하세요");			
 			return false;
 		}		
 		if($("#book_name").val()==""){
@@ -24,14 +21,14 @@ $(document).ready(function(){
 			$("#publisher").focus();
 			return false;
 		}
-		if($("#writer").val().length != 6){
+		if($("#writer").val()==""){
 			alert("저자를 입력하세요");
-			$("#writer").val("").focus();
+			$("#writer").focus();
 			return false;
 		}
-		if(isNaN($("#dookupdateday").val())){
+		if($("#dookupdateday").val()==""){
 			alert("등록일을 입력하세요");
-			$("#dookupdateday").val("").focus();
+			$("#dookupdateday").focus();
 			return false;
 		}
 		if($("#wirter_talks").val()==""){
@@ -39,8 +36,5 @@ $(document).ready(function(){
 			$("#wirter_talks").focus();
 			return false;
 		}
-		
-		
-	}); // submit() end		
-	
+	}); // submit() end	
 });  // ready() end

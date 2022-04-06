@@ -13,7 +13,7 @@ public class book_dto {
 		private String writer; /* 저자 */
 		private String publisher; /* 출판사 */
 		private String genre; /* 장르 */
-		private String book_regDate; /* 등록일 */
+		private Date book_regDate; /* 등록일 */
 		private int rent_Bool; /* 대출가능여부 */
 		private int reserve_Bool; /* 예약가능여부 */
 		private String wirter_Talks;/* 작가의말 */
@@ -54,12 +54,6 @@ public class book_dto {
 		public void setGenre(String genre) {
 			this.genre = genre;
 		}
-		public String getBook_regDate() {
-			return book_regDate;
-		}
-		public void setBook_regDate(String book_regDate) {
-			this.book_regDate = book_regDate;
-		}
 		public int getRent_Bool() {
 			return rent_Bool;
 		}
@@ -83,6 +77,12 @@ public class book_dto {
 		}
 		public void setMember_Num(String member_Num) {
 			this.member_Num = member_Num;
+		}
+		public Date getBook_regDate() {
+			return book_regDate;
+		}
+		public void setBook_regDate(Date book_regDate) {
+			this.book_regDate = book_regDate;
 		}
 
 

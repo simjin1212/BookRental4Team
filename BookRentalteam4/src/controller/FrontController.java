@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+import service.bookupdateAction;
 
 
 @WebServlet("*.do")  // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -31,6 +32,16 @@ public class FrontController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
+		
+		//도서등록
+		if(command.equals("/bookupdate.do")) {
+			try {
+				action = new bookupdateAction();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 포워딩 처리
 		if(forward != null) {
 			if(forward.isRedirect()) {	// redirect 방식으로 포워딩

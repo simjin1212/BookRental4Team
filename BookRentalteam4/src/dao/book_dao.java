@@ -43,9 +43,14 @@ public class book_dao {
 				//String sql = "~~~"
 				//pstmt = con.prepareStatement(sql);
 				//pstmt.setString
-				       
-				
-				
+			String sql = "insert into book values(book_seq.nextval,?,?,?,?,?,sysdate,?)";
+				       pstmt = con.prepareStatement(sql);
+				       pstmt.setString(1, book.getBook_Name());
+				       pstmt.setString(2, book.getBook_Cover());
+				       pstmt.setString(3, book.getWriter());
+				       pstmt.setString(4, book.getPublisher());
+				       pstmt.setString(5, book.getGenre());
+				       pstmt.setString(6, book.getWirter_Talks());
 				result = pstmt.executeUpdate();   // SQL문 실행
 				       
 			}catch(Exception e) {
