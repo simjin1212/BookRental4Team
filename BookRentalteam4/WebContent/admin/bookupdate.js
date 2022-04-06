@@ -16,7 +16,7 @@ $(document).ready(function(){
 		}		
 		if($("#book_name").val()==""){
 			alert("도서명을 입력하세요");
-			$("#name").focus();
+			$("#book_name").focus();
 			return false;
 		}
 		if($("#publisher").val()==""){
