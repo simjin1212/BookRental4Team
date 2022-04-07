@@ -2,23 +2,25 @@
 
 package dto;
 
-
+import java.sql.Timestamp;
 
 public class member_board_dto {
-	private String mb_Num; /* 게시판번호 */
+	private int mb_Num; /* 게시판번호 */
 	private String id; /* iD */
 	private String mb_Subject; /* 제목 */
 	private String mb_Content; /* 내용 */
 	private String mb_File; /* 첨부파일 */
-	private String mb_Regdate; /* 등록일 */
+	private Timestamp mb_Regdate; /* 등록일 */
 	private int mb_REF; /* REF */
 	private int mb_LEV; /* LEV */
 	private int mb_SEQ; /* SEQ */
+	private int mb_Readcount;/* 조회수 */
+	private String mb_Grade;
 	
-	public String getMb_Num() {
+	public int getMb_Num() {
 		return mb_Num;
 	}
-	public void setMb_Num(String mb_Num) {
+	public void setMb_Num(int mb_Num) {
 		this.mb_Num = mb_Num;
 	}
 	public String getId() {
@@ -45,10 +47,10 @@ public class member_board_dto {
 	public void setMb_File(String mb_File) {
 		this.mb_File = mb_File;
 	}
-	public String getMb_Regdate() {
+	public Timestamp getMb_Regdate() {
 		return mb_Regdate;
 	}
-	public void setMb_Regdate(String mb_Regdate) {
+	public void setMb_Regdate(Timestamp mb_Regdate) {
 		this.mb_Regdate = mb_Regdate;
 	}
 	public int getMb_REF() {
@@ -75,7 +77,13 @@ public class member_board_dto {
 	public void setMb_Readcount(int mb_Readcount) {
 		this.mb_Readcount = mb_Readcount;
 	}
-	private int mb_Readcount;/* 조회수 */
+	public String getMb_Grade() {
+		return mb_Grade;
+	}
+	public void setMb_Grade(String mb_grade) {
+		this.mb_Grade = mb_grade;
+	}
+
 
 
 

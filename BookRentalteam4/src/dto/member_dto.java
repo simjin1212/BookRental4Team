@@ -21,12 +21,6 @@ public class member_dto {
 	private Timestamp reg_Date;
 	private int member_Grade;
 	
-	public int getMember_Grade() {
-		return member_Grade;
-	}
-	public void setMember_Grade(int member_Grade) {
-		this.member_Grade = member_Grade;
-	}
 	public String getId() {
 		return id;
 	}
@@ -105,6 +99,13 @@ public class member_dto {
 	public void setReg_Date(Timestamp timestamp) {
 		this.reg_Date = timestamp;
 	}
+	public int getMember_Grade() {
+		return member_Grade;
+	}
+	public void setMember_Grade(int member_Grade) {
+		this.member_Grade = member_Grade;
+	}
+	
 	
 	
 	

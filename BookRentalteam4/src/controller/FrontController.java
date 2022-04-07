@@ -21,6 +21,15 @@ import service.UpdateMember;
 import service.booklistaction;
 import service.bookupdateAction;
 import service.memberJoin;
+import service.member_board_delete;
+import service.member_board_list;
+import service.member_board_login;
+import service.member_board_modify;
+import service.member_board_modifyAction;
+import service.member_board_reply;
+import service.member_board_replyAction;
+import service.member_board_view;
+import service.member_board_write;
 
 
 @WebServlet("*.do")  // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -159,6 +168,111 @@ public class FrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
+
+				//이하 멤버(자유)게시판
+				//임의 계정 하나 만들어놓음 
+				if(command.contentEquals("/member_board_login.do")) {
+					try {
+						action = new member_board_login();
+						forward = action.execute(request, response);
+							
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				//리스트 출력
+				} else if (command.contentEquals("/member_board_list.do")) {
+					try {
+						action = new member_board_list();
+						forward = action.execute(request, response);
+							
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				//글작성 폼으로
+				}else if (command.contentEquals("/member_board_writeform.do")) {
+					try {
+						forward = new ActionForward();
+						forward.setRedirect(false);
+						forward.setPath("./member_board/member_board_write.jsp");
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					}
+				//글 작성
+				} else if (command.contentEquals("/member_board_write.do")) {
+					try {
+						action = new member_board_write();
+						forward = action.execute(request, response);
+							
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				//글 내용 보기
+				} else if (command.contentEquals("/member_board_view.do")) {
+					try {
+						action = new member_board_view();
+						forward = action.execute(request, response);
+							
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				//글수정 폼으로
+				} else if (command.contentEquals("/member_board_modifyform.do")) {
+					try {
+						action = new member_board_modifyAction();
+						forward = action.execute(request, response);
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				//글 수정
+				} else if (command.contentEquals("/member_board_modify.do")) {
+					try {
+						action = new member_board_modify();
+						forward = action.execute(request, response);
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				//글삭제 페이지
+				} else if (command.contentEquals("/member_board_deleteform.do")) {
+					try {
+						forward = new ActionForward();
+						forward.setRedirect(false);
+						forward.setPath("./member_board/member_board_delete.jsp");
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				//글삭제
+				} else if (command.contentEquals("/member_board_delete.do")) {
+					try {
+						action = new member_board_delete();
+						forward = action.execute(request, response);
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				//답글 폼으로
+				} else if (command.contentEquals("/member_board_replyform.do")) {
+					try {
+						action = new member_board_replyAction();
+						forward = action.execute(request, response);
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				//답글 입력
+				} else if (command.contentEquals("/member_board_reply.do")) {
+					try {
+						action = new member_board_reply();
+						forward = action.execute(request, response);
+								
+					}catch(Exception e) {
+							e.printStackTrace();
+					} 
+				}
+
 				// 포워딩 처리
 				if(forward != null) {
 					if(forward.isRedirect()) {	// redirect 방식으로 포워딩

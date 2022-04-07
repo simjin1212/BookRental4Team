@@ -2,6 +2,7 @@
 
 package dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.member_board_dto;
-import dto.member_dto;
 
 public class member_board_dao {
 	
@@ -30,34 +30,279 @@ public class member_board_dao {
   		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/orcl");
   		return ds.getConnection();
 	}
+	//원글 입력
+	public int insert(member_board_dto memberboard) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			con = getConnection();
+				
+			String sql="insert into member_board values(10,?,?,?,?,sysdate,10,0,0,0,?)";
+			//예시로 시퀀스 대신 임의로 num=1 넣었놓은 상태
+			pstmt=con.prepareStatement(sql); 
+			pstmt.setString(1, memberboard.getId());
+			pstmt.setString(2, memberboard.getMb_Subject());
+			pstmt.setString(3, memberboard.getMb_Content());
+			pstmt.setString(4, memberboard.getMb_File());
+			pstmt.setString(5, memberboard.getMb_Grade());
 
-	//예시 게시물 등록
-		public int insert(member_board_dto memberboard) {
-			int result = 0;
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			
-			try {
-				con = getConnection();
-			
-				//String sql = "~~~"
-				//pstmt = con.prepareStatement(sql);
-				//pstmt.setString
+			result = pstmt.executeUpdate();   // SQL문 실행
 				       
-				
-				
-				result = pstmt.executeUpdate();   // SQL문 실행
-				       
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
-				if(con != null) try { con.close();}catch(Exception e) {}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}
+		return result;
+	}
+	//총 게시글 수
+	public int getCount() {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+			
+		try {
+			con = getConnection();
+			
+			String sql="select count(*) from member_board";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt(1);	//count(*)
 			}
-			return result;
+		       
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}
+		return result;
+	}
+	//공지	
+	public List<member_board_dto> getNTList(int num){
+		List<member_board_dto> boardlist =new ArrayList<member_board_dto>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from (select rownum rnum, board.* from ";
+			sql+=" (select *from member_board where mb_grade='manager' order by mb_num desc) board) ";
+			sql+=" where rownum<=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				member_board_dto board=new member_board_dto();
+				board.setMb_Num(rs.getInt("mb_num"));
+				board.setId(rs.getString("id"));
+				board.setMb_Subject(rs.getString("mb_subject"));
+				board.setMb_Content(rs.getString("mb_content"));
+				board.setMb_File(rs.getString("mb_file"));
+				board.setMb_Regdate(rs.getTimestamp("mb_regdate"));
+				board.setMb_REF(rs.getInt("mb_ref"));
+				board.setMb_LEV(rs.getInt("mb_lev"));
+				board.setMb_SEQ(rs.getInt("mb_seq"));
+				board.setMb_Readcount(rs.getInt("mb_readcount"));
+				board.setMb_Grade(rs.getString("mb_grade"));
+				
+				boardlist.add(board);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) 		try { rs.close(); 	 } catch(Exception e) { } ;
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
 		}
 		
+		return boardlist;
+	}
 	
+	//일반게시글
+	public List<member_board_dto> getMBList(int start, int end){
+		List<member_board_dto> boardlist =new ArrayList<member_board_dto>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from (select rownum rnum, board.* from ";
+			sql+=" (select *from member_board order by mb_ref desc, mb_seq asc) board) ";
+			sql+=" where rnum>=? and rnum<=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				member_board_dto board=new member_board_dto();
+				board.setMb_Num(rs.getInt("mb_num"));
+				board.setId(rs.getString("id"));
+				board.setMb_Subject(rs.getString("mb_subject"));
+				board.setMb_Content(rs.getString("mb_content"));
+				board.setMb_File(rs.getString("mb_file"));
+				board.setMb_Regdate(rs.getTimestamp("mb_regdate"));
+				board.setMb_REF(rs.getInt("mb_ref"));
+				board.setMb_LEV(rs.getInt("mb_lev"));
+				board.setMb_SEQ(rs.getInt("mb_seq"));
+				board.setMb_Readcount(rs.getInt("mb_readcount"));
+				board.setMb_Grade(rs.getString("mb_grade"));
+				
+				boardlist.add(board);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) 		try { rs.close(); 	 } catch(Exception e) { } ;
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		
+		return boardlist;
+	}
+	
+	//조회수 증가
+	public void readcountUpdate(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="update member_board set mb_readcount=mb_readcount+1 where mb_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+	}
+	//글 상세정보
+	public member_board_dto getDetail(int num) {
+		member_board_dto board=new member_board_dto();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from member_board where mb_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board.setMb_Num(rs.getInt("mb_num"));
+				board.setId(rs.getString("id"));
+				board.setMb_Subject(rs.getString("mb_subject"));
+				board.setMb_Content(rs.getString("mb_content"));
+				board.setMb_File(rs.getString("mb_file"));
+				board.setMb_Regdate(rs.getTimestamp("mb_regdate"));
+				board.setMb_REF(rs.getInt("mb_ref"));
+				board.setMb_LEV(rs.getInt("mb_lev"));
+				board.setMb_SEQ(rs.getInt("mb_seq"));
+				board.setMb_Readcount(rs.getInt("mb_readcount"));
+				board.setMb_Grade(rs.getString("mb_grade"));
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) 		try { rs.close(); 	 } catch(Exception e) { } ;
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		return board;
+	}
+	//글 수정
+	public int update(member_board_dto board, String old, String path) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			con = getConnection();
+			
+			String sql="update member_board set mb_subject=?, mb_content=?, mb_file=? where mb_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getMb_Subject());
+			pstmt.setString(2, board.getMb_Content());
+			pstmt.setString(3, board.getMb_File());
+			pstmt.setInt(4, board.getMb_Num());
+			
+			result=pstmt.executeUpdate();
+			
+			if(old!=null&&!old.equals(board.getMb_File())) {	//기존 첨부파일이 존재하고 수정 파일과 같지 않을 경우
+				File file=new File(path);		//저장 경로에 있는 파일
+				
+				File[] f= file.listFiles(); 		//모든 파일을 읽어서 배열에 저장
+				for(int i=0; i<f.length; i++) {
+					if(f[i].getName().equals(old)) {	//파일명 비교해서 같은 이름=같은 파일이면
+						f[i].delete();		//기존 파일 삭제
+					}
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}
+		return result;
+	}
+	
+	//글 삭제
+	public int delete(member_board_dto board, int num, String path) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+			
+		try {
+			con = getConnection();
+			
+			String sql="delete from member_board where mb_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			
+			result=pstmt.executeUpdate();
+			
+			if(board.getMb_File()!=null) {	//첨부파일이 있다면
+				File file=new File(path);		//저장 경로에 있는 파일
+				
+				File[] f= file.listFiles(); 		//upload 폴더의 모든 파일을 읽어서 배열에 저장
+				for(int i=0; i<f.length; i++) {
+					if(f[i].getName().equals(board.getMb_File())) {	//파일명 비교해서 같은 이름=같은 파일이면
+						f[i].delete();		//파일 삭제
+					}
+				}
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}
+		return result;
+	}
 	
 	
 }
