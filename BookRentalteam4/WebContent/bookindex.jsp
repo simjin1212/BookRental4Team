@@ -9,7 +9,7 @@
 <body>
 book 인덱스
 <script>
-location.href="./booklistaction.do";
+	location.href="./adminlogin.do";
 </script>
 </body>
 </html>

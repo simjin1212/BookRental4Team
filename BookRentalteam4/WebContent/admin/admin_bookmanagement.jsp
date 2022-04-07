@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>도서정보 관리</title>
+<title>도서상세정보</title>
 </head>
 
 

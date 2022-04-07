@@ -139,7 +139,7 @@ public class book_dao {
 			try {
 				con = getConnection();
 
-	String sql = "select * from book order by book_num desc";
+	String sql = "select * from book order by book_num";
 		   
 		   		pstmt = con.prepareStatement(sql);
 		   		rs = pstmt.executeQuery();		// SQL문 실행
@@ -148,13 +148,13 @@ public class book_dao {
 		   			book_dto book = new book_dto();
 		   			
 		   			book.setBook_Num(rs.getInt("book_num"));
-		   			book.setBook_Name(rs.getString("book_Name"));
-		   			book.setBook_Cover(rs.getString("book_Cover"));
+		   			book.setBook_Name(rs.getString("book_name"));
+		   			book.setBook_Cover(rs.getString("book_cover"));
 		   			book.setWriter(rs.getString("writer"));
 		   			book.setPublisher(rs.getString("publisher"));
 		   			book.setGenre(rs.getString("genre"));
 		   			book.setBook_regDate(rs.getDate("book_regDate"));
-		   			book.setWirter_Talks(rs.getString("witer_Talks"));
+		   			book.setWirter_Talks(rs.getString("wirter_Talks"));
 		   			
 		   			
 		   			list.add(book);

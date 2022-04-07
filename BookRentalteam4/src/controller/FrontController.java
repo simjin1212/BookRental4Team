@@ -57,7 +57,11 @@ public class FrontController extends HttpServlet {
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}else if (command.equals("/adminlogin.do")) {
+				forward = new ActionForward();
+				forward.setRedirect(false);
+				forward.setPath("./admin/admin_main.jsp");
+				}
 		
 			
 		//도서 검색

@@ -19,8 +19,14 @@ public class member_dto {
 	private String mailid;
 	private String domain;
 	private Timestamp reg_Date;
-	private String member_Grade;
+	private int member_Grade;
 	
+	public int getMember_Grade() {
+		return member_Grade;
+	}
+	public void setMember_Grade(int member_Grade) {
+		this.member_Grade = member_Grade;
+	}
 	public String getId() {
 		return id;
 	}
@@ -99,12 +105,7 @@ public class member_dto {
 	public void setReg_Date(Timestamp timestamp) {
 		this.reg_Date = timestamp;
 	}
-	public String getMember_Grade() {
-		return member_Grade;
-	}
-	public void setMember_Grade(String member_Grade) {
-		this.member_Grade = member_Grade;
-	}
+	
 	
 	
 
