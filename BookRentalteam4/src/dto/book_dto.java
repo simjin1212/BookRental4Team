@@ -14,7 +14,7 @@ public class book_dto {
 		private String publisher; /* 출판사 */
 		private String genre; /* 장르 */
 		private Date book_regDate; /* 등록일 */
-		private String wirter_Talks;/* 작가의말 */
+		private String writer_talks;/* 작가의말 */
 		
 		public int getBook_Num() {
 			return book_Num;
@@ -53,13 +53,15 @@ public class book_dto {
 			this.genre = genre;
 		}
 		
-		public String getWirter_Talks() {
-			return wirter_Talks;
-		}
-		public void setWirter_Talks(String wirter_Talks) {
-			this.wirter_Talks = wirter_Talks;
-		}
+		
 	
+		
+		public String getWriter_talks() {
+			return writer_talks;
+		}
+		public void setWriter_talks(String writer_talks) {
+			this.writer_talks = writer_talks;
+		}
 		public Date getBook_regDate() {
 			return book_regDate;
 		}

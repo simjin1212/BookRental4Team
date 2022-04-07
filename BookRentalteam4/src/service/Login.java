@@ -27,6 +27,7 @@ public class Login implements Action{
 		member_dao dao = member_dao.getInstance();
 		
 		int admincheck = dao.admincheck(id);	//관리자 체크
+		
 		int result = dao.memberAuth(id, passwd);	// 회원인증
 		
 
@@ -39,6 +40,7 @@ public class Login implements Action{
 		if(result == 1 && admincheck == 1) {
 			
 			session.setAttribute("id", id);         // 세션 공유 설정
+			
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩

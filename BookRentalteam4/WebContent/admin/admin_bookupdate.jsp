@@ -53,7 +53,7 @@
 	</tr>
 	<tr><td>작가의말</td>
 		<td>
-			<textarea id="wirter_talks" name="wirter_talks" rows="5" cols="50"></textarea>
+			<textarea id="writer_talks" name="writer_talks" rows="5" cols="50"></textarea>
 		</td>
 	</tr>
 	<tr><td colspan=2 align=center>

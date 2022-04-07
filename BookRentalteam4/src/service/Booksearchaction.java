@@ -22,7 +22,7 @@ public class Booksearchaction implements Action{
 		book.setWriter(request.getParameter("writer"));
 		book.setPublisher(request.getParameter("publisher"));
 		book.setGenre(request.getParameter("genre"));
-		book.setWirter_Talks(request.getParameter("wirter_talks"));
+		book.setWriter_talks(request.getParameter("writer_talks"));
 		
 		
 		

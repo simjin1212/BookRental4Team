@@ -32,7 +32,8 @@ public class bookupdateAction implements Action{
 		book.setGenre(multi.getParameter("genre"));
 		book.setPublisher(multi.getParameter("publisher"));
 		book.setBook_Cover(multi.getFilesystemName("book_cover"));
-		book.setWirter_Talks(multi.getParameter("writer_talks"));
+		book.setWriter(multi.getParameter("writer"));
+		book.setWriter_talks(multi.getParameter("writer_talks"));
 		
 		
 		book_dao dao = book_dao.getInstance();
@@ -41,7 +42,7 @@ public class bookupdateAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);  				// dispatcher 방식 포워딩
-		forward.setPath("./admin/admin_booklist.jsp");  // 포워딩할 파일명
+		forward.setPath("/booklistaction.do");  // 포워딩할 파일명
 		
 		
 		return forward;

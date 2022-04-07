@@ -18,6 +18,10 @@ import service.Idcheck;
 import service.Login;
 import service.Update;
 import service.UpdateMember;
+import service.bookModify;
+import service.bookModifyAction;
+import service.bookdelete;
+import service.bookdetailaction;
 import service.booklistaction;
 import service.bookupdateAction;
 import service.memberJoin;
@@ -58,6 +62,10 @@ public class FrontController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/bookupdateform.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./admin/admin_bookupdate.jsp");
 			//도서 리스트
 		}else if(command.equals("/booklistaction.do")) {
 				try {
@@ -66,11 +74,42 @@ public class FrontController extends HttpServlet {
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if (command.equals("/adminlogin.do")) {
-				forward = new ActionForward();
-				forward.setRedirect(false);
-				forward.setPath("./admin/admin_main.jsp");
-				}
+			
+		//도서 상세
+		}else if(command.equals("/bookDetailAction.do")) {
+			try {
+				action = new bookdetailaction();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		//도서수정폼
+		}else if(command.equals("/bookModifyAction.do")) {
+			try {
+				action = new bookModifyAction();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		//도서 수정!	
+		}else if(command.equals("/bookModify.do")) {
+			try {
+				action = new bookModify();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		//도서삭제!!
+		}else if(command.equals("/bookDelete.do")) {
+			try {
+				action = new bookdelete();
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 			
 		//도서 검색
@@ -284,6 +323,7 @@ public class FrontController extends HttpServlet {
 						dispatcher.forward(request, response);
 					}
 				}
+		
 	
 	} // doProcess() end
 	
