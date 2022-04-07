@@ -174,11 +174,10 @@ public class member_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select * from member where id=? and member_grade=?";
+			String sql = "select * from member where id = ? and member_grade = 1";		
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setInt(2, 1);
 			rs = pstmt.executeQuery(); // SQL문 실행
 
 			if (rs.next()) { // 관리자계정

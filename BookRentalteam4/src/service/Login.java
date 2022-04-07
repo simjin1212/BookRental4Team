@@ -25,6 +25,7 @@ public class Login implements Action{
 		String passwd = request.getParameter("passwd");
 		
 		member_dao dao = member_dao.getInstance();
+		
 		int admincheck = dao.admincheck(id);	//관리자 체크
 		int result = dao.memberAuth(id, passwd);	// 회원인증
 		
