@@ -25,19 +25,39 @@ public class Login implements Action{
 		String passwd = request.getParameter("passwd");
 		
 		member_dao dao = member_dao.getInstance();
+		int admincheck = dao.admincheck(id);	//관리자 체크
 		int result = dao.memberAuth(id, passwd);	// 회원인증
+		
+
+		System.out.println("admincheck : "+admincheck);
+		
 		if(result == 1) System.out.println("회원 인증 성공");
 		
-		if(result == 1) {		// 회원 인증 성공
-			session.setAttribute("id", id);         // 세션 공유 설정
-		}else {					// 회원 인증 실패
-			out.println("<script>");
-			out.println("alert('로그인 실패');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+		
+	//	location.href="./loginform.do";
+		if(result == 1 && admincheck == 1) {
 			
-			return null;
-		}		
+			session.setAttribute("id", id);         // 세션 공유 설정
+			
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
+			forward.setPath("./admin/admin_main.jsp");   // 포워딩할 파일 설정
+			
+			return forward;
+			
+		}else if(result == 1 && admincheck == -1){
+			// 회원 인증 성공
+			session.setAttribute("id", id);         // 세션 공유 설정
+			
+			}else {					// 회원 인증 실패
+				out.println("<script>");
+				out.println("alert('로그인 실패');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+			
+				return null;
+			}	
+		
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);    			// dispatcher 방식으로 포워딩

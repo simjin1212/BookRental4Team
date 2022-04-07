@@ -137,6 +137,7 @@ public class member_dao {
 
 			if (rs.next()) { // 회원 인증 성공
 				result = 1;
+				
 			} else { // 회원 인증 실패
 				result = -1;
 			}
@@ -161,6 +162,54 @@ public class member_dao {
 				}
 		}
 		return result;
+	}
+	
+	//관리자 체크
+	public int admincheck(String id) {
+		int result = 0;
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+
+			String sql = "select * from member where id=? and member_grade=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, 1);
+			rs = pstmt.executeQuery(); // SQL문 실행
+
+			if (rs.next()) { // 관리자계정
+				result = 1;
+			} else { // 일반계정
+				result = -1;
+			}
+			System.out.println("result : "+result);
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+		
+		return result;
+				
 	}
 
 	// 회원 1명의 상세정보 구하기 : 수정품, 수정, 삭제
