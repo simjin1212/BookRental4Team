@@ -14,11 +14,12 @@
 <table border=1 width=600 align=center>
 	<caption>도서상세정보</caption>
 	<tr>
+		<td style="font-family:돋음; font-size:12">책표지
+			<div align="center"></div>
+		</td>
 		<td>
 			<c:if test="${book.book_Cover != null}">
-		<a href="./admin/bookfileupload.jsp?file_name=${book.book_Cover}">				
-				${book.book_Cover}
-			</a>	
+					<img src = "<%=request.getContextPath() %>/files/$files/${book.book_Cover}" style="width:50px; height:50px;">
 			</c:if>
 		</td>
 	</tr>	
