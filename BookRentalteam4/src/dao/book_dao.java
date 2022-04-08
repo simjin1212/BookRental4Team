@@ -267,5 +267,231 @@ public class book_dao {
 			}		
 			return result;
 		}
-	
+		// 도서 검색 리스트
+		public List<book_dto> getsearchList(int start, int end) {
+			List<book_dto> list = new ArrayList<book_dto>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select * from (select rownum rnum, book.* from ";
+				sql += " (select * from book order by book_ref desc,";
+				sql += " book_seq asc) book)";
+				sql += " where rnum >=? and rnum <=?";
+
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+
+				rs = pstmt.executeQuery(); // SQL문 실행
+
+				while (rs.next()) {
+					book_dto book = new book_dto();
+
+					book.setBook_Num(rs.getInt("book_num"));
+					book.setBook_Name(rs.getString("book_name"));
+					book.setBook_Cover(rs.getString("book_cover"));
+					book.setWriter(rs.getString("writer"));
+					book.setPublisher(rs.getString("publisher"));
+					book.setGenre(rs.getString("genre"));
+					book.setBook_regDate(rs.getDate("book_regDate"));
+					book.setWriter_talks(rs.getString("writer_talks"));
+
+					book.setBook_ref(rs.getInt("book_ref"));
+					book.setBook_lev(rs.getInt("book_lev"));
+					book.setBook_seq(rs.getInt("book_seq"));
+
+					list.add(book);
+
+				}
+				System.out.println("도서 검색 리스트에 저장완료");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (Exception e) {
+					}
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				if (con != null)
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+			}
+			return list;
+		}
+
+		// 옵션별 도서 검색
+		public int getFcount(String sel, String find) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select count(*) from book where " + sel + " like '%" + find + "%'";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					result = rs.getInt(1);
+//						result = rs.getInt("count(*)");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (Exception e) {
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+				}
+			}
+
+			return result;
+		}
+
+		// 검색 목록
+		public List<book_dto> selectFbook(int start, int end, String sel, String find) {
+			List<book_dto> list = new ArrayList<book_dto>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select * from ( select rownum rnum, no, ";
+				sql += "book_num, book_name, Writer, Publisher, genre, Writer_talks from ";
+				sql += "(select * from book where " + sel + " like '%" + find + "%' order by no desc)) ";
+				sql += "where rnum >= ? and rnum <= ?";
+
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+
+					book_dto book = new book_dto();
+
+					book.setBook_Num(rs.getInt("book_num"));
+					book.setBook_Name(rs.getString("book_name"));
+					book.setWriter(rs.getString("Writer"));
+					book.setPublisher(rs.getString("Publisher"));
+					book.setGenre(rs.getString("genre"));
+					book.setWriter_talks(rs.getString("Writer_talks"));
+
+					list.add(book);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (Exception e) {
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+				}
+			}
+			return list;
+		}
+
+		// 글목록
+		public List<book_dto> selectBook(int start, int end) {
+			List<book_dto> list = new ArrayList<book_dto>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select * from ( select rownum rnum, BOOK_NUM, ";
+				sql += "BOOK_NAME, WRITER, PUBLISHER, GENRE, WRITER_TALKS from ";
+				sql += "(select * from book order by BOOK_NUM desc)) ";
+				sql += "where rnum >= ? and rnum <= ?";
+
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					book_dto book = new book_dto();
+
+					book.setBook_Num(rs.getInt("book_num"));
+					book.setBook_Name(rs.getString("book_name"));
+					book.setWriter(rs.getString("Writer"));
+					book.setPublisher(rs.getString("Publisher"));
+					book.setGenre(rs.getString("genre"));
+					book.setWriter_talks(rs.getString("Writer_talks"));
+
+					list.add(book);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (Exception e) {
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+				}
+			}
+			return list;
+		}
 }
