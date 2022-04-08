@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,73 +22,48 @@ a{text-decoration:overline; color:#333;}
 
 </style>
 <meta charset="UTF-8">
+<center>
 <title>회원상세</title>
 </head>
 
 <body>
-<center>
-<form method="post" action="">
+
 <table border=1 width=600 align=center>
 	<caption>회원 상세</caption>
 	<tr><td>ID</td>
-		<td><input type=text Placeholder=11111111111 id="" name="">
-		</td>
+		<td>${member.id}</td>
 	</tr>
 	<tr><td>이름</td>
-		<td><input type=text Placeholder="싱징누" id="" name=""></td>
+		<td>${member.name}</td>
 	</tr>
 	<tr><td>핸드폰</td>
-		<td><select id="phone1" name="phone1">
-				<option value="">번호선택</option>
-				<option value="010">010</option>
-				<option value="011">011</option>
-				<option value="016">016</option>
-				<option value="018">018</option>
-				<option value="019">019</option>
-			</select>-
-			<input type=text size=4 id="phone2" name="phone2" maxlength=4>-
-			<input type=text size=4 id="phone3" name="phone3" maxlength=4>
-		</td>
+		<td>${member.phone1}-
+		${member.phone2}-
+		${member.phone3}</td>	
 	</tr>
 	<tr><td>E-Mail</td>
-		<td><input type=text size=10 id="mailid" name="mailid">@
-		    <input type=text size=10 id="domain" name="domain">
-		    <select id="email">
-		    	<option value="">직접입력</option>
-		    	<option value="naver.com">네이버</option>
-		    	<option value="daum.net">다음</option>
-		    	<option value="nate.com">네이트</option>
-		    	<option value="gmail.com">gmail</option>
-		    </select>		    
-		 </td>
+		<td>${member.mailid}@
+		    ${member.domain}</td>	    
 	</tr>
 	<tr><td>주소</td>
-		<td><input type=text size=45 id="address" name="address"></td>
+		<td>${member.address}</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12">가입일
-			<div align="center"></div>
-		</td>
+		<td>가입일</td>
 		<td>
-			<input type=text Placeholder="2020-05-03" id="" name="">
-			
-		</td>
+		<fmt:formatDate value="${member.reg_Date}"
+				            pattern="yyyy-MM-dd"/></td>
 	</tr>	
 	<tr><td>회원등급</td>
 		<td><input type=text Placeholder="관리자or회원" id="" name="">
 		</td>
 	</tr>
-	
 	<tr><td colspan=2 align=center>
-			<input type=submit value="수정">
-			<input type=submit value="삭제">
-		</td>
+				<input type=submit value="회원 강제 탈퇴">
+			</td>
 	</tr>		
-</table>
-</form>
+	</table>
 </center>
-
-
 
 <!-- 아래부터 테이블 탭 -->
 <div class="wrap">
@@ -179,19 +156,19 @@ a{text-decoration:overline; color:#333;}
   </div>
 </div>
 
-<script>
-const tabList = document.querySelectorAll('.tab_menu .list li');
-for(var i = 0; i < tabList.length; i++){
-  tabList[i].querySelector('.btn').addEventListener('click', function(e){
-    e.preventDefault();
-    for(var j = 0; j < tabList.length; j++){
-      tabList[j].classList.remove('is_on');
-    }
-    this.parentNode.classList.add('is_on');
-  });
-}
-</script>
+		<script>
+		const tabList = document.querySelectorAll('.tab_menu .list li');
+		for(var i = 0; i < tabList.length; i++){
+		  tabList[i].querySelector('.btn').addEventListener('click', function(e){
+		    e.preventDefault();
+		    for(var j = 0; j < tabList.length; j++){
+		      tabList[j].classList.remove('is_on');
+		    }
+		    this.parentNode.classList.add('is_on');
+		  });
+		}
+		</script>
 
 
-</body>
+	</body>
 </html>
