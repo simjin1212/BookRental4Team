@@ -6,7 +6,7 @@
    String fileName = request.getParameter("file_name");
    System.out.println("fileName="+fileName);
 
-   String savePath = "boardupload";
+   String savePath = "bookcoverupload";
    ServletContext context = getServletContext();
    String sDownloadPath = context.getRealPath(savePath);
    String sFilePath = sDownloadPath + "\\" + fileName;

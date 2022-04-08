@@ -16,6 +16,27 @@ public class book_dto {
 		private Date book_regDate; /* 등록일 */
 		private String writer_talks;/* 작가의말 */
 		
+		private int book_seq;
+		private int book_lev;
+		private int book_ref;
+		public int getBook_seq() {
+			return book_seq;
+		}
+		public void setBook_seq(int book_seq) {
+			this.book_seq = book_seq;
+		}
+		public int getBook_lev() {
+			return book_lev;
+		}
+		public void setBook_lev(int book_lev) {
+			this.book_lev = book_lev;
+		}
+		public int getBook_ref() {
+			return book_ref;
+		}
+		public void setBook_ref(int book_ref) {
+			this.book_ref = book_ref;
+		}
 		public int getBook_Num() {
 			return book_Num;
 		}

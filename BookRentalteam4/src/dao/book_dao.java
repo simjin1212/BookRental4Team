@@ -45,7 +45,7 @@ public class book_dao {
 				//String sql = "~~~"
 				//pstmt = con.prepareStatement(sql);
 				//pstmt.setString
-				String sql = "insert into book values(book_seq.nextval,?,?,?,?,?,sysdate,?)";
+				String sql = "insert into book values(book_seq.nextval,?,?,?,?,?,sysdate,?,book_seq.nextval,0,0)";
 			       pstmt = con.prepareStatement(sql);
 			       pstmt.setString(1, book.getBook_Name());
 			       pstmt.setString(2, book.getBook_Cover());
@@ -189,6 +189,10 @@ public class book_dao {
 		   			book.setGenre(rs.getString("genre"));
 		   			book.setBook_regDate(rs.getDate("book_regDate"));
 		   			book.setWriter_talks(rs.getString("writer_talks"));
+		   			
+		   			book.setBook_ref(rs.getInt("book_ref"));
+		   			book.setBook_lev(rs.getInt("book_lev"));
+		   			book.setBook_seq(rs.getInt("book_seq"));
 		   			
 		   			
 		   			list.add(book);

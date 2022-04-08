@@ -24,7 +24,7 @@ System.out.println("bookDelete");
 		int book_Num = Integer.parseInt(request.getParameter("book_Num"));
 		String page = request.getParameter("page");
 		
-		String path = request.getRealPath("boardupload");
+		String path = request.getRealPath("bookcoverupload");
 		System.out.println("path:"+ path);
 		
 		book_dao dao = book_dao.getInstance();
