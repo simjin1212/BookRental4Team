@@ -507,7 +507,7 @@ public class book_dao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		try {
+		try { 
 			con = getConnection();
 
 			String sql = "select * from ( select rownum rnum, BOOK_NUM, ";
