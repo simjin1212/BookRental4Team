@@ -13,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.book_dto;
-import dto.member_dto;
 
 public class book_dao {
 
