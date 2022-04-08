@@ -15,12 +15,12 @@
 		<td colspan="5">리뷰 게시판</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12" height="16">
-			<div align="center">DATE</div>
+		<td style="font-family:돋음; font-size:12" height="16"  >
+			<div align="center">도서명</div>
 		</td>
 		<td>
 			<input name="board_name" id="board_name" type="text" size="10" maxlength="10" 
-				value=""/>
+				value=""/ disabled = "disabled">
 		</td>
 	</tr>
 	<tr>

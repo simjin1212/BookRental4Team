@@ -66,7 +66,7 @@ public class FrontController extends HttpServlet {
 					forward = new ActionForward();
 					forward.setRedirect(false);
 					forward.setPath("./admin/admin_bookupdate.jsp");
-			//도서 리스트
+		//도서 리스트
 		}else if(command.equals("/booklistaction.do")) {
 				try {
 					action = new booklistaction();
@@ -207,6 +207,11 @@ public class FrontController extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+					
+				}  else if (command.equals("/BookReview_Write.do")) {
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./member/deleteform.jsp");
 				}
 
 				//이하 멤버(자유)게시판

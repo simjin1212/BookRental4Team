@@ -35,7 +35,8 @@
 				<th>한빛미디어</th>
 				<th>2022-04-05</th>
 				<th>2022-04-19</th>
-				<td align = center><input type=button value="리뷰 작성" id="reviewWrite"></td>
+				<td align = center><input type=button value="리뷰 작성" id="reviewWrite"
+				action="<%=request.getContextPath() %>/BookReview_Write.do"></td>
 				<td align = center><input type=button value="반납 신청" id="return"></td>
 			<tr>
 		</table>
