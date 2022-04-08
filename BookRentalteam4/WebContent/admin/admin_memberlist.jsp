@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 글갯수 : ${listcount} 개
+<center>
 <title>회원목록</title>
       <table border=1 width=700 align=center>
         <caption>회원 목록</caption>
@@ -26,7 +27,7 @@
 			<c:set var="num" value="${num-1}" />
 		</td>
 		<td>
-		<a href="./admin_memberdetail.do?member_id=${m.member_id}&page=${page}">
+		<a href="./admin_memberdetail.do?id=${m.id}&page=${page}">
 		${m.id}</a>
 		</td>
 		<td>

@@ -14,18 +14,17 @@ public class adminmemberdetail implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("adminmemberdetailaction");
-		String member_id = request.getParameter("member_id");
+		String id = request.getParameter("id");
 		String page = request.getParameter("page");
 		
 		member_dao dao = member_dao.getInstance();
-		member_dto book = dao.getMember(member_id); // 상세정보 구하기
+		member_dto member = dao.getMember(id); // 상세정보 구하기
 		
 		// 글내용에서 줄바꿈
 		//String content = book.getWirter_Talks().replace("\n","<br>");
 		
 		// 공유 설정
-		request.setAttribute("member", member_id);
-		
+		request.setAttribute("member", member);
 		request.setAttribute("page", page);
 		//request.setAttribute("content", content);
 		
