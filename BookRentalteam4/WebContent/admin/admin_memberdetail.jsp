@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,21 +49,17 @@ a{text-decoration:overline; color:#333;}
 		<td>${member.address}</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12">가입일
-			<div align="center"></div>
-		</td>
+		<td>가입일</td>
 		<td>
 		<fmt:formatDate value="${member.reg_Date}"
-				            pattern="yyyy-MM-dd"/>
-			</td>
+				            pattern="yyyy-MM-dd"/></td>
 	</tr>	
 	<tr><td>회원등급</td>
 		<td><input type=text Placeholder="관리자or회원" id="" name="">
 		</td>
 	</tr>
 	<tr><td colspan=2 align=center>
-				<input type=submit value="수정">
-				<input type=submit value="삭제">
+				<input type=submit value="회원 강제 탈퇴">
 			</td>
 	</tr>		
 	</table>
