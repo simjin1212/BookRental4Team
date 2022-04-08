@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dto.book_dto" %>
-<%@ page import="dao.book_dao" %>
-<%@page import="java.util.*" %>
+<%@ page import="dto.book_dto"%>
+<%@ page import="dao.book_dao"%>
+<%@page import="java.util.*"%>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -38,32 +38,32 @@ s
 
 <body>
 
-<%
+	<%
 	List list = null;
 	List flist = null;
 	book_dao manager = book_dao.getInstance();
 
 	count = manager.getCount();
 	fcount = manager.getFcount(sel, find);
-	System.out.println("count="+count);
-	System.out.println("fcount="+fcount);
+	System.out.println("count=" + count);
+	System.out.println("fcount=" + fcount);
 	out.println("<br>");
-	out.println("count="+count+"<br>");
-	out.println("fcount="+fcount+"<br>");	
-	out.println("sel="+sel+"<br>");	
-	out.println("find="+find+"<br>");	
+	out.println("count=" + count + "<br>");
+	out.println("fcount=" + fcount + "<br>");
+	out.println("sel=" + sel + "<br>");
+	out.println("find=" + find + "<br>");
 
-	number = count - (currentPage-1) * pageSize;
-	fnumber = fcount - (currentPage-1) * pageSize;
-	
-	if(count > 0){
+	number = count - (currentPage - 1) * pageSize;
+	fnumber = fcount - (currentPage - 1) * pageSize;
+
+	if (count > 0) {
 		list = manager.selectBook(startRow, endRow);
 	}
-	if(fcount > 0){
+	if (fcount > 0) {
 		flist = manager.selectFbook(startRow, endRow, sel, find);
 	}
-	System.out.println("list="+list);
-	System.out.println("flist="+flist);
+	System.out.println("list=" + list);
+	System.out.println("flist=" + flist);
 	%>
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -103,168 +103,168 @@ s
 			<th>장르</th>
 			<th>작가의 말</th>
 		</tr>
-<%
-//  전체 목록
-if(count>0 && fcount==0){	
-	for(int i=0; i<list.size(); i++){
-		book_dto book = (book_dto)list.get(i);	
-%>	
-	
-	<tr><td><%=number-- %></td>
-			<td>
-			<a href="book_detail.jsp?no=<%=book.getBook_Name()%>&pageNum=<%=currentPage%>">
-					<%=book.getBook_Name() %>
-				</a></td>
-			<td>
-			<%=book.getWriter() %>
-			</td>
-			<td>
-			<%=book.getPublisher() %>
-			</td>
-			<td>
-			<%=book.getGenre() %>
-			</td>
-			<td>
-			<%=book.getWriter_talks() %>
-			</td>
-	</tr>
-	
-<%} // for end
-	
-	
-// 검색 목록	
-}else if(count>0 && fcount != 0){
-	for(int i=0; i<flist.size(); i++){
-		book_dto book = (book_dto)flist.get(i);	
-%>	
-	
-	<tr><td><%=fnumber-- %></td>
-			<td>
-			<a href="book_detail.jsp?no=<%=book.getBook_Name()%>&pageNum=<%=currentPage%>">
-					<%=book.getBook_Name() %>
-				</a></td>
-			<td>
-			<%=book.getWriter() %>
-			</td>
-			<td>
-			<%=book.getPublisher() %>
-			</td>
-			<td>
-			<%=book.getGenre() %>
-			</td>
-			<td>
-			<%=book.getWriter_talks() %>
-			</td>
-	</tr>
-	
-<%} // for end
-	
-}	
-%>	
+		<%
+		//  전체 목록
+		if (count > 0 && fcount == 0) {
+			for (int i = 0; i < list.size(); i++) {
+				book_dto book = (book_dto) list.get(i);
+		%>
 
-</table>
+		<tr>
+			<td><%=number--%></td>
+			<td><a
+				href="book_detail.jsp?no=<%=book.getBook_Name()%>&pageNum=<%=currentPage%>">
+					<%=book.getBook_Name()%>
+			</a></td>
+			<td><%=book.getWriter()%></td>
+			<td><%=book.getPublisher()%></td>
+			<td><%=book.getGenre()%></td>
+			<td><%=book.getWriter_talks()%></td>
+		</tr>
+
+		<%
+		} // for end
+
+		// 검색 목록	
+		} else if (count > 0 && fcount != 0) {
+		for (int i = 0; i < flist.size(); i++) {
+		book_dto book = (book_dto) flist.get(i);
+		%>
+
+		<tr>
+			<td><%=fnumber--%></td>
+			<td><a
+				href="book_detail.jsp?no=<%=book.getBook_Name()%>&pageNum=<%=currentPage%>">
+					<%=book.getBook_Name()%>
+			</a></td>
+			<td><%=book.getWriter()%></td>
+			<td><%=book.getPublisher()%></td>
+			<td><%=book.getGenre()%></td>
+			<td><%=book.getWriter_talks()%></td>
+		</tr>
+
+		<%
+		} // for end
+
+		}
+		%>
+
+	</table>
 
 
 
-<!-- 페이지 출력 -->
-<center>
-<%
-	// 전체 목록 페이지 처리
-	if(count>0 && fcount == 0){
-		
+	<!-- 페이지 출력 -->
+	<center>
+		<%
+		// 전체 목록 페이지 처리
+		if (count > 0 && fcount == 0) {
+
+			// 총 페이지수
+			int pageCount = count / pageSize + ((count % pageSize == 0) ? 0 : 1);
+
+			// 각 블럭의 시작페이지 번호
+			int startPage = ((currentPage - 1) / 10) * pageSize + 1;
+
+			// 각 블럭의 끝페이지 번호
+			int endPage = startPage + 10 - 1;
+
+			// 존재하는 페이지만 출력
+			if (endPage > pageCount)
+				endPage = pageCount;
+
+			// 이전 블럭으로 이동
+			if (startPage > 10) {
+		%>
+		<a href="book_search.jsp?pagseNum=<%=startPage - 10%>"><%="[이전]"%></a>
+		<%
+		} else {
+		%>
+		<%="[이전]"%>
+		<%
+		}
+
+		// 각 블럭에 10개의 페이지 출력 
+		for (int i = startPage; i <= endPage; i++) {
+		if (i == currentPage) { // 현재 페이지
+		%>
+		<%=i%>
+
+		<%
+		} else {
+		%>
+		<a href="book_search.jsp?pageNum=<%=i%>"><%=i%></a>
+		<%
+		}
+		}
+
+		// 다음 블럭으로 이동
+		if (endPage < pageCount) {
+		%>
+		<a href="book_search.jsp.jsp?pageNum=<%=startPage + 10%>"><%="[다음]"%></a>
+		<%
+		} else {
+		%>
+		<%="[다음]"%>
+		<%
+		}
+
+		// 검색 목록 페이지 처리		
+		} else if (fcount > 0) {
 		// 총 페이지수
-		int pageCount = count / pageSize + ((count%pageSize == 0)? 0 : 1);
-		
+		int pageCount = fcount / pageSize + ((fcount % pageSize == 0) ? 0 : 1);
+
 		// 각 블럭의 시작페이지 번호
-		int startPage = ((currentPage-1)/10) * pageSize +1;
-		
+		int startPage = ((currentPage - 1) / 10) * pageSize + 1;
+
 		// 각 블럭의 끝페이지 번호
-		int endPage = startPage +10 - 1;		
+		int endPage = startPage + 10 - 1;
 
 		// 존재하는 페이지만 출력
-		if(endPage > pageCount) endPage = pageCount;
-		
-		
+		if (endPage > pageCount)
+		endPage = pageCount;
+
 		// 이전 블럭으로 이동
-		if(startPage > 10){
-%>			
-			<a href="book_search.jsp?pagseNum=<%=startPage-10%>"><%="[이전]"%></a>
-<%	}else{  %>
-			<%="[이전]"%>				
-<%	}
-		
-		
-		// 각 블럭에 10개의 페이지 출력 
-		for(int i=startPage; i<=endPage; i++ ){
-			if(i==currentPage){		// 현재 페이지
-%>
-				<%=i %>
-			
-<% 		}else{  %>
-				<a href="book_search.jsp?pageNum=<%=i%>"><%=i %></a>	
-<%		}
-		} 
-		
-		
-		// 다음 블럭으로 이동
-		if(endPage < pageCount){
-%>		
-			<a href="book_search.jsp.jsp?pageNum=<%=startPage+10%>"><%="[다음]"%></a>
-<%	}else{  %>
-			<%="[다음]"%>	
-<%	}
-
-		
-// 검색 목록 페이지 처리		
-	}else if(fcount > 0){
-		// 총 페이지수
-				int pageCount = fcount / pageSize + ((fcount%pageSize == 0)? 0 : 1);
-				
-				// 각 블럭의 시작페이지 번호
-				int startPage = ((currentPage-1)/10) * pageSize +1;
-				
-				// 각 블럭의 끝페이지 번호
-				int endPage = startPage +10 - 1;		
-
-				// 존재하는 페이지만 출력
-				if(endPage > pageCount) endPage = pageCount;
-				
-				
-				// 이전 블럭으로 이동
-				if(startPage > 10){
-		%>			
-					<a href="book_search.jsp.jsp?pageNum=<%=startPage-10%>&sel=<%=sel%>&find=<%=find%>"><%="[이전]"%></a>
-		<%	}else{  %>
-					<%="[이전]"%>				
-		<%	}
-				
-				
-				// 각 블럭에 10개의 페이지 출력 
-				for(int i=startPage; i<=endPage; i++ ){
-					if(i==currentPage){		// 현재 페이지
+		if (startPage > 10) {
 		%>
-						<%=i %>
-					
-		<% 		}else{  %>
-						<a href="book_search.jsp.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>"><%=i %></a>	
-		<%		}
-				} 
-				
-				
-				// 다음 블럭으로 이동
-				if(endPage < pageCount){
-		%>		
-					<a href="book_search.jsp?pageNum=<%=startPage+10%>&sel=<%=sel%>&find=<%=find%>"><%="[다음]"%></a>
-		<%	}else{  %>
-					<%="[다음]"%>	
-		<%	}
-		
-	}
+		<a
+			href="book_search.jsp.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>"><%="[이전]"%></a>
+		<%
+		} else {
+		%>
+		<%="[이전]"%>
+		<%
+		}
 
-%>
+		// 각 블럭에 10개의 페이지 출력 
+		for (int i = startPage; i <= endPage; i++) {
+		if (i == currentPage) { // 현재 페이지
+		%>
+		<%=i%>
 
+		<%
+		} else {
+		%>
+		<a
+			href="book_search.jsp.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>"><%=i%></a>
+		<%
+		}
+		}
 
+		// 다음 블럭으로 이동
+		if (endPage < pageCount) {
+		%>
+		<a
+			href="book_search.jsp?pageNum=<%=startPage + 10%>&sel=<%=sel%>&find=<%=find%>"><%="[다음]"%></a>
+		<%
+		} else {
+		%>
+		<%="[다음]"%>
+		<%
+		}
 
+		}
+		%>
+	
 </body>
 
 </html>
