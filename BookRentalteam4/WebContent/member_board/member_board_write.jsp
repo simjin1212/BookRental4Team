@@ -4,14 +4,15 @@
 <html>
 <head>
 	<title>게시판</title>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+	
 </head> 
 <body>
 현재 아이디:  ${sessionScope.id }<br>
-<form action="<%=request.getContextPath() %>/member_board_write.do" method="post" 
-	  enctype="multipart/form-data"> <!-- 이 객체로 getParameter 할 것 -->
-	  
+<form action="<%=request.getContextPath() %>/member_board_write.do" method="post"  name="writeform" 
+	  enctype="multipart/form-data" id="writeform" name="writeform"> <!-- 이 객체로 getParameter 할 것 -->
+	   
 	  <center>자유게시판</center> <br>
 <table cellpadding="0" cellspacing="0" align=center border=1>
 

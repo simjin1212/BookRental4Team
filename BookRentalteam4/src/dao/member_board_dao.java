@@ -58,7 +58,7 @@ public class member_board_dao {
 		return result;
 	}
 	//총 게시글 수
-	public int getCount() {
+	public int getCount(String sel, String find) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -67,7 +67,17 @@ public class member_board_dao {
 		try {
 			con = getConnection();
 			
-			String sql="select count(*) from member_board";
+			String sql="";
+			
+			//전체 글 수
+			if(sel==null && find==null) {
+				sql="select count(*) from member_board";
+			} else if(!sel.equals("all")) { //제목+내용 제외 
+				sql="select count(*) from member_board where "+sel+" like '%"+find+"%'";
+			} else {
+				sql="select count(*) from member_board where mb_subject like '%"+find+"%' or mb_content like '%"+find+"%'";
+			}
+			
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
@@ -128,8 +138,8 @@ public class member_board_dao {
 		return boardlist;
 	}
 	
-	//일반게시글
-	public List<member_board_dto> getMBList(int start, int end){
+	//일반게시글 목록
+	public List<member_board_dto> getMBList(int start, int end, String sel, String find){
 		List<member_board_dto> boardlist =new ArrayList<member_board_dto>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -138,9 +148,23 @@ public class member_board_dao {
 		try {
 			con=getConnection();
 			
-			String sql="select * from (select rownum rnum, board.* from ";
-			sql+=" (select *from member_board order by mb_ref desc, mb_seq asc) board) ";
-			sql+=" where rnum>=? and rnum<=?";
+			String sql="";
+			
+			//전체 게시글 목록
+			if(sel==null && find==null) {
+				sql="select * from (select rownum rnum, board.* from ";
+				sql+=" (select *from member_board order by mb_ref desc, mb_seq asc) board) ";
+				sql+=" where rnum>=? and rnum<=?";
+			} else if(!sel.equals("all")){		//제목+내용 제외
+				sql = "select * from ( select rownum rnum, board.* from ";
+				sql += "(select * from member_board where "+sel+" like '%"+find+"%' order by mb_ref desc, mb_seq asc) board) ";
+				sql += "where rnum >= ? and rnum <= ?";	
+			} else {	//제목+내용
+				sql = "select * from ( select rownum rnum, board.* from ";
+				sql += "(select * from member_board where mb_subject  like '%"+find+"%' or mb_content like '%"+find+"%' order by mb_ref desc, mb_seq asc) board)  ";
+				sql += "where rnum >= ? and rnum <= ?";
+			}
+			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
@@ -342,9 +366,68 @@ public class member_board_dao {
 		}finally {
 			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
 			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
-		}
-		
+		}	
 		return result;
 	}
+	//다중 삭제
+	public int multidel (String[] mb_num, String path) {
+		int result=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		try {
+			con=getConnection();
+			
+			//파일 삭제
+			String sql="select mb_file from member_board where mb_num=?";
+
+			for(int i=0; i<mb_num.length; i++) {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, mb_num[i]);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {	//첨부파일이 있다면
+					File file=new File(path);	
+					File[] f= file.listFiles(); 	
+					for(int j=0; j<f.length; j++) {
+						if(f[j].getName().equals(rs.getString("mb_file"))) {
+							f[j].delete();		//파일 삭제
+						}
+					}
+				}
+			}
+			pstmt.close();
+			
+			//글 삭제
+			sql="delete from member_board where mb_num=?";
+			pstmt=con.prepareStatement(sql);
+			
+			for(int i=0; i<mb_num.length; i++) {
+				pstmt.setString(1, mb_num[i]);
+				pstmt.addBatch();			//글번호 입력한 sql문을 쌓아두기
+			}
+			int[] cnt=pstmt.executeBatch();  //실행결과 배열로 저장
+			
+			for(int i=0; i<cnt.length; i++) {
+				if(cnt[i]==-2) { 		//성공시
+					result++;	
+				}
+			}
+			
+			if(mb_num.length==result) con.commit(); 		//모두 성공하면 커밋
+			else con.rollback();									//문제 있으면 롤백
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}	
+		return result;
+	}
+	
+	
+	
 	
 }

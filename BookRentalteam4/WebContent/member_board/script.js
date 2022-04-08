@@ -1,15 +1,19 @@
 $(document).ready(function(){
-			$("form").submit(function(){
-				if($("#board_subject").val()==""){
+	//글작성 유효성
+			$("form[name='writeform']").submit(function(){
+				if($("#mb_subject").val()==""){
 					alert("제목을 입력하세요");
-					$("#board_subject").focus();
+					$("#mb_subject").focus();
 					return false;
 				}
-				if($("#board_content").val()==""){
+				if($("#mb_content").val()==""){
 					alert("내용을 입력하세요");
-					$("#board_content").focus();
+					$("#mb_content").focus();
 					return false;
 				}				
+			});	
+	//체크박스
+			$("form[name='form1']").submit(function(){			
 				if($("input:checkbox[name=chk]:checked").length < 1){
 					alert("삭제할 글을 체크해주세요");
 					return false;
@@ -19,11 +23,19 @@ $(document).ready(function(){
 					if(del) document.form.submit();
 					else return false;
 				}
-			});	
+			});	 
 			
 			$("#allchk").click(function(){
 				if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);
 				else $("input[name=chk]").prop("checked", false);
+			});
+	//검색
+			$("form[name='form2']").submit(function(){
+				if($("#find").val()==""){
+					alert("검색어를 입력하세요");
+					$("#find").focus();
+					return false;
+				} 	
 			});
 			
 });	
