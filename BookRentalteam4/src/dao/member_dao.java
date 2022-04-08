@@ -243,6 +243,7 @@ public class member_dao {
 				member.setPost(rs.getString("post"));
 				member.setAddress(rs.getString("address"));
 				member.setReg_Date(rs.getTimestamp("reg_date"));
+				System.out.println("한명 디테일 구하기 완료!!!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

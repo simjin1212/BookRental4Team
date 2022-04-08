@@ -18,6 +18,8 @@ import service.Idcheck;
 import service.Login;
 import service.Update;
 import service.UpdateMember;
+import service.adminmemberdetail;
+import service.adminmemberlist;
 import service.bookModify;
 import service.bookModifyAction;
 import service.bookdelete;
