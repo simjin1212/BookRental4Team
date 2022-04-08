@@ -52,7 +52,7 @@ a{text-decoration:overline; color:#333;}
 		</td>
 		<td>
 		<fmt:formatDate value="${member.reg_Date}"
-				            pattern="yyyy-MM-dd HH:mm:ss EEE요일"/>
+				            pattern="yyyy-MM-dd"/>
 			</td>
 	</tr>	
 	<tr><td>회원등급</td>
