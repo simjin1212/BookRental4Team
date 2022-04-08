@@ -14,12 +14,10 @@
 <table border=1 width=600 align=center>
 	<caption>도서상세정보</caption>
 	<tr>
-		<td style="font-family:돋음; font-size:12">책표지
-			<div align="center"></div>
-		</td>
-		<td>
+		<td colspan=2 align=center>
 			<c:if test="${book.book_Cover != null}">
-					<img src = "<%=request.getContextPath() %>/files/$files/${book.book_Cover}" style="width:50px; height:50px;">
+					<img src = "./admin/bookfileupload.jsp?file_name=${book.book_Cover} " style="width:300px; height:300px;"/>
+
 			</c:if>
 		</td>
 	</tr>	

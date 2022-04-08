@@ -1,5 +1,6 @@
 package service;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +25,7 @@ public class bookdetailaction implements Action{
 		
 		// 공유 설정
 		request.setAttribute("book", book);
+		
 		request.setAttribute("page", page);
 		//request.setAttribute("content", content);
 		
