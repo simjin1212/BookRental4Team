@@ -51,7 +51,7 @@ public class book_dao {
 			pstmt.setString(5, book.getGenre());
 			pstmt.setString(6, book.getWriter_talks());
 			result = pstmt.executeUpdate(); // SQL문 실행
-
+ 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

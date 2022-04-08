@@ -38,7 +38,7 @@ s
 
 <body>
 
-	<% 
+	<%
 	List list = null;
 	List flist = null;
 	book_dao manager = book_dao.getInstance();
