@@ -213,6 +213,23 @@ public class FrontController extends HttpServlet {
 					forward.setRedirect(false);
 					forward.setPath("./member/deleteform.jsp");
 				}
+				//관리자 -회원리스트
+				if(command.equals("/adminmemberlist.do")) {
+					try {
+						action = new adminmemberlist();
+						forward = action.execute(request, response);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				//관리자-멤버상세
+				}else if(command.equals("/admin_memberdetail.do")) {
+					try {
+						action = new adminmemberdetail();
+						forward = action.execute(request, response);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 
 	//이하 멤버(자유)게시판
 				//리스트

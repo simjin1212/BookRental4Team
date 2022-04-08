@@ -5,6 +5,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -263,6 +265,7 @@ public class member_dao {
 		}
 		return member;
 	}
+	
 
 	// 회원정보 수정
 	public int update(member_dto member) {
@@ -335,6 +338,86 @@ public class member_dao {
 				} catch (Exception e) {
 				}
 		}
+		return result;
+	}
+	
+	//관리자 - 관리자가 아닌 회원 전부  리스트
+	public List<member_dto> member_getList(){
+		List<member_dto> list = new ArrayList<member_dto>();
+		Connection con  = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+
+String sql = "select * from member where member_grade = 0";
+	   
+	   		pstmt = con.prepareStatement(sql);
+	   		rs = pstmt.executeQuery();		// SQL문 실행
+	   		System.out.println("sql실행");
+	   		while(rs.next()) {
+	   			member_dto member = new member_dto();
+	   			
+	   			member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setJumin(rs.getString("jumin"));
+				member.setJumin2(rs.getString("jumin2"));
+				member.setMailid(rs.getString("mailid"));
+				member.setDomain(rs.getString("domain"));
+				member.setPhone1(rs.getString("phone1"));
+				member.setPhone2(rs.getString("phone2"));
+				member.setPhone3(rs.getString("phone3"));
+				member.setPost(rs.getString("post"));
+				member.setAddress(rs.getString("address"));
+				member.setReg_Date(rs.getTimestamp("reg_date"));
+//	   			
+//	   			book.setBook_ref(rs.getInt("book_ref"));
+//	   			book.setBook_lev(rs.getInt("book_lev"));
+//	   			book.setBook_seq(rs.getInt("book_seq"));
+	   			
+	   			
+	   			list.add(member);
+	   			
+	   		}
+	   		System.out.println("데이터 리스트에 저장완료");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}		
+		return list;
+	}
+	// 관리자 - 총 맴버 갯수 구하기
+	public int member_getcount() {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql="select count(*) from member where member_grade = 0";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();		// SQL문 실행
+			
+			if(rs.next()) {
+//				result = rs.getInt(1);
+				result = rs.getInt("count(*)");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}		
 		return result;
 	}
 }

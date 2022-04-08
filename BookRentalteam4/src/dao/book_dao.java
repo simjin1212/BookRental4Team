@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.book_dto;
+import dto.member_dto;
 
 
 
@@ -99,6 +100,9 @@ public class book_dao {
 			return book;
 		}
 		
+	
+		
+		
 	//도서 검색
 		public int booksearch(String book_Name) {
 			int result = 0;
@@ -163,6 +167,7 @@ public class book_dao {
 			}		
 			return result;
 		}
+		
 		//도서리스트
 		public List<book_dto> getList(){
 			List<book_dto> list = new ArrayList<book_dto>();
