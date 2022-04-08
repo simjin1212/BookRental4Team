@@ -1,5 +1,6 @@
 package service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,18 @@ public class member_board_list implements Action {
 		System.out.println("list");
 		
 		HttpSession session=request.getSession();
-		String grade=(String)session.getAttribute("grade");
+		String id=(String)session.getAttribute("id");
+		int grade=(int)session.getAttribute("member_grade");
+		
+		if(id==null) {	//비회원 접근 시
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('잘못된 접근입니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			
+			out.close();
+		}
 		
 		member_board_dao dao=member_board_dao.getInstance();
 		int listcount=dao.getCount();		//총 게시글 수

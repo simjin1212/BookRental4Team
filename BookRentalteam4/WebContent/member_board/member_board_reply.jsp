@@ -10,14 +10,14 @@
 <body>
 현재 아이디:  ${sessionScope.id }<br>
 <form action="<%=request.getContextPath() %>/member_board_reply.do" method="post" 
-	  enctype="multipart/form-data"> <!-- 이 객체로 getParameter 할 것 -->
+	  enctype="multipart/form-data" > <!-- 이 객체로 getParameter 할 것 -->
 	  
 <input type=hidden name="mb_num" value="${board.mb_Num }">
 <input type=hidden name="mb_ref" value="${board.mb_REF }">
 <input type=hidden name="mb_lev" value="${board.mb_LEV }">
 <input type=hidden name="mb_seq" value="${board.mb_SEQ}">
 <input type=hidden name="page" value="${page}">
-	  <center>자유게시판</center> <br>
+ <br>
 <table cellpadding="0" cellspacing="0" align=center border=1>
 
 <tr>  

@@ -27,7 +27,7 @@ public class member_board_replyAction implements Action {
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/member_board_replyform.do");
+		forward.setPath("./member_board/member_board_reply.jsp");
 		return forward;
 	}
 

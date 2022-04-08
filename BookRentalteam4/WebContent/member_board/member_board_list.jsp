@@ -2,33 +2,53 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+
+</head>
+<body>
 
 
-<%--
-int count=(Integer)request.getAttribute("listcount");
---%> 
 <!-- 총 게시글 수 : <%--=count--%><br> -->
  현재 아이디 : ${sessionScope.id} <br>
- 현재 등급 : ${sessionScope.grade } <br>
+ 현재 등급 : ${sessionScope.member_grade } <br>
+ 
+ 
+ <!-- 다중삭제기능  -->
+<form action="<%=request.getContextPath() %>/member_board_multidel.do" method="post" >
+ 
+
+
 <table border="1" width="700" align="center">
 	<caption>자유게시판</caption>
 	<tr>
 		<td colspan=3 align="left" border="0"> 총 게시글 수 : ${listcount} </td>
-		<td colspan=2 align="right" border="0"><a href="">작성</a></td> 
-		
-		<td align="right" border="0"><a href="">삭제</a></td>
+		<td colspan=2 align="right" border="0"><input type="button" value="작성" onClick="location.href='./member_board_writeform.do'"></td> 
+		<c:if test="${sessionScope.member_grade==1 }">
+		<td align="right" border="0" ><input type="submit" value="삭제"></td>
+		</c:if>
 		<!-- 삭제는 관리자가 들어갈 때만 보이게 설정... checked 위에. -->
 	</tr>
 	<tr>   
-		<th width="50">No.</th>
+		<th width="40">No.</th>
 		<th width="400">Subject</th>
 		<th width="100">Writer</th>
-		<th width="100">Date</th>
-		<th width="50">Count</th>
-		
-		<th width="50" >Checked</th> 
+		<th width="120">Date</th>
+		<th width="40">Count</th>
+<c:if test="${sessionScope.member_grade==1 }">
+		<th width="50" ><input type="checkbox" id="allchk" name="allchk" ></th> <!-- 전체 체크 -->
+</c:if>
 		<!-- 관리자가 들어갈 때만 컬럼이 보이게 설정 -->
 	</tr>
+<!-- 글이 없다면 -->
+<c:if test="${listcount==0 }">
+	<tr> 
+		<td align="center" colspan=6 > <h5>글이 없습니다</h5> </td>
+	</tr>
+</c:if>	
+	
 <!-- 글이 존재할 때만 리스트 출력 -->
 <c:if test="${listcount>0}">
 
@@ -39,14 +59,13 @@ int count=(Integer)request.getAttribute("listcount");
 		<td align="center"> ${num} 
 			<c:set var="num" value="${num+1 }"/> </td>
 		<td> 
-			<a href="./member_board_view.do?num=${n.mb_Num }&page=${page}">${n.mb_Subject }</a>
+			<a href="./member_board_view.do?num=${n.mb_Num }&page=${page}" style="text-decoration:none">${n.mb_Subject }</a>
  		</td>
 		<td> ${n.id } </td>
 		<td> <fmt:formatDate value="${n.mb_Regdate}" pattern="yy.MM.dd HH:mm"/> </td>
 		<!-- 날짜 표기 시, date클래스 객체 생성해 현재시간 구해서 비교해보고
 		날짜가 같으면 시간만 표시, 날짜가 다를 경우 작성 날짜가 뜨도록 변경 -->
 		<td align="center"> ${n.mb_Readcount } </td>
-		<td> check </td>
 	</tr>
 	</c:forEach>
 
@@ -68,12 +87,19 @@ int count=(Integer)request.getAttribute("listcount");
 		<!-- 날짜 표기 시, date클래스 객체 생성해 현재시간 구해서 비교해보고
 		날짜가 같으면 시간만 표시, 날짜가 다를 경우 작성 날짜가 뜨도록 변경 -->
 		<td align="center"> ${b.mb_Readcount } </td>
-		<td> check </td>
+	<c:if test="${sessionScope.member_grade==1 }">
+		<th> <input type="checkbox" name="chk" value="${b.mb_Num }"> </th>
+	</c:if>
 	</tr>
 	</c:forEach>
 	
 </c:if> 
 </table>
+
+
+</form>
+
+
 <br><br>
 
 <!-- 페이지 목록 -->
@@ -103,3 +129,6 @@ int count=(Integer)request.getAttribute("listcount");
 		
 </c:if>
 </center>
+
+</body>
+</html>

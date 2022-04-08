@@ -39,14 +39,13 @@ public class member_board_dao {
 		try {
 			con = getConnection();
 				
-			String sql="insert into member_board values(10,?,?,?,?,sysdate,10,0,0,0,?)";
-			//예시로 시퀀스 대신 임의로 num=1 넣었놓은 상태
+			String sql="insert into member_board values(member_board_seq.nextval,?,?,?,?,sysdate,member_board_seq.nextval,0,0,0,?)";
 			pstmt=con.prepareStatement(sql); 
 			pstmt.setString(1, memberboard.getId());
 			pstmt.setString(2, memberboard.getMb_Subject());
 			pstmt.setString(3, memberboard.getMb_Content());
 			pstmt.setString(4, memberboard.getMb_File());
-			pstmt.setString(5, memberboard.getMb_Grade());
+			pstmt.setInt(5, memberboard.getMb_Grade());
 
 			result = pstmt.executeUpdate();   // SQL문 실행
 				       
@@ -95,7 +94,7 @@ public class member_board_dao {
 			con=getConnection();
 			
 			String sql="select * from (select rownum rnum, board.* from ";
-			sql+=" (select *from member_board where mb_grade='manager' order by mb_num desc) board) ";
+			sql+=" (select *from member_board where mb_grade=1 order by mb_num desc) board) ";
 			sql+=" where rownum<=? ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -114,7 +113,7 @@ public class member_board_dao {
 				board.setMb_LEV(rs.getInt("mb_lev"));
 				board.setMb_SEQ(rs.getInt("mb_seq"));
 				board.setMb_Readcount(rs.getInt("mb_readcount"));
-				board.setMb_Grade(rs.getString("mb_grade"));
+				board.setMb_Grade(rs.getInt("mb_grade"));
 				
 				boardlist.add(board);
 			}
@@ -159,7 +158,7 @@ public class member_board_dao {
 				board.setMb_LEV(rs.getInt("mb_lev"));
 				board.setMb_SEQ(rs.getInt("mb_seq"));
 				board.setMb_Readcount(rs.getInt("mb_readcount"));
-				board.setMb_Grade(rs.getString("mb_grade"));
+				board.setMb_Grade(rs.getInt("mb_grade"));
 				
 				boardlist.add(board);
 			}
@@ -220,7 +219,7 @@ public class member_board_dao {
 				board.setMb_LEV(rs.getInt("mb_lev"));
 				board.setMb_SEQ(rs.getInt("mb_seq"));
 				board.setMb_Readcount(rs.getInt("mb_readcount"));
-				board.setMb_Grade(rs.getString("mb_grade"));
+				board.setMb_Grade(rs.getInt("mb_grade"));
 			}
 			
 		}catch(Exception e) {
@@ -303,6 +302,49 @@ public class member_board_dao {
 		}
 		return result;
 	}
-	
+	//답글
+	public int boardReply(member_board_dto board) {
+		int result=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		//re 정보 미리 가져오기 (나중에 편하게)
+		int re_ref=board.getMb_REF();
+		int re_lev=board.getMb_LEV();
+		int re_seq=board.getMb_SEQ();
+		
+		try {
+			con=getConnection();
+		//기존 답글 존재한다면 순서 하나씩 뒤로 밀기
+			String sql="update member_board set mb_seq=mb_seq+1 ";
+			sql+=" where mb_ref=? and mb_seq>?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);	//부모글과 한 블럭인 글에 한정
+			pstmt.setInt(2, re_seq);	//답글의 답글일 경우 부모 답글의 아래로 순서가 정렬돼야 함
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql="insert into member_board values(member_board_seq.nextval,?,?,?,?,sysdate,?,?,?,0,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, board.getId());
+			pstmt.setString(2, board.getMb_Subject());
+			pstmt.setString(3, board.getMb_Content());
+			pstmt.setString(4, board.getMb_File());
+			pstmt.setInt(5, re_ref);
+			pstmt.setInt(6, re_lev+1); //깊이 +1
+			pstmt.setInt(7, re_seq+1); 	//답글 순서 1
+			pstmt.setInt(8, board.getMb_Grade());
+			
+			result = pstmt.executeUpdate();  
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		
+		return result;
+	}
 	
 }

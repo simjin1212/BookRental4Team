@@ -12,7 +12,7 @@ public class member_board_view implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("view");
-		
+		System.out.println(request.getParameter("page"));
 		int num = Integer.parseInt(request.getParameter("num"));
 		String nowpage=request.getParameter("page");
 

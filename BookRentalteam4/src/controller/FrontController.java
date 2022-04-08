@@ -214,18 +214,9 @@ public class FrontController extends HttpServlet {
 					forward.setPath("./member/deleteform.jsp");
 				}
 
-				//이하 멤버(자유)게시판
-				//임의 계정 하나 만들어놓음 
-				if(command.contentEquals("/member_board_login.do")) {
-					try {
-						action = new member_board_login();
-						forward = action.execute(request, response);
-							
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
-				//리스트 출력
-				} else if (command.contentEquals("/member_board_list.do")) {
+	//이하 멤버(자유)게시판
+				//리스트
+				if(command.contentEquals("/member_board_list.do")) {
 					try {
 						action = new member_board_list();
 						forward = action.execute(request, response);
@@ -316,7 +307,14 @@ public class FrontController extends HttpServlet {
 					}catch(Exception e) {
 							e.printStackTrace();
 					} 
-				}
+				//다중 삭제
+		} /*
+			 * else if (command.contentEquals("/member_board_multidel.do")) { try { action =
+			 * new member_board_reply(); forward = action.execute(request, response);
+			 * 
+			 * }catch(Exception e) { e.printStackTrace(); } //member_board_multidel.do }
+			 */
+
 
 				// 포워딩 처리
 				if(forward != null) {
