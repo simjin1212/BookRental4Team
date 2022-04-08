@@ -3,38 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
-<head>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
-
-</head>
-<body>
 
 
 <!-- 총 게시글 수 : <%--=count--%><br> -->
  현재 아이디 : ${sessionScope.id} <br>
  현재 등급 : ${sessionScope.member_grade } <br>
  
- 
  <!-- 다중삭제기능  -->
-<form action="<%=request.getContextPath() %>/member_board_multidel.do" method="post" >
- 
-
+ <form action="<%=request.getContextPath() %>/member_board_multidel.do" method="post" name="form1" id="form1">
+     
+ <input type=hidden id="page" name="page" value="${page }"> <!-- multidel로 넘어갈 page 정보 -->
 
 <table border="1" width="700" align="center">
 	<caption>자유게시판</caption>
 	<tr>
-		<td colspan=3 align="left" border="0"> 총 게시글 수 : ${listcount} </td>
+		<td colspan=3 align="left" border="0"> <c:if test="${not empty find}">[${find }] 검색 결과</c:if>  총 ${listcount} </td>
+		<c:if test="${not empty sessionScope.id }">
 		<td colspan=2 align="right" border="0"><input type="button" value="작성" onClick="location.href='./member_board_writeform.do'"></td> 
+		</c:if>
 		<c:if test="${sessionScope.member_grade==1 }">
 		<td align="right" border="0" ><input type="submit" value="삭제"></td>
 		</c:if>
 		<!-- 삭제는 관리자가 들어갈 때만 보이게 설정... checked 위에. -->
 	</tr>
 	<tr>   
-		<th width="40">No.</th>
+		<th width="60">No.</th>
 		<th width="400">Subject</th>
-		<th width="100">Writer</th>
+		<th width="80">Writer</th>
 		<th width="120">Date</th>
 		<th width="40">Count</th>
 <c:if test="${sessionScope.member_grade==1 }">
@@ -95,12 +92,27 @@
 	
 </c:if> 
 </table>
-
-
+ </form>
+ 
+<form name="form2" id="form2" action="<%=request.getContextPath() %>/member_board_list.do" method="post" >
+<table border="0" width="700" align="center">
+<tr>
+	<td colspan=4>
+			<select name="sel">
+				<option value="all">제목+내용</option>
+				<option value="id">작성자</option>
+				<option value="mb_subject">제목</option>
+				<option value="mb_content">내용</option>
+			</select>
+			<input type=text name="find" id="find">
+			<input type="submit"  value="검색">
+	</td>
+	<td>
+	<a href="./member_board_list.do">목록으로</a>
+	</td>
+</tr>
+</table>
 </form>
-
-
-<br><br>
 
 <!-- 페이지 목록 -->
 <center>
@@ -130,5 +142,7 @@
 </c:if>
 </center>
 
-</body>
+
+
+
 </html>

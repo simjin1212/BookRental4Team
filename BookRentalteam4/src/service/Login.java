@@ -40,7 +40,7 @@ public class Login implements Action{
 		if(result == 1 && admincheck == 1) {
 			
 			session.setAttribute("id", id);         // 세션 공유 설정
-			
+			session.setAttribute("member_grade", 1);
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
@@ -51,6 +51,7 @@ public class Login implements Action{
 		}else if(result == 1 && admincheck == -1){
 			// 회원 인증 성공
 			session.setAttribute("id", id);         // 세션 공유 설정
+			session.setAttribute("member_grade", 0);
 			
 			}else {					// 회원 인증 실패
 				out.println("<script>");
