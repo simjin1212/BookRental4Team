@@ -27,9 +27,9 @@ import service.bookupdateAction;
 import service.memberJoin;
 import service.member_board_delete;
 import service.member_board_list;
-import service.member_board_login;
 import service.member_board_modify;
 import service.member_board_modifyAction;
+import service.member_board_multidel;
 import service.member_board_reply;
 import service.member_board_replyAction;
 import service.member_board_view;
@@ -213,6 +213,23 @@ public class FrontController extends HttpServlet {
 					forward.setRedirect(false);
 					forward.setPath("./member/deleteform.jsp");
 				}
+				//관리자 -회원리스트
+				if(command.equals("/adminmemberlist.do")) {
+					try {
+						action = new adminmemberlist();
+						forward = action.execute(request, response);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				//관리자-멤버상세
+				}else if(command.equals("/admin_memberdetail.do")) {
+					try {
+						action = new adminmemberdetail();
+						forward = action.execute(request, response);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 
 	//이하 멤버(자유)게시판
 				//리스트
@@ -308,12 +325,14 @@ public class FrontController extends HttpServlet {
 							e.printStackTrace();
 					} 
 				//다중 삭제
-		} /*
-			 * else if (command.contentEquals("/member_board_multidel.do")) { try { action =
-			 * new member_board_reply(); forward = action.execute(request, response);
-			 * 
-			 * }catch(Exception e) { e.printStackTrace(); } //member_board_multidel.do }
-			 */
+				}  else if (command.contentEquals("/member_board_multidel.do")) {
+					try {
+						action = new member_board_multidel();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+							e.printStackTrace(); } //member_board_multidel.do }
+					}
+	
 
 
 				// 포워딩 처리

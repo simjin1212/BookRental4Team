@@ -60,7 +60,7 @@ a{text-decoration:overline; color:#333;}
 		    </select>		    
 		 </td>
 	</tr>
-	<t><td>주소</td>
+	<tr><td>주소</td>
 		<td><input type=text size=45 id="address" name="address"></td>
 	</tr>
 	<tr>

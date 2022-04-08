@@ -8,7 +8,8 @@
 	${sessionScope.id}님 환영 합니다. <br><br>
 	 
 	 <a href=""><h5>게시판관리</h5></a> <br>
-	 <a href=""><h5>회원관리</h5></a> <br>
+	 	 <a href="./member_board_list.do"><h5>회원게시판</h5></a> <br>
+	 <a href="./adminmemberlist.do"><h5>회원관리</h5></a> <br>
 	 <a href="./booklistaction.do"><h5>도서관리</h5></a> <br>
 	 <a href=""><h5>문의관리</h5></a> <br>
 
