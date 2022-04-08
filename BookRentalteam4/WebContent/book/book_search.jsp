@@ -32,7 +32,6 @@ int fnumber = 0; // 화면에 출력되는 번호
 <html>
 <head>
 <meta charset="UTF-8">
-s
 <title>도서 검색</title>
 </head>
 
