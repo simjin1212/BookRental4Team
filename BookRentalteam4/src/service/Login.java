@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import dao.member_dao;
 
@@ -41,6 +42,8 @@ public class Login implements Action{
 			
 			session.setAttribute("id", id);         // 세션 공유 설정
 			session.setAttribute("member_grade", 1);
+			JOptionPane aa = new JOptionPane();
+			aa.showMessageDialog(null,"관리자로 접속합니다!");
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩

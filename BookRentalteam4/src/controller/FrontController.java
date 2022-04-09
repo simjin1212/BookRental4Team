@@ -18,6 +18,7 @@ import service.Idcheck;
 import service.Login;
 import service.Update;
 import service.UpdateMember;
+import service.adminmemberdelete;
 import service.adminmemberdetail;
 import service.adminmemberlist;
 import service.bookModify;
@@ -229,6 +230,14 @@ public class FrontController extends HttpServlet {
 						action = new adminmemberdetail();
 						forward = action.execute(request, response);
 					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				//관리자-멤버 강퇴
+				}else if(command.equals("/memberdelete.do")) {
+					try {
+						action = new adminmemberdelete();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
 						e.printStackTrace();
 					}
 				}

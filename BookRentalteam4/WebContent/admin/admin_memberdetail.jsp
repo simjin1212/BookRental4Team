@@ -59,7 +59,8 @@ a{text-decoration:overline; color:#333;}
 		</td>
 	</tr>
 	<tr><td colspan=2 align=center>
-				<input type=submit value="회원 강제 탈퇴">
+				<input type=submit value="회원 강제 탈퇴"
+				onClick="location.href='./memberdelete.do?id=${member.id}'">
 			</td>
 	</tr>		
 	</table>

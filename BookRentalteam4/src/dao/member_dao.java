@@ -421,4 +421,6 @@ String sql = "select * from member where member_grade = 0";
 		}		
 		return result;
 	}
+	
+	
 }
