@@ -6,11 +6,8 @@
 <meta charset="UTF-8">
 <title>도서 상세</title>
 </head>
-
-
-
 <body>
-
+ 현재 아이디 : ${sessionScope.id} <br>
 <form method="post" action="">
 
       <table border = 1 width=600 height=300 align=center cellpadding=15px>

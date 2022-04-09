@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 총 대출도서 : ${listcount} 권 <br>
 <%-- <%
 	int count = ((Integer)request.getAttribute("listcount")).intValue();
@@ -35,8 +36,9 @@
 				<th>한빛미디어</th>
 				<th>2022-04-05</th>
 				<th>2022-04-19</th>
-				<td align = center><input type=button value="리뷰 작성" id="reviewWrite"
-				action="<%=request.getContextPath() %>/BookReview_Write.do"></td>
+				<td align = center>
+				<input type=button value="리뷰 작성" id="reviewWrite" onClick="location.href='<%=request.getContextPath()%>/BookReview_Form.do' ">
+				</td>
 				<td align = center><input type=button value="반납 신청" id="return"></td>
 			<tr>
 		</table>
