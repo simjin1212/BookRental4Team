@@ -16,6 +16,7 @@ import service.Booksearchaction;
 import service.Delete;
 import service.Idcheck;
 import service.Login;
+import service.ReviewListAction;
 import service.Update;
 import service.UpdateMember;
 import service.adminmemberdelete;
@@ -26,6 +27,7 @@ import service.bookModifyAction;
 import service.bookdelete;
 import service.bookdetailaction;
 import service.booklistaction;
+import service.bookreview_write;
 import service.bookupdateAction;
 import service.memberJoin;
 import service.member_board_delete;
@@ -212,10 +214,27 @@ public class FrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				}  else if (command.equals("/BookReview_Write.do")) {
+					// 리뷰 작성폼
+				} else if (command.equals("/BookReview_Form.do")) {
 					forward = new ActionForward();
 					forward.setRedirect(false);
-					forward.setPath("./member/deleteform.jsp");
+					forward.setPath("./book/book_review_write.jsp");
+					// 리뷰 작성
+				} else if (command.equals("/bookreview_write.do")) {
+					try { 
+						action = new bookreview_write();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// 리뷰게시판 이동
+				}else if(command.equals("/ReviewListAction.do")) {
+					try {
+						action = new ReviewListAction();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}	
 				}
 				//관리자 -회원리스트
 				if(command.equals("/adminmemberlist.do")) {
