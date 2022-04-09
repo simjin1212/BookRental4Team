@@ -37,6 +37,7 @@ import service.member_board_reply;
 import service.member_board_replyAction;
 import service.member_board_view;
 import service.member_board_write;
+import service.membergrademodify;
 
 
 @WebServlet("*.do")  // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -240,7 +241,16 @@ public class FrontController extends HttpServlet {
 					}catch(Exception e) {
 						e.printStackTrace();
 					}
+				}else if(command.equals("/membergrademodify.do")) {
+					try {
+						action = new membergrademodify();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 				}
+				
+				
 
 	//이하 멤버(자유)게시판
 				//리스트

@@ -42,7 +42,7 @@ a{text-decoration:overline; color:#333;}
 		${member.phone3}</td>	
 	</tr>
 	<tr><td>E-Mail</td>
-		<td>${member.mailid}@
+		<td>${member.mailid}@ 
 		    ${member.domain}</td>	    
 	</tr>
 	<tr><td>주소</td>
@@ -55,7 +55,18 @@ a{text-decoration:overline; color:#333;}
 				            pattern="yyyy-MM-dd"/></td>
 	</tr>	
 	<tr><td>회원등급</td>
-		<td><input type=text Placeholder="관리자or회원" id="" name="">
+		<td>
+		<c:if test="${member.member_Grade == 0}">
+			일반회원		
+			<input type="button" value="관리자로 변경" 
+			onClick="location.href='./membergrademodify.do?id=${member.id}&member_grade=${member.member_Grade}' ">			
+			</c:if>
+		<c:if test="${member.member_Grade == 1}">
+			관리자		
+			<input type="button" value="일반회원으로 변경"
+			onClick="location.href='./membergrademodify.do?id=${member.id}&member_grade=${member.member_Grade}' ">				
+		</c:if>
+		
 		</td>
 	</tr>
 	<tr><td colspan=2 align=center>
