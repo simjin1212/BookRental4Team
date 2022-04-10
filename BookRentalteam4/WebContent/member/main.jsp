@@ -20,5 +20,6 @@
 <%-- <c:if test="${sessionScope.id == null }"> --%>
 	<a href="<%=request.getContextPath() %>/JoinForm.do">회원 가입</a> <br>
 	<a href="<%=request.getContextPath() %>/LoginForm.do">로그인</a> <br>
+	<a href="<%=request.getContextPath() %>/booksearchaction.do">비호원</a> <br>
 </c:if>
     
