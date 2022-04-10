@@ -11,8 +11,10 @@
 	 <a href="./RentList.do"><h5>대출 목록</h5></a> <br>
 	 <a href="./ReserveList.do"><h5>예약 목록</h5></a> <br>
 	 <a href="./member_board_list.do"><h5>회원게시판</h5></a> <br>
+	 <a href="./qna_BoardListAction.do"><h5>1:1문의 게시판</h5></a> <br>
 	 <a href="./Logout.do"><h5>로그아웃</h5></a> <br>
 	 <a href="./DeleteMember.do"><h5>회원탈퇴</h5></a> <br>
+	
 </c:if>
 
 <!-- 세션이 없는 경우 -->

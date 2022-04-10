@@ -2,23 +2,22 @@
 
 package dto;
 
-
+import java.sql.Date;
 
 public class qna_board_dto {
-
-	private Number qb_Num; /* 게시판번호 */
-	private String id; /* iD */
-	private String qb_Subject;/* 제목 */
-	private String qb_Content; /* 내용 */
-	private String qb_Readcount;/* 조회수 */
-	private String qb_Regdate ; /* 등록일 */
-	private int qb_REF; /* REF */
-	private int qb_LEV; /* LEV */
-	public Number getQb_Num() {
-		return qb_Num;
+	private int qb_num;			// 프로퍼티(property)
+	private String id;
+	private String qb_subject;
+	private String qb_content;
+	private Date qb_regdate;
+	private int qb_ref;
+	private int qb_lev;
+	private int board_seq;
+	public int getQb_num() {
+		return qb_num;
 	}
-	public void setQb_Num(Number qb_Num) {
-		this.qb_Num = qb_Num;
+	public void setQb_num(int qb_num) {
+		this.qb_num = qb_num;
 	}
 	public String getId() {
 		return id;
@@ -26,41 +25,41 @@ public class qna_board_dto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getQb_Subject() {
-		return qb_Subject;
+	public String getQb_subject() {
+		return qb_subject;
 	}
-	public void setQb_Subject(String qb_Subject) {
-		this.qb_Subject = qb_Subject;
+	public void setQb_subject(String qb_subject) {
+		this.qb_subject = qb_subject;
 	}
-	public String getQb_Content() {
-		return qb_Content;
+	public String getQb_content() {
+		return qb_content;
 	}
-	public void setQb_Content(String qb_Content) {
-		this.qb_Content = qb_Content;
+	public void setQb_content(String qb_content) {
+		this.qb_content = qb_content;
 	}
-	public String getQb_Readcount() {
-		return qb_Readcount;
+	public Date getQb_regdate() {
+		return qb_regdate;
 	}
-	public void setQb_Readcount(String qb_Readcount) {
-		this.qb_Readcount = qb_Readcount;
+	public void setQb_regdate(Date qb_regdate) {
+		this.qb_regdate = qb_regdate;
 	}
-	public String getQb_Regdate() {
-		return qb_Regdate;
+	public int getQb_ref() {
+		return qb_ref;
 	}
-	public void setQb_Regdate(String qb_Regdate) {
-		this.qb_Regdate = qb_Regdate;
+	public void setQb_ref(int qb_ref) {
+		this.qb_ref = qb_ref;
 	}
-	public int getQb_REF() {
-		return qb_REF;
+	public int getQb_lev() {
+		return qb_lev;
 	}
-	public void setQb_REF(int qb_REF) {
-		this.qb_REF = qb_REF;
+	public void setQb_lev(int qb_lev) {
+		this.qb_lev = qb_lev;
 	}
-	public int getQb_LEV() {
-		return qb_LEV;
+	public int getBoard_seq() {
+		return board_seq;
 	}
-	public void setQb_LEV(int qb_LEV) {
-		this.qb_LEV = qb_LEV;
+	public void setBoard_seq(int board_seq) {
+		this.board_seq = board_seq;
 	}
-
+	
 }
