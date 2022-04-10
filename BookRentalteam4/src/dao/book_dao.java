@@ -448,11 +448,9 @@ public class book_dao {
 
 		try {
 			con = getConnection();
-
-			String sql = "select * from ( select rownum rnum, no, ";
-			sql += "book_num, book_name, Writer, Publisher, genre, Writer_talks from ";
-			sql += "(select * from book where " + sel + " like '%" + find + "%' order by no desc)) ";
-			sql += "where rnum >= ? and rnum <= ?";
+			String sql="select * from ( select rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks ";
+					sql+="from (select * from book where  " + sel + " like '%" + find + "%' order by book_num desc)) ";
+					sql += "where rnum >= ? and rnum <= ?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
