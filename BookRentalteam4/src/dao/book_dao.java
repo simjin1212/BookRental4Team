@@ -331,7 +331,7 @@ public class book_dao {
 	}
 
 	// 도서 검색 리스트
-	public List<book_dto> getsearchList(int start, int end) {
+	public List<book_dto> getsearchList(int start, int end, String find, String sel) {
 		List<book_dto> list = new ArrayList<book_dto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -339,11 +339,18 @@ public class book_dao {
 
 		try {
 			con = getConnection();
-
-			String sql = "select * from (select rownum rnum, book.* from ";
-			sql += " (select * from book order by book_ref desc,";
-			sql += " book_seq asc) book)";
-			sql += " where rnum >=? and rnum <=?";
+			
+			String sql = "";
+			//전체 게시글 목록
+			if(sel==null && find==null) {
+				sql="select * from (select rownum rnum, book.* from ";
+				sql+=" (select *from book order by book_ref desc, book_seq asc) book) ";
+				sql+=" where rnum>=? and rnum<=?";
+			} else if(!sel.equals("all")){		//제목+내용 제외
+				sql = "select * from ( select rownum rnum, board.* from ";
+				sql += "(select * from book where "+sel+" like '%"+find+"%' order by book_ref desc, book_seq asc) book) ";
+				sql += "where rnum >= ? and rnum <= ?";	
+			}
 
 			pstmt = con.prepareStatement(sql);
 
@@ -449,10 +456,8 @@ public class book_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select * from ( select rownum rnum, no, ";
-			sql += "book_num, book_name, Writer, Publisher, genre, Writer_talks from ";
-			sql += "(select * from book where " + sel + " like '%" + find + "%' order by no desc)) ";
-			sql += "where rnum >= ? and rnum <= ?";
+			String sql = "select * from ( select rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks";
+					sql += "from (select * from book where book_name like '123' order by book_num desc)) where rnum >= 1" ;
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);

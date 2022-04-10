@@ -19,6 +19,7 @@ public class book_dto {
 		private int book_seq;
 		private int book_lev;
 		private int book_ref;
+		
 		public int getBook_seq() {
 			return book_seq;
 		}
