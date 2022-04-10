@@ -11,16 +11,14 @@
 
 <body>
 
-<form method="post" action="">
-
       <table border = 1 width=600 height=300 align=center cellpadding=15px>
          <caption align=center>
             <h2>도서 상세 페이지</h2>
          </caption>
          <tr valign="top">
             <td width=150></td>
-            <td left=5px>저자<br> <br> 출판사<br> <br> 장르<br>
-               <br> 도서번호<br>
+            <td left=5px>저자  ;${book.writer}<br> <br> 출판사 ;${book.publisher}<br> <br> 장르  ;${book.genre}<br>
+               <br> 도서번호  ;${book.book_num}<br>
             </td>
          </tr>
          <tr>
@@ -67,7 +65,6 @@
             </td>
          </tr>
       </table>
-   </form>
 
 
 

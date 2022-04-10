@@ -3,6 +3,7 @@ select * from book;
 select * from review_board;
 select * from member_board;
 select * from tab;
+select * from rent;
 
 truncate table review_board; 
 alter table member add rent_count int default 0;
