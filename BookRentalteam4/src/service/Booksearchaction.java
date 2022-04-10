@@ -17,9 +17,7 @@ public class Booksearchaction implements Action {
 
 		int page = 1; // 페이지 번호
 		int limit = 10; // 한 페이지에 출력할 데이터 갯수
-		String find = request.getParameter("find");
-		String sel = request.getParameter("sel");
-		
+
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -32,7 +30,7 @@ public class Booksearchaction implements Action {
 		int listcount = dao.getCount(); // 총 데이터 갯수
 		System.out.println("listcount :" + listcount);
 
-		List<book_dto> booklist = dao.getsearchList(startRow, endRow, sel , find); // 서브쿼리 두번작성해야함
+		List<book_dto> booklist = dao.getList(); // 서브쿼리 두번작성해야함
 		System.out.println("booklist :" + booklist);
 
 		// 총 페이지

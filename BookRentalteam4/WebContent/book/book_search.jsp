@@ -6,7 +6,7 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-
+ 
 String sel = request.getParameter("sel");
 String find = request.getParameter("find");
 // 1. 한 화면에 출력할 데이터 갯수
@@ -82,7 +82,7 @@ s
 			});
 		});
 	</script>
-	<form action="book_search.jsp" method="post" align=center>
+	<form action="book/book_search.jsp" method="post" align=center>
 		<caption>도서 검색 목록</caption>
 		<br> <select name="sel">
 			<option value="">검색</option>
