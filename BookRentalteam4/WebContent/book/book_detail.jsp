@@ -16,9 +16,9 @@
             <h2>도서 상세 페이지</h2>
          </caption>
          <tr valign="top">
-            <td width=150></td>
+            <td width=150><img src = "./admin/bookfileupload.jsp?file_name=${book.book_Cover} " style="width:300px; height:300px;"/></td>
             <td left=5px>저자  ;${book.writer}<br> <br> 출판사 ;${book.publisher}<br> <br> 장르  ;${book.genre}<br>
-               <br> 도서번호  ;${book.book_num}<br>
+               <br> 도서번호  ;${book.book_Num}<br>
             </td>
          </tr>
          <tr>

@@ -89,7 +89,8 @@ s
 			<option value="BOOK_NAME">제목</option>
 			<option value="WRITER">저자</option>
 			<option value="PUBLISHER">출판사</option>
-		</select> <input type="text" name="find" id="find" placeholder="검색어"> <input
+		</select>
+		 <input type="text" name="find" id="find" placeholder="검색어"> <input
 			type="submit" value="검색">
 	</form>
 
