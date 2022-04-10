@@ -181,17 +181,10 @@ if(count>0 && fcount==0){
 		// 각 블럭의 끝페이지 번호
 		int endPage = startPage +10 - 1;		
 
-<<<<<<< HEAD
 		// 존재하는 페이지만 출력
 		if(endPage > pageCount) endPage = pageCount;
 		
 		
-=======
-		// 존재하는 페이지만 출력0
-		if (endPage > pageCount)
-		endPage = pageCount;
-
->>>>>>> branch 'master' of https://github.com/simjin1212/BookRental4Team.git
 		// 이전 블럭으로 이동
 		if(startPage > 10){
 %>			
