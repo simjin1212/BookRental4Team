@@ -218,7 +218,7 @@ int fnumber = 0; // 화면에 출력되는 번호
 		// 각 블럭의 끝페이지 번호
 		int endPage = startPage + 10 - 1;
 
-		// 존재하는 페이지만 출력
+		// 존재하는 페이지만 출력0
 		if (endPage > pageCount)
 		endPage = pageCount;
 

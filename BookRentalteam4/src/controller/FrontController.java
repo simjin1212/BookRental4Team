@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
 import service.ActionForward;
+
 import service.Booksearchaction;
 import service.Delete;
 import service.Idcheck;
@@ -40,6 +41,11 @@ import service.member_board_replyAction;
 import service.member_board_view;
 import service.member_board_write;
 import service.membergrademodify;
+import service.qna_BoardAddAction;
+import service.qna_BoardDetailAction;
+import service.qna_BoardListAction;
+import service.qna_BoardModify;
+import service.qna_BoardModifyAction;
 
 
 @WebServlet("*.do")  // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -372,21 +378,83 @@ public class FrontController extends HttpServlet {
 					}catch(Exception e) {
 							e.printStackTrace(); } //member_board_multidel.do }
 					}
-	
 
+				
+				//------------------------------------------아래부터 문의항목------------------------------------------
+				// qna문의작성(원문작성)
+				if(command.equals("/qna_BoardAddAction.do")) {
+					try {
+						action = new qna_BoardAddAction();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					
+				// qna문의작성 폼1	
+				}else if(command.equals("/qna_BoardForm.do")) {	
+					forward = new ActionForward();
+					forward.setRedirect(false);
+					forward.setPath("./qna_board/qna_board_write.jsp");
+				
+				
+					
+				// qna문의글목록	
+				}else if(command.equals("/qna_BoardListAction.do")) {
+					
+					try {
+						action = new qna_BoardListAction();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					
+					
+					
+				// qna문의상세 페이지	
+				}else if(command.equals("/qna_BoardDetailAction.do")) {
+					try {
+						action = new qna_BoardDetailAction();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				
 
-				// 포워딩 처리
-				if(forward != null) {
-					if(forward.isRedirect()) {	// redirect 방식으로 포워딩
-						response.sendRedirect(forward.getPath());
-					}else {						// dispatcher 방식으로 포워딩
-						RequestDispatcher dispatcher =
-								request.getRequestDispatcher(forward.getPath());
-						dispatcher.forward(request, response);
+					
+				// qna문의수정 폼	
+				}else if(command.equals("/qna_BoardModifyAction.do")) {
+					try {
+						action = new qna_BoardModifyAction();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					
+					
+				
+					
+//				//qna문의글 수정
+			}else if(command.equals("/qna_BoardModify.do")) {
+					try {
+						action = new qna_BoardModify();
+						forward = action.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
 					}
 				}
+				
+					// 포워딩 처리
+					if(forward != null) {
+						if(forward.isRedirect()) {	// redirect 방식으로 포워딩
+							response.sendRedirect(forward.getPath());
+						}else {						// dispatcher 방식으로 포워딩
+							RequestDispatcher dispatcher =
+									request.getRequestDispatcher(forward.getPath());
+							dispatcher.forward(request, response);
+						}
+					}
 		
-	
+				
 	} // doProcess() end
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
