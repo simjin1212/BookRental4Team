@@ -456,8 +456,10 @@ public class book_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select * from ( select rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks";
-					sql += "from (select * from book where book_name like '123' order by book_num desc)) where rnum >= 1" ;
+			String sql="select * from ( select rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks ";
+					sql+="from (select * from book where  " + sel + " like '%" + find + "%' order by book_num desc)) ";
+					sql += "where rnum >= ? and rnum <= ?";
+
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
