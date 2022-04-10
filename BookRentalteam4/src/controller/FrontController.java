@@ -47,6 +47,8 @@ import service.qna_BoardDetailAction;
 import service.qna_BoardListAction;
 import service.qna_BoardModify;
 import service.qna_BoardModifyAction;
+import service.qna_board_reply;
+import service.qna_board_replyAction;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -458,7 +460,25 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//qna답글 폼
+		}else if (command.contentEquals("/member_board_replyform.do")) {
+		try {
+			action = new qna_board_replyAction();
+			forward = action.execute(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		// 답글 입력
+	} else if (command.contentEquals("/qna_board_reply.do")) {
+		try {
+			action = new qna_board_reply();
+			forward = action.execute(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 		// 포워딩 처리
 		if (forward != null) {

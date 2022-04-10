@@ -13,7 +13,7 @@
 	 <a href="./adminmemberlist.do"><h5>회원관리</h5></a> <br>
 
 	 <a href="./booklistaction.do"><h5>도서관리</h5></a> <br>
-	 <a href=""><h5>문의관리</h5></a> <br>
+	 <a href="./qna_BoardListAction.do"><h5>문의관리</h5></a> <br>
 
 </c:if>
 

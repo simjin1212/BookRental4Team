@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>qna</title>
+	<title>qna댓글작성</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/board/script.js"></script>
 
@@ -16,39 +16,24 @@ div{ font-size:16px; }
 </head>
 <body>
 
-<form action="<%=request.getContextPath() %>/BoardAddAction.do" method="post" 
+<form action="<%=request.getContextPath() %>/qna_board_reply.do" method="post" 
 	  enctype="multipart/form-data">
+<input type=hidden name="qb_num" value="${board.qb_num}">
+<input type=hidden name="qb_ref" value="${board.qb_ref}">
+<input type=hidden name="qb_lev" value="${board.qb_lev}">
+<input type=hidden name="qb_seq" value="${board.qb_seq}">
+<input type=hidden name="page" value="${page}">
 <table cellpadding="0" cellspacing="0" style="border-:collapse:collapse;" align=center border="1">
-    <col width="20%">
-    <col width="80%">    
+   
 	<tr align="center" valign="middle">
-		<td colspan="5">댓글게시판</td>
 	</tr>
 	<tr>
 		<td style="font-family:돋음; font-size:12" height="16">
-			<div align="center">글쓴이</div>
+			<div align="center">제목</div>
 		</td>
 		<td>
-			<input name="board_name" id="board_name" type="text" size="10" maxlength="10" 
-				value=""/>
-		</td>
-	</tr>
-	<tr>
-		<td style="font-family:돋음; font-size:12" height="16">
-			<div align="center">비밀번호</div>
-		</td>
-		<td>
-			<input name="board_pass" id="board_pass" type="password" size="10" maxlength="10" 
-				value=""/>
-		</td>
-	</tr>
-	<tr>
-		<td style="font-family:돋음; font-size:12" height="16">
-			<div align="center">제 목</div>
-		</td>
-		<td>
-			<input name="board_subject" id="board_subject" type="text" size="50" maxlength="100" 
-				value=""/>
+			<input name="qb_subject" id="qb_subject" type="text" size="10" maxlength="10" 
+				value="${board.qb_subject}"/>
 		</td>
 	</tr>
 	<tr>
@@ -56,15 +41,10 @@ div{ font-size:16px; }
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<textarea name="board_content" id="board_content" cols="67" rows="15"></textarea>
-		</td>
-	</tr>
-	<tr>
-		<td style="font-family:돋음; font-size:12">
-			<div align="center">파일 첨부</div>
-		</td>
-		<td>
-			<input name="board_file" type="file"/>
+			<textarea name="qb_content" id="qb_content" cols="67" rows="15" style="text-indent: 10px;">
+
+======================================
+${board.qb_content}	</textarea>
 		</td>
 	</tr>
 	<tr bgcolor="cccccc">

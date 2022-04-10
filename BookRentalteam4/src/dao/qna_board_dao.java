@@ -88,7 +88,7 @@ String sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0
 		}
 	
 	// 글목록
-	public List<qna_board_dto> getList(int start, int end){
+	public List<qna_board_dto> getList(int start, int end, int grade, String id){
 		List<qna_board_dto> list = new ArrayList<qna_board_dto>();
 		Connection con  = null;
 		PreparedStatement pstmt = null;
@@ -96,7 +96,7 @@ String sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0
 		
 		try {
 			con = getConnection();
-
+			if(grade == 1) {						//관리자 모든 글이 보이게 생성
 String sql="select * from ( select rownum rnum, board.* from ";			
 	   sql+=" ( select * from QNA_BOARD order by QB_REF desc, ";		
 	   sql+=" QB_NUM asc) board ) ";
@@ -112,9 +112,36 @@ String sql="select * from ( select rownum rnum, board.* from ";
 	   			
 	   			board.setQb_num(rs.getInt("QB_NUM"));
 	   			board.setQb_subject(rs.getString("QB_SUBJECT"));
+	   			board.setId(rs.getString("id"));
+	   			board.setQb_regdate(rs.getDate("qb_regdate"));
 	
 	   			list.add(board);
 	   		}
+			}else if(grade == 0) {						//일반회원 자신의 글만 보이게 생성
+			
+				String sql="select * from ( select rownum rnum, board.* from ";			
+				   sql+=" ( select * from QNA_BOARD order by QB_REF desc, ";		
+				   sql+=" QB_NUM asc) board ) ";
+				   sql+=" where rnum >= ? and rnum <= ? and id = ?";
+				pstmt = con.prepareStatement(sql);
+		   		pstmt.setInt(1, start);
+		   		pstmt.setInt(2, end);
+		   		pstmt.setString(3, id);
+		   		rs = pstmt.executeQuery();		// SQL문 실행
+		   		
+				
+		   		while(rs.next()) {
+		   			qna_board_dto board = new qna_board_dto();
+		   			
+		   			board.setQb_num(rs.getInt("QB_NUM"));
+		   			board.setQb_subject(rs.getString("QB_SUBJECT"));
+		   			board.setId(rs.getString("id"));
+		   			board.setQb_regdate(rs.getDate("qb_regdate"));
+		
+		   			list.add(board);
+		   		}
+				
+			}
 	   
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -149,7 +176,11 @@ String sql="select * from ( select rownum rnum, board.* from ";
 				board.setQb_num(rs.getInt("qb_num"));
 				board.setId(rs.getString("id"));
 	   			board.setQb_subject(rs.getString("QB_SUBJECT"));
-	   			board.setQb_content(rs.getString("QB_CONTENT"));				
+	   			board.setQb_content(rs.getString("QB_CONTENT"));
+	   			board.setId(rs.getString("qb_ref"));
+	   			board.setId(rs.getString("qb_lev"));
+	   			board.setId(rs.getString("qb_seq"));
+	   			
 			/*	
 	   			board.setBoard_name(rs.getString("board_name"));
 	   			board.setBoard_pass(rs.getString("board_pass"));
@@ -232,6 +263,49 @@ String sql="select * from ( select rownum rnum, board.* from ";
 		}	
 		return result;
 	}
+	//답글
+		public int boardReply(qna_board_dto board) {
+			int result=0;
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			
+			//re 정보 미리 가져오기 (나중에 편하게)
+			int re_ref=board.getQb_ref();
+			int re_lev=board.getQb_lev();
+			int re_seq=board.getQb_seq();
+			
+			try {
+				con=getConnection();
+			//기존 답글 존재한다면 순서 하나씩 뒤로 밀기
+				String sql="update qna_board set qb_seq=qb_seq+1 ";
+				sql+=" where qb_ref=? and qb_seq>?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, re_ref);	//부모글과 한 블럭인 글에 한정
+				pstmt.setInt(2, re_seq);	//답글의 답글일 경우 부모 답글의 아래로 순서가 정렬돼야 함
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+				sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0,0)";
+			       
+	       		pstmt = con.prepareStatement(sql);
+	     		pstmt.setString(1, board.getId());
+	     		pstmt.setString(2, board.getQb_subject());
+	       		pstmt.setString(3, board.getQb_content());
+	       		pstmt.setInt(5, re_ref);
+				pstmt.setInt(6, re_lev+1); //깊이 +1
+				pstmt.setInt(7, re_seq+1); 	//답글 순서 1
+				
+				
+				result = pstmt.executeUpdate();  
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+				if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+			}	
+			return result;
+		}
 	
 	
 //	// 글삭제
