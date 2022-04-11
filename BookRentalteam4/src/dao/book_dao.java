@@ -535,4 +535,46 @@ public class book_dao {
 		}
 		return list;
 	}
+	
+	public String getMatching(int r_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String book_name = "";
+
+		try {
+			con = getConnection();
+
+			String sql = "select book_name from book where book_num = ?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, r_num);
+			rs = pstmt.executeQuery(); // SQL문 실행
+
+			if (rs.next()) {
+				
+				book_name = (String)rs.getString("book_name");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+		return book_name;
+	}
 }

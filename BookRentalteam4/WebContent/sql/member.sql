@@ -25,3 +25,5 @@ increment by 1
 nocache;
 
 select rt.book_num, bk.book_name, bk.writer, bk.publisher,rt.rent_num, rt.id, rt.rent_date, rt.return_date from rent rt, book bk where rt.book_num = bk.book_num and rt.id = 'pikachu';
+
+select book_name from book where book_num = 7;

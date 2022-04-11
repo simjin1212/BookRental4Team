@@ -5,9 +5,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 총 대출도서 : ${rentcount} 권 <br>
-<%-- <%
-	int count = ((Integer)request.getAttribute("listcount")).intValue();
-%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +13,7 @@
 <title>대출 목록</title>
 </head>
 <body>
-	<form method="post">
+	<form method="post" >
 		<table border=1 width=900 align=center cellpadding = 5px>
 			<caption><h2>대출 목록</h2></caption>
 			<tr>
@@ -38,7 +36,8 @@
 				<th>${r.rent_Date}</th>
 				<th>${r.return_Date}</th>
 				<td align = center>
-				<input type=button value="리뷰 작성" id="reviewWrite" onClick="location.href='<%=request.getContextPath()%>/BookReview_Form.do' ">
+				<input type=button value="리뷰 작성" id="reviewWrite" 
+				onClick="location.href='<%=request.getContextPath()%>/rent_numPassingAction.do?book_Num=${r.book_Num}'">
 				</td>
 				<td align = center><input type=button value="반납 신청" id="return"></td>
 			</tr>

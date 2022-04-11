@@ -23,10 +23,10 @@ import service.adminmemberdetail;
 import service.adminmemberlist;
 import service.bookModify;
 import service.bookModifyAction;
+import service.book_review_writeAction;
 import service.bookdelete;
 import service.bookdetailaction;
 import service.booklistaction;
-import service.bookreview_write;
 import service.bookupdateAction;
 import service.memberJoin;
 import service.member_board_delete;
@@ -48,6 +48,8 @@ import service.qna_BoardModifyAction;
 import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
+import service.rent_numPassingAction;
+import service.review_writeAction;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -107,7 +109,7 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			// 도서 상세
 		} else if (command.equals("/bookDetailAction.do")) {
 			try {
@@ -247,20 +249,33 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			// 리뷰 작성폼
-		} else if (command.equals("/BookReview_Form.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./book/book_review_write.jsp");
 			// 리뷰 작성
-		} else if (command.equals("/bookreview_write.do")) {
+		} /*
+			 * else if (command.equals("/review_writeAction.do")) { try { action = new
+			 * review_writeAction(); forward = action.execute(request, response); } catch
+			 * (Exception e) { e.printStackTrace(); } }
+			 */
+		// 대출이력 이동
+		else if (command.equals("/rentListAction.do")) {
 			try {
-				action = new bookreview_write();
+				action = new rentListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} 
+		else if (command.equals("/rent_numPassingAction.do")) {
+			try {
+				action = new rent_numPassingAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/BookWriteFormAction.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./book/book_review_write.jsp");
+
 			// 리뷰게시판 이동
 		} else if (command.equals("/ReviewListAction.do")) {
 			try {
@@ -269,16 +284,15 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		// 리뷰게시판 이동
-		else if (command.equals("/rentListAction.do")) {
+		} else if (command.equals("/book_review_writeAction.do")) {
 			try {
-				action = new rentListAction();
+				action = new book_review_writeAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+
 		// 관리자 -회원리스트
 		if (command.equals("/adminmemberlist.do")) {
 			try {
@@ -461,32 +475,32 @@ public class FrontController extends HttpServlet {
 			}
 
 //				//qna문의글 수정
-		}else if (command.equals("/qna_BoardModify.do")) {
+		} else if (command.equals("/qna_BoardModify.do")) {
 			try {
 				action = new qna_BoardModify();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//qna답글 폼
-		}else if (command.contentEquals("/qna_board_replyform.do")) {
-		try {
-			action = new qna_board_replyAction();
-			forward = action.execute(request, response);
+			// qna답글 폼
+		} else if (command.contentEquals("/qna_board_replyform.do")) {
+			try {
+				action = new qna_board_replyAction();
+				forward = action.execute(request, response);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 답글 입력
-	    }else if (command.contentEquals("/qna_board_reply.do")) {
-		try {
-			action = new qna_board_reply();
-			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 답글 입력
+		} else if (command.contentEquals("/qna_board_reply.do")) {
+			try {
+				action = new qna_board_reply();
+				forward = action.execute(request, response);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-	}
 
 		// 포워딩 처리
 		if (forward != null) {

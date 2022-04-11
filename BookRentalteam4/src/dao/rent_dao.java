@@ -70,7 +70,7 @@ public class rent_dao {
 
 	// 대출내역
 	public List<rent_dto> getRentList(String id) {
-		List<rent_dto> rentlist = new ArrayList<rent_dto>();	
+		List<rent_dto> rentlist = new ArrayList<rent_dto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -89,7 +89,7 @@ public class rent_dao {
 
 			while (rs.next()) {
 				rent_dto rent = new rent_dto();
-				
+
 				rent.setRent_Num(rs.getInt("rent_num"));
 				rent.setBook_Num(rs.getInt("book_num"));
 				rent.setId(rs.getString("id"));
@@ -98,8 +98,7 @@ public class rent_dao {
 				rent.setTemp_book_Name(rs.getString("book_name"));
 				rent.setTemp_Publisher(rs.getString("publisher"));
 				rent.setTemp_Writer(rs.getString("writer"));
-				
-				
+
 				rentlist.add(rent);
 			}
 		} catch (Exception e) {
@@ -128,6 +127,7 @@ public class rent_dao {
 		return rentlist;
 	}
 
+	// 대출권수 확인
 	public int getCount() {
 		int result = 0;
 		Connection con = null;
@@ -160,5 +160,7 @@ public class rent_dao {
 		}
 		return result;
 	}
+
+	
 
 }
