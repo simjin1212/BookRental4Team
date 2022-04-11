@@ -122,30 +122,6 @@ a{text-decoration:overline; color:#333;}
 				<th>예약신청일</th>
 				<th>도서상태</th>
 			</tr>
-			<tr>
-				<th>1</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>대출중</th>
-			</tr>
-			<tr>
-				<th>2</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>대출가능</th>
-			</tr>
-			<tr>
-				<th>3</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>대출가능</th>
-			</tr>
 			</table>
 			</div>
        
