@@ -20,8 +20,6 @@ System.out.println("reply");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		
-		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		int grade=(int)session.getAttribute("member_grade");
@@ -31,6 +29,7 @@ System.out.println("reply");
 		qna_board_dto board=new qna_board_dto();
 		
 		board.setId(id);
+		board.setQb_num(Integer.parseInt(request.getParameter("qb_num")));
 		board.setQb_subject(request.getParameter("qb_subject"));
 		board.setQb_content(request.getParameter("qb_content"));
 		board.setQb_ref(Integer.parseInt(request.getParameter("qb_ref")));
@@ -40,6 +39,7 @@ System.out.println("reply");
 		
 		qna_board_dao dao= qna_board_dao.getInstance();
 		int result=dao.boardReply(board);
+		
 		
 		if(result==1) System.out.println("답글 작성됨");
 		
