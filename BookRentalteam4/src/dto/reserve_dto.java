@@ -5,17 +5,31 @@ package dto;
 import java.sql.Date;
 
 public class reserve_dto {
-	private int rent_Num; /* 대여번호 */
 	private int book_Num; /* 도서번호 */
 	private String id; /* iD */
 	private Date reserve_Date; /* 예약신청일 */
 	private int reserve_Num;/* 예약순서 */
+	private String book_Name;
+	private String Writer;
+	private String publisher;
 	
-	public int getRent_Num() {
-		return rent_Num;
+	public String getBook_Name() {
+		return book_Name;
 	}
-	public void setRent_Num(int rent_Num) {
-		this.rent_Num = rent_Num;
+	public void setBook_Name(String book_Name) {
+		this.book_Name = book_Name;
+	}
+	public String getWriter() {
+		return Writer;
+	}
+	public void setWriter(String writer) {
+		Writer = writer;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 	public int getBook_Num() {
 		return book_Num;
