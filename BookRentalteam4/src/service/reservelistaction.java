@@ -19,11 +19,12 @@ public class reservelistaction implements Action{
 		 
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		
+		 
 	
 		reserve_dao dao = reserve_dao.getInstance();
 		
 		List<reserve_dto> reservelist = dao.getreserveList(id);
+		System.out.println("id:"+id);
 		System.out.println("reservelist:" + reservelist);
 		
 		request.setAttribute("reservelist", reservelist);
