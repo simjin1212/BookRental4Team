@@ -28,7 +28,7 @@ public class member_board_write implements Action {
 		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		String grade=(String)session.getAttribute("grade");
+		int grade=(int)session.getAttribute("member_grade");
 		
 		MultipartRequest multi=new MultipartRequest(request,
 																	path, //업로드 경로

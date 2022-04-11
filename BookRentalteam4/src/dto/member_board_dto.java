@@ -15,7 +15,7 @@ public class member_board_dto {
 	private int mb_LEV; /* LEV */
 	private int mb_SEQ; /* SEQ */
 	private int mb_Readcount;/* 조회수 */
-	private String mb_Grade;
+	private int mb_Grade;
 	
 	public int getMb_Num() {
 		return mb_Num;
@@ -77,10 +77,10 @@ public class member_board_dto {
 	public void setMb_Readcount(int mb_Readcount) {
 		this.mb_Readcount = mb_Readcount;
 	}
-	public String getMb_Grade() {
+	public int getMb_Grade() {
 		return mb_Grade;
 	}
-	public void setMb_Grade(String mb_grade) {
+	public void setMb_Grade(int mb_grade) {
 		this.mb_Grade = mb_grade;
 	}
 

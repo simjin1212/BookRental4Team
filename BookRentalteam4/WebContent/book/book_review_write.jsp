@@ -1,14 +1,17 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <html>
 <head>
 <title>리뷰게시판글작성</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 
-	<form method="post" enctype="multipart/form-data" action="<%=request.getContextPath() %>/bookreview_write.do" >
-	<input type="hidden" name="id" value="${member.id}">
+	<form method="post" enctype="multipart/form-data"
+		action="<%=request.getContextPath()%>/book_review_writeAction.do?b_num=${b_num}">
+		<input type = "hidden" id = num name = num value = "${b_num }">
 		<table cellpadding="0" cellspacing="0" align=center border=1>
 			<tr align="center" valign="middle">
 				<td colspan="5">리뷰 게시판</td>
@@ -18,7 +21,8 @@
 					<div align="center">도서명</div>
 				</td>
 				<td><input name="book_name" id="book_name" type="text"
-					size="10" maxlength="10" value="" / disabled="disabled"></td>
+					size="10" maxlength="10" disabled="disabled" value="${book}"></td>
+
 			</tr>
 			<tr>
 				<td style="font-family: 돋음; font-size: 12" height="16">
@@ -38,15 +42,14 @@
 				<td style="font-family: 돋음; font-size: 12">
 					<div align="center">파일 첨부</div>
 				</td>
-				<td><input name="rb_file" id= "rb_file" type="file" /></td>
+				<td><input name="rb_file" id="rb_file" type="file" /></td>
 			</tr>
 			<tr bgcolor="cccccc">
 				<td colspan="2" style="height: 1px;"></td>
 			</tr>
 			<tr align="center" valign="middle">
-				<td colspan="5">
-				<input type=reset value="취소"> 
-				<input type=submit value="작성"></td>
+				<td colspan="5"><input type=reset value="취소"> <input
+					type=submit value="작성"></td>
 			</tr>
 		</table>
 	</form>

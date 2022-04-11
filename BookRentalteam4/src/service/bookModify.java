@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -46,7 +47,8 @@ System.out.println("BookModify");
 		book_dao dao = book_dao.getInstance();
 		int result = dao.update(book);	// 상세정보 구하기
 		if(result == 0)System.out.println("글 수정 성공");
-		
+		JOptionPane aa = new JOptionPane();
+		aa.showMessageDialog(null,"회원가입 성공!");
 		
 		// 비번 비
 		

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import dao.book_dao;
 import dto.book_dto;
@@ -47,7 +48,9 @@ System.out.println("bookDelete");
 						
 					}
 				}				
-			}			
+			}
+			JOptionPane aa = new JOptionPane();
+			aa.showMessageDialog(null,"도서 삭제 성공!");
 			
 		
 		

@@ -11,6 +11,8 @@
 
 <script>
 	location.href="./loginform.do";
+	
 </script>
 </body>
 </html>
+ 

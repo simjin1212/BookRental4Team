@@ -2,6 +2,7 @@ package service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import dao.member_dao;
 import dto.member_dto;
@@ -33,7 +34,8 @@ public class memberJoin implements Action{
 		member_dao dao = member_dao.getInstance();
 		int result = dao.insert(member);	// 회원 가입
 		if(result == 1)	System.out.println("회원가입 성공");
-		
+		JOptionPane aa = new JOptionPane();
+		aa.showMessageDialog(null,"회원가입 성공!");
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);  				// dispatcher 방식 포워딩
 		forward.setPath("./member/loginform.jsp");  // 포워딩할 파일명

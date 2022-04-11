@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import dto.review_board_dto;
 
+
 public class review_board_dao {
 	
 	// 싱글톤
@@ -87,41 +88,48 @@ public class review_board_dao {
 			return result;
 		}
 		
-	/*
-	 * // 글목록 public List<BoardBean> getList(int start, int end){ List<BoardBean>
-	 * list = new ArrayList<BoardBean>(); Connection con = null; PreparedStatement
-	 * pstmt = null; ResultSet rs = null;
-	 * 
-	 * try { con = getConnection();
-	 * 
-	 * String sql="select * from ( select rownum rnum, board.* from ";
-	 * sql+=" ( select * from model2 order by board_re_ref desc, ";
-	 * sql+=" board_re_seq asc) board ) "; sql+=" where rnum >= ? and rnum <= ?";
-	 * 
-	 * pstmt = con.prepareStatement(sql); pstmt.setInt(1, start); pstmt.setInt(2,
-	 * end); rs = pstmt.executeQuery(); // SQL문 실행
-	 * 
-	 * while(rs.next()) { BoardBean board = new BoardBean();
-	 * 
-	 * board.setBoard_num(rs.getInt("board_num"));
-	 * board.setBoard_name(rs.getString("board_name"));
-	 * board.setBoard_pass(rs.getString("board_pass"));
-	 * board.setBoard_subject(rs.getString("board_subject"));
-	 * board.setBoard_content(rs.getString("board_content"));
-	 * board.setBoard_file(rs.getString("board_file"));
-	 * board.setBoard_re_ref(rs.getInt("board_re_ref"));
-	 * board.setBoard_re_lev(rs.getInt("board_re_lev"));
-	 * board.setBoard_re_seq(rs.getInt("board_re_seq"));
-	 * board.setBoard_readcount(rs.getInt("board_readcount"));
-	 * board.setBoard_date(rs.getTimestamp("board_date"));
-	 * 
-	 * list.add(board); }
-	 * 
-	 * }catch(Exception e) { e.printStackTrace(); }finally { if(rs != null) try {
-	 * rs.close();}catch(Exception e) {} if(pstmt != null) try {
-	 * pstmt.close();}catch(Exception e) {} if(con != null) try {
-	 * con.close();}catch(Exception e) {} } return list; }
-	 */
+		// 글목록
+		public List<review_board_dto> getList(int start, int end){
+			List<review_board_dto> list = new ArrayList<review_board_dto>();
+			Connection con  = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+
+	String sql="select * from review_board where rb_num >= ? and rb_num <=?";
+		   
+		   		pstmt = con.prepareStatement(sql);
+		   		pstmt.setInt(1, start);
+		   		pstmt.setInt(2, end);
+		   		rs = pstmt.executeQuery();		// SQL문 실행
+		   		
+		   		while(rs.next()) {
+		   			review_board_dto review = new review_board_dto();
+		   			
+		   			review.setBook_Num(rs.getInt("book_num"));
+		   			review.setRb_Num(rs.getInt("rb_num"));
+		   			review.setId(rs.getString("id"));
+		   			review.setRent_Num(rs.getInt("rent_num"));
+		   			review.setRb_Subject(rs.getString("rb_subject"));
+		   			review.setRb_Content(rs.getString("rb_content"));
+		   			review.setRb_File(rs.getString("rb_file"));
+		   			review.setRb_Regdate(rs.getTimestamp("rb_regdate"));
+		   			review.setRb_Readcount(rs.getString("rb_readcount"));
+		   			
+		   			list.add(review);
+		   		}
+		   
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try { rs.close();}catch(Exception e) {}
+				if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+				if(con != null) try { con.close();}catch(Exception e) {}
+			}		
+			return list;
+		}
 		
 		//조회수 증가
 		public void readcountUpdate(int num) {

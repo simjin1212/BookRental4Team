@@ -55,7 +55,7 @@ public class member_board_modify implements Action {
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/member_board_view.do?num="+num+"&page"+page);
+		forward.setPath("/member_board_view.do?num="+num+"&page="+page);
 		return forward;
 	}
 

@@ -5,6 +5,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -241,6 +243,8 @@ public class member_dao {
 				member.setPost(rs.getString("post"));
 				member.setAddress(rs.getString("address"));
 				member.setReg_Date(rs.getTimestamp("reg_date"));
+				member.setMember_Grade(rs.getInt("member_grade"));
+				System.out.println("한명 디테일 구하기 완료!!!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -263,6 +267,7 @@ public class member_dao {
 		}
 		return member;
 	}
+	
 
 	// 회원정보 수정
 	public int update(member_dto member) {
@@ -337,4 +342,128 @@ public class member_dao {
 		}
 		return result;
 	}
+	
+	//관리자 - 관리자가 아닌 회원 전부  리스트
+	public List<member_dto> member_getList(){
+		List<member_dto> list = new ArrayList<member_dto>();
+		Connection con  = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+
+String sql = "select * from member";
+	   
+	   		pstmt = con.prepareStatement(sql);
+	   		rs = pstmt.executeQuery();		// SQL문 실행
+	   		System.out.println("sql실행");
+	   		while(rs.next()) {
+	   			member_dto member = new member_dto();
+	   			
+	   			member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setJumin(rs.getString("jumin"));
+				member.setJumin2(rs.getString("jumin2"));
+				member.setMailid(rs.getString("mailid"));
+				member.setDomain(rs.getString("domain"));
+				member.setPhone1(rs.getString("phone1"));
+				member.setPhone2(rs.getString("phone2"));
+				member.setPhone3(rs.getString("phone3"));
+				member.setPost(rs.getString("post"));
+				member.setAddress(rs.getString("address"));
+				member.setReg_Date(rs.getTimestamp("reg_date"));
+				member.setMember_Grade(rs.getInt("member_grade"));
+				
+//	   			book.setBook_ref(rs.getInt("book_ref"));
+//	   			book.setBook_lev(rs.getInt("book_lev"));
+//	   			book.setBook_seq(rs.getInt("book_seq"));
+	   			
+	   			
+	   			list.add(member);
+	   			
+	   		}
+	   		System.out.println("데이터 리스트에 저장완료");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}		
+		return list;
+	}
+	// 관리자 - 총 맴버 갯수 구하기
+	public int member_getcount() {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql="select count(*) from member";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();		// SQL문 실행
+			
+			if(rs.next()) {
+//				result = rs.getInt(1);
+				result = rs.getInt("count(*)");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}		
+		return result;
+	}
+	
+	//관리자 == 멤버등급 관리
+	public int membermodify(String id, int member_grade) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			if(member_grade == 0) {
+				String sql="update member set member_grade = 1 where id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();		// SQL문 실행
+			
+				if(rs.next()) {
+//				result = rs.getInt(1);
+				result = 1;
+				}
+			}else if(member_grade == 1) {
+				String sql="update member set member_grade = 0 where id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();		// SQL문 실행
+			
+				if(rs.next()) {
+//				result = rs.getInt(1);
+				result = 1;
+				}
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try { rs.close();}catch(Exception e) {}
+			if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+			if(con != null) try { con.close();}catch(Exception e) {}
+		}		
+		return result;
+	}
+	
+	
 }

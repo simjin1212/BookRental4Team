@@ -9,7 +9,7 @@
    String savePath = "bookcoverupload";
    ServletContext context = getServletContext();
    String sDownloadPath = context.getRealPath(savePath);
-   String sFilePath = sDownloadPath + "\\" + fileName;
+   String sFilePath = sDownloadPath + "/" + fileName;
    System.out.println("sFilePath="+sFilePath);
    
    // jsp에서 OutputStream 사용시 IllegalStateException 해결법 : 2줄 추가
