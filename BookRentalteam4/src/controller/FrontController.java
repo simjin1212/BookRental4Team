@@ -47,6 +47,7 @@ import service.qna_BoardDetailAction;
 import service.qna_BoardListAction;
 import service.qna_BoardModify;
 import service.qna_BoardModifyAction;
+import service.rentListAction;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -204,7 +205,14 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 			forward.setPath("./member/loginform.jsp");
 
-			// 대출 목록
+		} else if (command.equals("/rentListAction.do")) {
+			try {
+				action = new rentListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 대출 목록 (안씀)
 		} else if (command.equals("/RentList.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);

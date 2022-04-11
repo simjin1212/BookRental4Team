@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-총 대출도서 : ${listcount} 권 <br>
+총 대출도서 : ${rentcount} 권 <br>
 <%-- <%
 	int count = ((Integer)request.getAttribute("listcount")).intValue();
 %> --%>
@@ -29,18 +29,21 @@
 				<th>반납</th>
 
 			</tr>
+			<c:forEach var="r" items="${rentlist}">
 			<tr>
-				<th>1</th>
+				<th>${r.rent_Num}</th>
 				<th>자바의정석</th>
 				<th>남궁성</th>
 				<th>한빛미디어</th>
-				<th>2022-04-05</th>
-				<th>2022-04-19</th>
+				<th>${r.rent_Date}</th>
+				<th>${r.return_Date}</th>
 				<td align = center>
 				<input type=button value="리뷰 작성" id="reviewWrite" onClick="location.href='<%=request.getContextPath()%>/BookReview_Form.do' ">
 				</td>
 				<td align = center><input type=button value="반납 신청" id="return"></td>
-			<tr>
+			</tr>
+			
+			</c:forEach>
 		</table>
 
 	</form>
