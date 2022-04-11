@@ -11,7 +11,7 @@ public class rent_numPassingAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
-		System.out.println("rentPassing 작동");
+		System.out.println("rentPassing 작동  ");
 		
 		request.setCharacterEncoding("utf-8");
 		int b_num = Integer.parseInt(request.getParameter("book_Num"));
