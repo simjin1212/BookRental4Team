@@ -10,6 +10,7 @@ public class reserve_dto {
 	private String id; /* iD */
 	private Date reserve_Date; /* 예약신청일 */
 	private int reserve_Num;/* 예약순서 */
+	
 	public int getRent_Num() {
 		return rent_Num;
 	}

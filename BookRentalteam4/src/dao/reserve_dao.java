@@ -40,16 +40,11 @@ public class reserve_dao {
 			try {
 				con = getConnection();
 			
-				String sql = "insert into reserve values(book_seq.nextval,?,?,?,?,?,sysdate,?,book_seq.nextval,0,0)";
+				String sql = "insert into reserve values(?, ?, ?, sysdate, reserve_seq.nextval)";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, book.getBook_Name());
-				pstmt.setString(2, book.getBook_Cover());
-				pstmt.setString(3, book.getWriter());
-				pstmt.setString(4, book.getPublisher());
-				pstmt.setString(5, book.getGenre());
-				pstmt.setString(6, book.getWriter_talks());
-				result = pstmt.executeUpdate(); // SQL문 실행
-				
+				pstmt.setInt(1, reserve.getRent_Num());
+				pstmt.setInt(2, reserve.getBook_Num());
+				pstmt.setString(3, reserve.getId());				
 				
 				result = pstmt.executeUpdate();   // SQL문 실행
 				       

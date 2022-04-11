@@ -22,7 +22,9 @@ public class reserve_add implements Action{
 		reserve.setRent_Num(Integer.parseInt(request.getParameter("rent_num")));
 		
 		reserve_dao dao = reserve_dao.getInstance();
-		reserve_dto rent = insert(reserve);
+		int result = dao.insert(reserve);
+		
+		if(result ==1) System.out.println("예약추가완료");
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
