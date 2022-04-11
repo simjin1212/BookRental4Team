@@ -32,9 +32,9 @@
 			<c:forEach var="r" items="${rentlist}">
 			<tr>
 				<th>${r.rent_Num}</th>
-				<th></th>
-				<th>남궁성</th>
-				<th>한빛미디어</th>
+				<th>${r.temp_book_Name }</th>
+				<th>${r.temp_Writer }</th>
+				<th>${r.temp_Publisher }</th>
 				<th>${r.rent_Date}</th>
 				<th>${r.return_Date}</th>
 				<td align = center>

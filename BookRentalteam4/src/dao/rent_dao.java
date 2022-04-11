@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.book_dto;
 import dto.member_board_dto;
 import dto.member_dto;
 import dto.rent_dto;
@@ -69,7 +70,7 @@ public class rent_dao {
 
 	// 대출내역
 	public List<rent_dto> getRentList(String id) {
-		List<rent_dto> rentlist = new ArrayList<rent_dto>();
+		List<rent_dto> rentlist = new ArrayList<rent_dto>();	
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,7 +78,7 @@ public class rent_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select rt.book_num, bk.book_name, rt.rent_num, rt.id, rt.rent_date, rt.return_date from rent rt, book bk ";
+			String sql = "select rt.book_num, bk.book_name, bk.writer, bk.publisher, rt.rent_num, rt.id, rt.rent_date, rt.return_date from rent rt, book bk ";
 			sql += " where rt.book_num = bk.book_num and rt.id = ?";
 			// 전체 게시글 목록
 			System.out.println("id:" + id);
@@ -88,12 +89,17 @@ public class rent_dao {
 
 			while (rs.next()) {
 				rent_dto rent = new rent_dto();
+				
 				rent.setRent_Num(rs.getInt("rent_num"));
 				rent.setBook_Num(rs.getInt("book_num"));
 				rent.setId(rs.getString("id"));
 				rent.setRent_Date(rs.getTimestamp("rent_date"));
 				rent.setReturn_Date(rs.getDate("return_date"));
-
+				rent.setTemp_book_Name(rs.getString("book_name"));
+				rent.setTemp_Publisher(rs.getString("publisher"));
+				rent.setTemp_Writer(rs.getString("writer"));
+				
+				
 				rentlist.add(rent);
 			}
 		} catch (Exception e) {

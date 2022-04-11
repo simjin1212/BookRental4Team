@@ -12,6 +12,10 @@ public class rent_dto {
 	private Timestamp rent_Date; /* 대출일 */
 	private Date return_Date;/* 반납일 */
 	
+	private String temp_book_Name;
+	private String temp_Writer;
+	private String temp_Publisher;
+	
 	public int getRent_Num() {
 		return rent_Num;
 	}
@@ -41,6 +45,24 @@ public class rent_dto {
 	}
 	public void setReturn_Date(Date return_Date) {
 		this.return_Date = return_Date;
+	}
+	public String getTemp_book_Name() {
+		return temp_book_Name;
+	}
+	public void setTemp_book_Name(String temp_book_Name) {
+		this.temp_book_Name = temp_book_Name;
+	}
+	public String getTemp_Writer() {
+		return temp_Writer;
+	}
+	public void setTemp_Writer(String temp_Writer) {
+		this.temp_Writer = temp_Writer;
+	}
+	public String getTemp_Publisher() {
+		return temp_Publisher;
+	}
+	public void setTemp_Publisher(String temp_Publisher) {
+		this.temp_Publisher = temp_Publisher;
 	}
 	
 	
