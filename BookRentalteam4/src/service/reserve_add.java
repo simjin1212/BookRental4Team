@@ -19,7 +19,6 @@ public class reserve_add implements Action{
 		reserve_dto reserve = new reserve_dto();
 		reserve.setBook_Num(Integer.parseInt(request.getParameter("book_num")));
 		reserve.setId(request.getParameter("id"));
-		reserve.setRent_Num(Integer.parseInt(request.getParameter("rent_num")));
 		
 		reserve_dao dao = reserve_dao.getInstance();
 		int result = dao.insert(reserve);
