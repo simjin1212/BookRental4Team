@@ -27,6 +27,8 @@ public class reservelistaction implements Action{
 		System.out.println("id:"+id);
 		System.out.println("reservelist:" + reservelist);
 		
+		
+		
 		request.setAttribute("reservelist", reservelist);
 		
 		ActionForward forward=new ActionForward();

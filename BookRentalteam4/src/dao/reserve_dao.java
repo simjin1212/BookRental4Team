@@ -56,7 +56,7 @@ public class reserve_dao {
 			  return result;
 		}
 		
-		// 대출내역
+		// 예약내역
 		public List<reserve_dto> getreserveList(String id) {
 			List<reserve_dto> reservelist = new ArrayList<reserve_dto>();	
 			Connection con = null;
@@ -84,7 +84,7 @@ public class reserve_dao {
 					reserve.setReserve_Date(rs.getDate("reserve_Date"));
 					reserve.setReserve_Num(rs.getInt("reserve_Num"));
 					reserve.setBook_Name(rs.getString("book_Name"));
-					reserve.setWriter(rs.getString("Writer"));
+					reserve.setWriter(rs.getString("writer"));
 					reserve.setPublisher(rs.getString("publisher"));
 					
 					

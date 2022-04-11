@@ -10,6 +10,7 @@ public class reserve_dto {
 	private Date reserve_Date; /* 예약신청일 */
 	private int reserve_Num;/* 예약순서 */
 	private String book_Name;
+	
 	private String Writer;
 	private String publisher;
 	
@@ -19,11 +20,12 @@ public class reserve_dto {
 	public void setBook_Name(String book_Name) {
 		this.book_Name = book_Name;
 	}
+
 	public String getWriter() {
 		return Writer;
 	}
 	public void setWriter(String writer) {
-		Writer = writer;
+		this.Writer = writer;
 	}
 	public String getPublisher() {
 		return publisher;
