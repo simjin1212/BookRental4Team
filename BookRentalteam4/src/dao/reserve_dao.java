@@ -12,7 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.member_dto;
+
+import dto.reserve_dto;
 
 public class reserve_dao {
 	
@@ -31,7 +32,7 @@ public class reserve_dao {
 	}
 
 	//예시 예약일 인서트
-		public int insert(reserve_dao reserve) {
+		public int insert(reserve_dto reserve) {
 			int result = 0;
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -39,10 +40,15 @@ public class reserve_dao {
 			try {
 				con = getConnection();
 			
-				//String sql = "~~~"
-				//pstmt = con.prepareStatement(sql);
-				//pstmt.setString
-				       
+				String sql = "insert into reserve values(book_seq.nextval,?,?,?,?,?,sysdate,?,book_seq.nextval,0,0)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, book.getBook_Name());
+				pstmt.setString(2, book.getBook_Cover());
+				pstmt.setString(3, book.getWriter());
+				pstmt.setString(4, book.getPublisher());
+				pstmt.setString(5, book.getGenre());
+				pstmt.setString(6, book.getWriter_talks());
+				result = pstmt.executeUpdate(); // SQL문 실행
 				
 				
 				result = pstmt.executeUpdate();   // SQL문 실행

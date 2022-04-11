@@ -48,6 +48,7 @@ import service.qna_BoardModifyAction;
 import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
+import service.reserve_add;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -487,6 +488,16 @@ public class FrontController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+		//-----------------------------------------------예약 -------------------------------------------------
+		// 도서등록
+				if (command.equals("/reserve_add.do")) {
+					try {
+						action = new reserve_add();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+						}
 
 		// 포워딩 처리
 		if (forward != null) {
