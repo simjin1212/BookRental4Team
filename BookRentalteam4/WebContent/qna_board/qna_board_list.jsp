@@ -11,7 +11,7 @@ td{height:30px; font-size:14px;}
 .search_btn{height:33px;font-size:16px;}
 
 </style>
-현재 아이디 : ${sessionScope.id} <br>
+현재 아이디 : ${sessionScope.id } <br>
 현재 등급 : ${sessionScope.member_grade }	<br>
 <c:if test="${sessionScope.member_grade==0 }">
 		<a href="./qna_BoardForm.do">문의 작성하기</a> <br> <!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->	
@@ -43,7 +43,7 @@ td{height:30px; font-size:14px;}
 			<tr>
 		<td> 
 			<c:if test="${b.qb_lev>0}">
-					&nbsp;ㄴ
+				&nbsp;ㄴ
 			</c:if>
 			<a href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">${b.qb_subject }</a>
  		</td>
