@@ -48,6 +48,7 @@ import service.qna_BoardModifyAction;
 import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
+import service.rent_numPassingAction;
 import service.reserve_add;
 import service.reservelistaction;
 import service.returnbook;
