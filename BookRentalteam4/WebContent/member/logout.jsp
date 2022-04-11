@@ -6,5 +6,5 @@
 
 <script>
 	alert("로그 아웃");
-	location.href="./loginform.do";
+	location.href="./index.jsp";
 </script>  

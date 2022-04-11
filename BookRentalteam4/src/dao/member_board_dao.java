@@ -13,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.book_dto;
 import dto.member_board_dto;
 
 public class member_board_dao {
@@ -427,7 +428,48 @@ public class member_board_dao {
 		return result;
 	}
 	
-	
+	public List<book_dto> recentbook(){
+		List<book_dto> boardlist =new ArrayList<book_dto>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		 
+		try {
+			con=getConnection();
+			
+			String sql="select*from (select rownum rnum, board.* from (select *from book order by book_regdate desc) board) where rnum<=3 ";
+			
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				book_dto book=new book_dto();
+				book.setBook_Num(rs.getInt("book_num"));
+				book.setBook_Name(rs.getString("book_name"));
+				book.setBook_Cover(rs.getString("book_cover"));
+				book.setWriter(rs.getString("writer"));
+				book.setPublisher(rs.getString("publisher"));
+				book.setGenre(rs.getString("genre"));
+				book.setBook_regDate(rs.getDate("book_regDate"));
+				book.setWriter_talks(rs.getString("writer_talks"));
+
+				book.setBook_ref(rs.getInt("book_ref"));
+				book.setBook_lev(rs.getInt("book_lev"));
+				book.setBook_seq(rs.getInt("book_seq"));
+
+				boardlist.add(book);
+
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) 		try { rs.close(); 	 } catch(Exception e) { } ;
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		
+		return boardlist;
+	}
 	
 	
 }
