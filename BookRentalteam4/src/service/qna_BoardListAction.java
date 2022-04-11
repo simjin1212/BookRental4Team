@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.qna_board_dao;
 import dto.qna_board_dto;
@@ -20,10 +21,13 @@ public class qna_BoardListAction implements Action {
 		int page = 1;		// 현재 페이지 번호
 		int limit = 10;		// 한 페이지에 출력할 데이터 갯수
 		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		int grade=(int)session.getAttribute("member_grade");
+		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		
 		// page =1 : startRow=1,  endRow=10
 		// page =2 : startRow=11, endRow=20
 		// page =3 : startRow=21, endRow=30
@@ -34,8 +38,7 @@ public class qna_BoardListAction implements Action {
 		int listcount = dao.getCount();		// 총 데이터 갯수
 		System.out.println("listcount:" + listcount);
 		
-		
-		List<qna_board_dto> boardlist = dao.getList(startRow, endRow);
+		List<qna_board_dto> boardlist = dao.getList(startRow, endRow, grade, id);
 		System.out.println("boardlist:" + boardlist);
 		
 		// 총 페이지

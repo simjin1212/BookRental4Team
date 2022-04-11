@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 	<title>qna</title>
@@ -15,7 +16,8 @@ div{ font-size:16px; }
 
 </head>
 <body>
-
+현재 아이디 : ${sessionScope.id} <br>
+현재 등급 : ${sessionScope.member_grade }	<br>
 
 <table cellpadding="0" cellspacing="0" style="border-:collapse:collapse;" align=center border="1">
     <col width="20%">
@@ -51,8 +53,13 @@ div{ font-size:16px; }
 	
 	<tr align="center" valign="middle">
 		<td colspan="5">		
-		     <input type=button value="목록" onclick ="location.href='./qna_BoardListAction.do?page=${page}' ">			
-			<input type=button value="수정" onclick="location.href='./qna_BoardModifyAction.do?qb_num=${board.qb_num}&page=${page}' ">
+		     <input type=button value="목록" onclick ="location.href='./qna_BoardListAction.do?page=${page}' ">	
+		     <c:if test="${sessionScope.id == board.id}">
+		<input type=button value="수정" onclick="location.href='./qna_BoardModifyAction.do?qb_num=${board.qb_num}&page=${page}' "> <br> <!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->		
+			</c:if>	
+			<c:if test="${sessionScope.member_grade==1}">
+				<input type=button value="답글" onClick="location.href='./qna_board_replyform.do?qb_num=${board.qb_num}&page=${page}'">
+			</c:if>	
 		</td>
 	</tr>
 </table>

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.Action;
-import service.ActionForward;
 import service.ActionForward;
 import service.Booksearchaction;
 import service.Delete;
@@ -47,6 +45,8 @@ import service.qna_BoardDetailAction;
 import service.qna_BoardListAction;
 import service.qna_BoardModify;
 import service.qna_BoardModifyAction;
+import service.qna_board_reply;
+import service.qna_board_replyAction;
 import service.rentListAction;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -205,14 +205,7 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 			forward.setPath("./member/loginform.jsp");
 
-		} else if (command.equals("/rentListAction.do")) {
-			try {
-				action = new rentListAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// 대출 목록 (안씀)
+			// 대출 목록
 		} else if (command.equals("/RentList.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
@@ -272,6 +265,15 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("/ReviewListAction.do")) {
 			try {
 				action = new ReviewListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 리뷰게시판 이동
+		else if (command.equals("/rentListAction.do")) {
+			try {
+				action = new rentListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -459,14 +461,32 @@ public class FrontController extends HttpServlet {
 			}
 
 //				//qna문의글 수정
-		} else if (command.equals("/qna_BoardModify.do")) {
+		}else if (command.equals("/qna_BoardModify.do")) {
 			try {
 				action = new qna_BoardModify();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//qna답글 폼
+		}else if (command.contentEquals("/qna_board_replyform.do")) {
+		try {
+			action = new qna_board_replyAction();
+			forward = action.execute(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		// 답글 입력
+	    }else if (command.contentEquals("/qna_board_reply.do")) {
+		try {
+			action = new qna_board_reply();
+			forward = action.execute(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 		// 포워딩 처리
 		if (forward != null) {

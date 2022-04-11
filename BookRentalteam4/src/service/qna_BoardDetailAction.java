@@ -2,6 +2,7 @@ package service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.qna_board_dao;
 import dto.qna_board_dto;
@@ -14,6 +15,9 @@ public class qna_BoardDetailAction implements Action{
 		// TODO Auto-generated method stub
 		System.out.println("BoardDetailAction");
 		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		int grade=(int)session.getAttribute("member_grade");
 		int qb_num = Integer.parseInt(request.getParameter("qb_num"));
 		
 		System.out.println("qb_num==>" + qb_num);

@@ -12,7 +12,7 @@ public class qna_board_dto {
 	private Date qb_regdate;
 	private int qb_ref;
 	private int qb_lev;
-	private int board_seq;
+	private int qb_seq;
 	public int getQb_num() {
 		return qb_num;
 	}
@@ -55,11 +55,12 @@ public class qna_board_dto {
 	public void setQb_lev(int qb_lev) {
 		this.qb_lev = qb_lev;
 	}
-	public int getBoard_seq() {
-		return board_seq;
+	public int getQb_seq() {
+		return qb_seq;
 	}
-	public void setBoard_seq(int board_seq) {
-		this.board_seq = board_seq;
+	public void setQb_seq(int qb_seq) {
+		this.qb_seq = qb_seq;
 	}
+
 	
 }
