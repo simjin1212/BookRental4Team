@@ -23,8 +23,15 @@
          </tr>
          <tr>
             <td colspan = 2 align = center>
+<<<<<<< HEAD
             <input align=center type="submit" value="대출 신청">
             <input type="button" value="예약 신청">
+=======
+            <input align=center type="button" value="대출 신청">
+            
+            <input type="button" value="예약 신청" 
+            onClick="location.href='./reserve_add.do?book_num=${book.book_num}&rent_num=${rent.rent_num}&id=${id}'">
+>>>>>>> branch 'master' of https://github.com/simjin1212/BookRental4Team.git
             </td>
          </tr>
       </table>
