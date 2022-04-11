@@ -622,4 +622,48 @@ public class book_dao {
 
 		return result;
 	}
+
+	public rent_dto getrentDetail(String id) {
+		rent_dto rent = new rent_dto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+
+			String sql = "select * from rent where id = ?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery(); // SQL문 실행
+
+			if (rs.next()) {
+
+				rent.setBook_Num(rs.getInt("book_num"));
+				rent.setId(id);
+				rent.setRent_Date(rs.getTimestamp("rent_date"));
+				rent.setRent_Num(rs.getInt("rent_num"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+		return rent;
+	}
 }
