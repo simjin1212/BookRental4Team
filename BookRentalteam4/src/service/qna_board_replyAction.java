@@ -21,11 +21,12 @@ public class qna_board_replyAction implements Action{
 		int qb_num = Integer.parseInt(request.getParameter("qb_num"));
 		String page=request.getParameter("page");
 		
-		System.out.println("큡넙 : " + qb_num);
+		
 		
 		qna_board_dao dao = qna_board_dao.getInstance();
 		qna_board_dto board=dao.getDetail(qb_num);
-		
+		System.out.println("큡넙 : " + qb_num);
+		System.out.println("큡큡넘 : " + board.getQb_num());
 		request.setAttribute("board", board);	//request 영역으로 원글 dto 전달
 		request.setAttribute("page", page);
 		request.setAttribute("qb_num", qb_num);

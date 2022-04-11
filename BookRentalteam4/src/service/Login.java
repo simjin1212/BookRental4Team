@@ -40,35 +40,38 @@ public class Login implements Action{
 	//	location.href="./loginform.do";
 		if(result == 1 && admincheck == 1) {
 			
+			request.setAttribute("admincheck", admincheck);
 			session.setAttribute("id", id);         // 세션 공유 설정
 			session.setAttribute("member_grade", 1);
-			JOptionPane aa = new JOptionPane();
-			aa.showMessageDialog(null,"관리자로 접속합니다!");
+//			JOptionPane aa = new JOptionPane();
+//			aa.showMessageDialog(null,"관리자로 접속합니다!");
+//			
+//			ActionForward forward = new ActionForward();
+//			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
+//			forward.setPath("./admin/admin_main.jsp");   // 포워딩할 파일 설정
 			
-			ActionForward forward = new ActionForward();
-			forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
-			forward.setPath("./admin/admin_main.jsp");   // 포워딩할 파일 설정
-			
-			return forward;
+//			return forward;
 			
 		}else if(result == 1 && admincheck == -1){
+			request.setAttribute("admincheck", admincheck);
 			// 회원 인증 성공
 			session.setAttribute("id", id);         // 세션 공유 설정
 			session.setAttribute("member_grade", 0);
 			
-			}else {					// 회원 인증 실패
+		}else {					// 회원 인증 실패
 				out.println("<script>");
 				out.println("alert('로그인 실패');");
 				out.println("history.go(-1);");
 				out.println("</script>");
 			
 				return null;
-			}	
+		}	
 		
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
-		forward.setPath("./member/main.jsp");   // 포워딩할 파일 설정
+//		forward.setPath("./member/main.jsp");   // 포워딩할 파일 설정
+		forward.setPath("./member/premain.jsp");   // 포워딩할 파일 설정
 		
 		return forward;
 	}
