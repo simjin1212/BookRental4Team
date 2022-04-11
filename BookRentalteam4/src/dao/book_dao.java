@@ -552,7 +552,7 @@ public class book_dao {
 			rs = pstmt.executeQuery(); // SQL문 실행
 
 			if (rs.next()) {
-
+ 
 				book_name = (String) rs.getString("book_name");
 
 			}
