@@ -475,7 +475,7 @@ public class book_dao {
 				}
 			}
 		}
-		return list;
+		return list; 
 	}
 
 	// 글목록
