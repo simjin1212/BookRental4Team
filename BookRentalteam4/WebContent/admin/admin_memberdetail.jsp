@@ -86,7 +86,7 @@ a{text-decoration:overline; color:#333;}
         <div id="tab1" class="cont">
         	
         	<table border=1 height="200" width="700" align=center>
-        <caption align="right">
+        <caption align="right"></caption>
         	<tr bgcolor=lightgrey>
 				<th>도서번호</th>
 				<th>도서명</th>
@@ -95,30 +95,17 @@ a{text-decoration:overline; color:#333;}
 				<th>대출일</th>
 				<th>반납예정일</th>
 			</tr>
+		<c:forEach var="rent" items="${rentlist }">
 			<tr>
-				<th>1</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>2022-04-24</th>
+				<th>${rent.book_Num}</th>
+				<th>${rent.temp_book_Name }</th>
+				<th>${rent.temp_Writer }</th>
+				<th>${rent.temp_Publisher }</th>
+				<th>${rent.rent_Date }</th>
+				<th>${rent.return_Date}</th>
 			</tr>
-			<tr>
-				<th>2</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>2022-04-24</th>
-			</tr>
-			<tr>
-				<th>3</th>
-				<th>자바의 정석</th>
-				<th>홍길동</th>
-				<th>심진심진</th>
-				<th>2022-04-04</th>
-				<th>2022-04-24</th>
-			</tr>
+		</c:forEach>
+			
 			</table>
 			</div>
       </li>

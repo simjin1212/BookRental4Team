@@ -42,7 +42,7 @@ public class rent_dao {
 		try {
 			con = getConnection();
 
-			String sql = "insert into rent values(?,?,?,sysdate,0)";
+			String sql = "insert into rent values(?,?,?,sysdate,sysdate+14)";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rent.getRent_Num());
@@ -160,5 +160,78 @@ public class rent_dao {
 		}
 		return result;
 	}
+	
+	//미반납도서 목록
+	public List<rent_dto> adminRentList(int start, int end) {
+		List<rent_dto> rentlist = new ArrayList<rent_dto>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			
+			String sql="select * from (select rownum rnum, list.* from ";
+					sql+=" (select rent.rent_num, rent.id, rent.book_num, book.book_name, book.writer, book.publisher, rent.rent_date, rent.return_date ";
+					sql+=" from rent, book where rent.book_num=book.book_num order by rent.return_date asc) list ) where rnum>=? and rnum<=?";
+					
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				rent_dto rent=new rent_dto();
+				
+				rent.setRent_Num(rs.getInt("rent_num"));
+				rent.setId(rs.getString("id"));
+				rent.setBook_Num(rs.getInt("book_num"));
+				rent.setTemp_book_Name(rs.getString("book_name"));
+				rent.setTemp_Writer(rs.getString("writer"));
+				rent.setTemp_Publisher(rs.getString("publisher"));
+				rent.setRent_Date(rs.getTimestamp("rent_date"));
+				rent.setReturn_Date(rs.getDate("return_date"));
+				
+				rentlist.add(rent);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) 		try { rs.close(); 	 } catch(Exception e) { } ;
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		
+		return rentlist;
+	}
+	
+	//반납 처리
+	public int returnbook(int num) {
+		int result=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="delete from rent where rent_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			result=pstmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close(); } catch(Exception e) { } ;
+			if(con!=null) 	try { con.close();	 } catch(Exception e) { } ;
+		}
+		
+		return result;
+	}
+	
+	
 
 }
