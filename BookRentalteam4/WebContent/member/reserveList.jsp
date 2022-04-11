@@ -27,7 +27,7 @@
 				<th>${rv.book_Name}</th>
 				<th>${rv.writer}</th>
 				<th>${rv.publisher}</th>
-				<th>${rv.reserve_Date }</th>
+				<th>${rv.reserve_Date}</th>
 				<th>대출가능</th>
 				<td align = center><input type=button value="예약 취소" id="reserveCancle"></td>
 			</tr>

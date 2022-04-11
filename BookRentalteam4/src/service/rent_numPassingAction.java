@@ -25,7 +25,7 @@ public class rent_numPassingAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/BookWriteFormAction.do ");
+		forward.setPath("/BookWriteFormAction.do");
 		return forward;
 	}
 

@@ -214,13 +214,6 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/rentList.jsp");
-
-			// 예약 목록
-		} else if (command.equals("/ReserveList.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./member/reserveList.jsp");
-
 			// 내 정보 보기
 		} else if (command.equals("/UpdateForm.do")) {
 			try {
@@ -265,8 +258,7 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		else if (command.equals("/rent_numPassingAction.do")) {
+		}else if (command.equals("/rent_numPassingAction.do")) {
 			try {
 				action = new rent_numPassingAction();
 				forward = action.execute(request, response);
@@ -503,6 +495,24 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		//==================================================예약목록
+		// 예약등록
+		if (command.equals("/reserve_add.do")) {
+			try {
+				action = new reserve_add();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//예약목록
+		}else if(command.equals("/ReserveList.do")) {
+			try {
+				action = new reservelistaction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		// 포워딩 처리
 		if (forward != null) {
@@ -513,6 +523,9 @@ public class FrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
+		
+	
+		
 
 	} // doProcess() end
 
