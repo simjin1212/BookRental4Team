@@ -453,7 +453,7 @@ public class FrontController extends HttpServlet {
 			}
 
 //				//qna문의글 수정
-		} else if (command.equals("/qna_BoardModify.do")) {
+		}else if (command.equals("/qna_BoardModify.do")) {
 			try {
 				action = new qna_BoardModify();
 				forward = action.execute(request, response);
@@ -461,7 +461,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			//qna답글 폼
-		}else if (command.contentEquals("/member_board_replyform.do")) {
+		}else if (command.contentEquals("/qna_board_replyform.do")) {
 		try {
 			action = new qna_board_replyAction();
 			forward = action.execute(request, response);
@@ -470,7 +470,7 @@ public class FrontController extends HttpServlet {
 			e.printStackTrace();
 		}
 		// 답글 입력
-	} else if (command.contentEquals("/qna_board_reply.do")) {
+	    }else if (command.contentEquals("/qna_board_reply.do")) {
 		try {
 			action = new qna_board_reply();
 			forward = action.execute(request, response);

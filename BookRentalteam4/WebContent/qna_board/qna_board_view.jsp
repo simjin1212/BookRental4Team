@@ -58,7 +58,7 @@ div{ font-size:16px; }
 		<input type=button value="수정" onclick="location.href='./qna_BoardModifyAction.do?qb_num=${board.qb_num}&page=${page}' "> <br> <!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->		
 			</c:if>	
 			<c:if test="${sessionScope.member_grade==1}">
-				<input type=button value="답글" onClick="location.href='./qna_board_replyform.do?qb_num=${qb_num}&page=${page}'">
+				<input type=button value="답글" onClick="location.href='./qna_board_replyform.do?qb_num=${board.qb_num}&page=${page}'">
 			</c:if>	
 		</td>
 	</tr>

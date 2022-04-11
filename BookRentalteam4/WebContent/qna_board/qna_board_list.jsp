@@ -49,7 +49,7 @@ td{height:30px; font-size:14px;}
 			<a href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">">${b.qb_subject }</a>
  		</td>
 		<td> ${b.id} </td>
-		<td> <fmt:formatDate value="${b.qb_regdate}" pattern="yy.MM.dd hh:mm"/> </td>
+		<td> <fmt:formatDate value="${b.qb_regdate}" pattern="yy.MM.dd"/> </td>
 		<!-- 날짜 표기 시, date클래스 객체 생성해 현재시간 구해서 비교해보고
 		날짜가 같으면 시간만 표시, 날짜가 다를 경우 작성 날짜가 뜨도록 변경 -->
 	
@@ -62,10 +62,10 @@ td{height:30px; font-size:14px;}
 <center>
 <c:if test="${listcount>0}"> <!-- 글이 존재하는 경우에만 페이지 출력 -->
 <!-- 1페이지로 -->
-	<a href="./qb_board_list.do?page=1" style="text-decoration:none"> << </a>
+	<a href="./qna_BoardListAction.do?page=1" style="text-decoration:none"> << </a>
 <!-- 이전 페이지 -->
 	<c:if test="${page>1 }">
-		<a href="./qb_board_list.do?page=${page-1 }"> < </a>
+		<a href="./qna_BoardListAction.do?page=${page-1 }"> < </a>
 	</c:if>
 
 	<c:forEach var="i" begin="${startPage }" end="${endPage }">
@@ -73,15 +73,15 @@ td{height:30px; font-size:14px;}
 			[${i}]
 		</c:if>
 		<c:if test="${i!=page }"> <!-- 현재 페이지가 아닌 경우 -->
-			<a href="./qb_board_list.do?page=${i}">[${i}]</a>
+			<a href="./qna_BoardListAction.do?page=${i}">[${i}]</a>
 		</c:if>	
 	</c:forEach>
 	
 <!-- 다음 페이지 -->
 	<c:if test="${page <pageCount}">
-		<a href="./qb_board_list.do?page=${page+1 }"> > </a></c:if>
+		<a href="./qna_BoardListAction.do?page=${page+1 }"> > </a></c:if>
 <!-- 끝페이지로 -->
-	<a href="./qb_board_list.do?page=${pageCount}" style="text-decoration:none"> >> </a>
+	<a href="./qna_BoardListAction.do?page=${pageCount}" style="text-decoration:none"> >> </a>
 		
 </c:if>
 </center>

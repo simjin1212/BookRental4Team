@@ -30,7 +30,6 @@ System.out.println("reply");
 		
 		qna_board_dto board=new qna_board_dto();
 		
-		board.setQb_num(Integer.parseInt(request.getParameter("qb_num")));
 		board.setId(id);
 		board.setQb_subject(request.getParameter("qb_subject"));
 		board.setQb_content(request.getParameter("qb_content"));

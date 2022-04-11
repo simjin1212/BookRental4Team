@@ -99,7 +99,7 @@ String sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0
 			if(grade == 1) {						//관리자 모든 글이 보이게 생성
 String sql="select * from ( select rownum rnum, board.* from ";			
 	   sql+=" ( select * from QNA_BOARD order by QB_REF desc, ";		
-	   sql+=" QB_NUM asc) board ) ";
+	   sql+=" QB_seq asc) board ) ";
 	   sql+=" where rnum >= ? and rnum <= ?";
 	   
 	   		pstmt = con.prepareStatement(sql);
@@ -121,7 +121,7 @@ String sql="select * from ( select rownum rnum, board.* from ";
 			
 				String sql="select * from ( select rownum rnum, board.* from ";			
 				   sql+=" ( select * from QNA_BOARD order by QB_REF desc, ";		
-				   sql+=" QB_NUM asc) board ) ";
+				   sql+=" QB_seq asc) board ) ";
 				   sql+=" where rnum >= ? and rnum <= ? and id = ?";
 				pstmt = con.prepareStatement(sql);
 		   		pstmt.setInt(1, start);

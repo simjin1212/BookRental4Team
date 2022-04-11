@@ -18,13 +18,13 @@ div{ font-size:16px; }
 
 <form action="<%=request.getContextPath() %>/qna_board_reply.do" method="post" 
 	  enctype="multipart/form-data">
-<input type=hidden name="qb_num" value="${board.qb_num}">
+
+<table cellpadding="0" cellspacing="0" style="border-:collapse:collapse;" align=center border="1">
+<input type=hidden name="qb_num" value="${qb_num}">
 <input type=hidden name="qb_ref" value="${board.qb_ref}">
 <input type=hidden name="qb_lev" value="${board.qb_lev}">
 <input type=hidden name="qb_seq" value="${board.qb_seq}">
-<input type=hidden name="page" value="${page}">
-<table cellpadding="0" cellspacing="0" style="border-:collapse:collapse;" align=center border="1">
-   
+<input type=hidden name="page" value="${page}">   
 	<tr align="center" valign="middle">
 	</tr>
 	<tr>

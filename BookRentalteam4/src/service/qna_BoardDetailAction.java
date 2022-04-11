@@ -31,7 +31,6 @@ public class qna_BoardDetailAction implements Action{
 		// 공유 설정
 		request.setAttribute("board", board);
 //		request.setAttribute("content", content);
-		request.setAttribute("qb_num", qb_num);
 		request.setAttribute("page", page);
 		
 		ActionForward forward = new ActionForward();
