@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.book_dao;
 import dao.review_board_dao;
+import dto.book_dto;
 import dto.review_board_dto;
 
 public class ReviewListAction implements Action {
@@ -21,6 +23,10 @@ public class ReviewListAction implements Action {
 		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
+		int book_Num = Integer.parseInt(request.getParameter("num"));
+		book_dao bkdao = book_dao.getInstance();
+		book_dto book = bkdao.getDetail(book_Num); // 상세정보 구하기
+		int rentcheck = bkdao.rentcheck(book_Num);
 		
 		int page = 1;
 		int limit = 10;
@@ -52,10 +58,13 @@ public class ReviewListAction implements Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		request.setAttribute("book", book);
+		request.setAttribute("rentcheck", rentcheck);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("./book/book_review_list.jsp");
+		
 	
 		return forward;
 	}

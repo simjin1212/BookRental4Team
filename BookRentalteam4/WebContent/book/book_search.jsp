@@ -113,7 +113,7 @@ if(count>0 && fcount==0){
 	
 	<tr><td><%=number-- %></td>
 			<td>
-			<a href="./memberbookdetail.do?no=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
+			<a href="./ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
 					<%=book.getBook_Name() %>
 				</a></td>
 			<td>

@@ -10,8 +10,8 @@
 <body>
 
 	<form method="post" enctype="multipart/form-data"
-		action="<%=request.getContextPath()%>/book_review_writeAction.do?b_num=${b_num}">
-		<input type = "hidden" id = num name = num value = "${b_num }">
+		action="<%=request.getContextPath()%>/book_review_writeAction.do?num=${b_num}">
+	
 		<table cellpadding="0" cellspacing="0" align=center border=1>
 			<tr align="center" valign="middle">
 				<td colspan="5">리뷰 게시판</td>

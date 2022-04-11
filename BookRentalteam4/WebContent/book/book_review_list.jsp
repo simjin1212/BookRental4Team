@@ -13,24 +13,35 @@
  현재 아이디 : ${sessionScope.id} <br>
  
 <form method="post" action="<%=request.getContextPath() %>/member/main.jsp">
-
- <table border = 1 width=600 height=300 align=center cellpadding=15px>
+  <table border = 1 width=600 height=300 align=center cellpadding=15px>
          <caption align=center>
             <h2>도서 상세 페이지</h2>
          </caption>
          <tr valign="top">
-            <td width=150></td>
-            <td left=5px>저자  ; ${book.writer}<br> <br> 출판사 ; ${book.publisher}<br> <br> 장르  ;${book.genre}<br>
-               <br> 도서번호  ; ${book.book_num}<br>
+            <td width=150><img src = "./admin/bookfileupload.jsp?file_name=${book.book_Cover} " style="width:300px; height:300px;"/></td>
+            <td left=5px>저자  :${book.writer}<br> <br> 출판사 :${book.publisher}<br> <br> 장르  :${book.genre}<br>
+               <br> 도서번호  :${book.book_Num}<br>
             </td>
          </tr>
+         
          <tr>
             <td colspan = 2 align = center>
-            <input align=center type="submit" value="대출 신청">
-            <input type="submit" value="예약 신청">
+            
+            
+            <input align=center type="button" value="대출 신청">
+            
+            
+    <c:if test="${rentcheck == 1}">
+            <input type="button" value="예약 신청" 
+            onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent.rent_num}&id=${id}'">
+	</c:if>
+	<c:if test="${rentcheck == -1}">
+	 	<input type="button" disabled value="예약신청"/>
+	</c:if>
             </td>
          </tr>
       </table>
+ 
       
       
       <table table border="1" width="600" align=center cellpadding = 10px>

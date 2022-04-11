@@ -38,7 +38,7 @@ import service.member_board_reply;
 import service.member_board_replyAction;
 import service.member_board_view;
 import service.member_board_write;
-import service.memberbookdetail;
+
 import service.membergrademodify;
 import service.qna_BoardAddAction;
 import service.qna_BoardDetailAction;
@@ -102,15 +102,9 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			// 회원 도서 상세
+		
 
-		} else if (command.equals("/memberbookdetail.do")) {
-			try {
-				action = new memberbookdetail();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
 
 			// 도서 상세
 		} else if (command.equals("/bookDetailAction.do")) {
@@ -272,6 +266,7 @@ public class FrontController extends HttpServlet {
 
 			// 리뷰게시판 이동
 		} else if (command.equals("/ReviewListAction.do")) {
+	
 			try {
 				action = new ReviewListAction();
 				forward = action.execute(request, response);
