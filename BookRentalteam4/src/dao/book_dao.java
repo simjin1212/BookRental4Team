@@ -648,7 +648,7 @@ public class book_dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
+			if (rs != null) 
 				try {
 					rs.close();
 				} catch (Exception e) {
