@@ -16,6 +16,7 @@ div{ font-size:16px; }
 </head>
 <body>
 
+ref:${board.qb_ref}
 <form action="<%=request.getContextPath() %>/qna_board_reply.do" method="post">
 <input type=hidden name="qb_num" value="${board.qb_num}">
 <input type=hidden name="qb_ref" value="${board.qb_ref}">

@@ -43,11 +43,9 @@ td{height:30px; font-size:14px;}
 			<tr>
 		<td> 
 			<c:if test="${b.qb_lev>0}">
-				<c:forEach var="i" begin="0" end="${b.qb_lev}">
-					&nbsp;
-				</c:forEach>
+					&nbsp;ㄴ
 			</c:if>
-			<a href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">">${b.qb_subject }</a>
+			<a href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">${b.qb_subject }</a>
  		</td>
 		<td> ${b.id} </td>
 		<td> <fmt:formatDate value="${b.qb_regdate}" pattern="yy.MM.dd"/> </td>
