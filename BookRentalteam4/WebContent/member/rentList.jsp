@@ -32,7 +32,7 @@
 			<c:forEach var="r" items="${rentlist}">
 			<tr>
 				<th>${r.rent_Num}</th>
-				<th>제목</th>
+				<th></th>
 				<th>남궁성</th>
 				<th>한빛미디어</th>
 				<th>${r.rent_Date}</th>
