@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<td style="font-family: 돋음; font-size: 12" height="16">
-					<div align="center">도서명</div>
+					<div align="center" >도서명</div>
 				</td>
 				<td><input name="book_name" id="book_name" type="text"
 					size="10" maxlength="10" value="" / disabled="disabled"></td>
