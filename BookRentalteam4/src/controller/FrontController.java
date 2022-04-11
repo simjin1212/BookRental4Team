@@ -50,6 +50,7 @@ import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
 import service.reserve_add;
+import service.reservelistaction;
 import service.returnbook;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
@@ -223,11 +224,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			// 예약 목록
-		} else if (command.equals("/ReserveList.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./member/reserveList.jsp");
-
+		
 			// 내 정보 보기
 		} else if (command.equals("/UpdateForm.do")) {
 			try {
@@ -515,7 +512,14 @@ public class FrontController extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-						}
+				}else if(command.equals("/ReserveList.do")) {
+					try {
+						action = new reservelistaction();
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 
 		// 포워딩 처리
 		if (forward != null) {
