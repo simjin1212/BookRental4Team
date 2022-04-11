@@ -48,8 +48,9 @@ import service.qna_BoardModifyAction;
 import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
-import service.rent_numPassingAction;
-import service.review_writeAction;
+import service.reserve_add;
+import service.reservelistaction;
+import service.returnbook;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {

@@ -33,13 +33,13 @@
 				<th>${r.temp_book_Name }</th>
 				<th>${r.temp_Writer }</th>
 				<th>${r.temp_Publisher }</th>
-				<th>${r.rent_Date}</th>
+				<th><fmt:formatDate value="${r.rent_Date}" pattern="yyyy-MM-dd"/></th>
 				<th>${r.return_Date}</th>
 				<td align = center>
 				<input type=button value="리뷰 작성" id="reviewWrite" 
 				onClick="location.href='<%=request.getContextPath()%>/rent_numPassingAction.do?book_Num=${r.book_Num}'">
 				</td>
-				<td align = center><input type=button value="반납 신청" id="return"></td>
+				<td align = center><input type=button value="반납 신청" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
 			</tr>
 			
 			</c:forEach>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.member_dao;
 import dao.qna_board_dao;
 import dto.qna_board_dto;
 
@@ -16,7 +17,7 @@ public class qna_BoardListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		//System.out.println("BoardListAction=========cxxxxxxxx");
+		System.out.println("BoardListAction=========cxxxxxxxx");
 		
 		int page = 1;		// 현재 페이지 번호
 		int limit = 10;		// 한 페이지에 출력할 데이터 갯수
@@ -37,6 +38,7 @@ public class qna_BoardListAction implements Action {
 		qna_board_dao dao = qna_board_dao.getInstance();
 		int listcount = dao.getCount();		// 총 데이터 갯수
 		System.out.println("listcount:" + listcount);
+		
 		
 		List<qna_board_dto> boardlist = dao.getList(startRow, endRow, grade, id);
 		System.out.println("boardlist:" + boardlist);

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +23,17 @@
                <br> 도서번호  ;${book.book_Num}<br>
             </td>
          </tr>
+         
          <tr>
             <td colspan = 2 align = center>
-            <input align=center type="submit" value="대출 신청">
-            <input type="submit" value="예약 신청">
+            <input align=center type="button" value="대출 신청">
+    <c:if test="${rentcheck == 1}">
+            <input type="button" value="예약 신청" 
+            onClick="location.href='./reserve_add.do?book_num=${book.book_num}&rent_num=${rent.rent_num}&id=${id}'">
+	</c:if>
+	<c:if test="${rentcheck == -1}">
+	 	<input type="button" disabled value="예약신청"/>
+	</c:if>
             </td>
          </tr>
       </table>

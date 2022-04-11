@@ -1,12 +1,19 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.book_dao;
 import dao.member_dao;
+import dao.rent_dao;
+import dao.reserve_dao;
 import dto.book_dto;
 import dto.member_dto;
+import dto.rent_dto;
+import dto.reserve_dto;
 
 public class adminmemberdetail implements Action{
 
@@ -23,9 +30,22 @@ public class adminmemberdetail implements Action{
 		// 글내용에서 줄바꿈
 		//String content = book.getWirter_Talks().replace("\n","<br>");
 		
+		//대출 내역/건 구함
+		rent_dao rent=rent_dao.getInstance();
+		List<rent_dto> rentlist=new ArrayList<rent_dto>();
+		
+		rentlist=rent.getRentList(id);
+
+		//예약내역/ 건 구함
+		reserve_dao rs_dao = reserve_dao.getInstance();
+		List<reserve_dto> reservelist = rs_dao.getreserveList(id);
+		
+		
 		// 공유 설정
 		request.setAttribute("member", member);
 		request.setAttribute("page", page);
+		request.setAttribute("rentlist", rentlist);
+		request.setAttribute("reservelist", reservelist);
 		//request.setAttribute("content", content);
 		
 		ActionForward forward = new ActionForward();

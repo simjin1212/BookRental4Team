@@ -535,46 +535,91 @@ public class book_dao {
 		}
 		return list;
 	}
-	
-	public String getMatching(int r_num) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String book_name = "";
+	// 대출상세
+			public rent_dto getrentDetail(String id) {
+				rent_dto rent = new rent_dto();
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
 
-		try {
-			con = getConnection();
+				try {
+					con = getConnection();
 
-			String sql = "select book_name from book where book_num = ?";
+					String sql = "select * from rent where id = ?";
 
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, r_num);
-			rs = pstmt.executeQuery(); // SQL문 실행
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery(); // SQL문 실행
 
-			if (rs.next()) {
-				
-				book_name = (String)rs.getString("book_name");
-				
+					if (rs.next()) {
+						
+						rent.setBook_Num(rs.getInt("book_num"));
+						rent.setId(id);
+						rent.setRent_Date(rs.getTimestamp("rent_date"));
+						rent.setRent_Num(rs.getInt("rent_num"));
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (rs != null)
+						try {
+							rs.close();
+						} catch (Exception e) {
+						}
+					if (pstmt != null)
+						try {
+							pstmt.close();
+						} catch (Exception e) {
+						}
+					if (con != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+				}
+				return rent;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
+			// 도서 검색
+			public int rentcheck(int book_num) {
+				int result = 0;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+
 				try {
-					rs.close();
+					con = getConnection();
+
+					String sql = "select * from rent where book_num=?";
+
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, book_num);
+					rs = pstmt.executeQuery();
+
+					if (rs.next()) {
+						result = 1; // rent테이블에 도서 있음
+					} else {
+						result = -1; // rent테이블에 도서 없음
+					}
 				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (pstmt != null)
+						try {
+							pstmt.close();
+						} catch (Exception e) {
+						}
+					if (con != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+					if (rs != null)
+						try {
+							rs.close();
+						} catch (Exception e) {
+						}
 				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (Exception e) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e) {
-				}
-		}
-		return book_name;
-	}
+
+				return result;
+			}
 }

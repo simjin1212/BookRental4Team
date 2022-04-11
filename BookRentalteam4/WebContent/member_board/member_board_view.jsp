@@ -58,6 +58,9 @@
 				<input type=button value="목록" onClick="location.href='./member_board_list.do?page=${page}'"> 
 			</td> 
 		</tr>
+		<!-- 답변 리스트 -->
+		
+		
 	</table>
 </body>
 </html>

@@ -39,7 +39,7 @@ public class qna_board_dao {
 		try {
 			con = getConnection();
 			
-String sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0,0)";
+String sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,qna_board_seq.nextval,0,0)";
        
        		pstmt = con.prepareStatement(sql);
      		pstmt.setString(1, dto.getId());
@@ -106,6 +106,7 @@ String sql="select * from ( select rownum rnum, board.* from ";
 	   		pstmt.setInt(1, start);
 	   		pstmt.setInt(2, end);
 	   		rs = pstmt.executeQuery();		// SQL문 실행
+	   
 	   		
 	   		while(rs.next()) {
 	   			qna_board_dto board = new qna_board_dto();
@@ -114,19 +115,22 @@ String sql="select * from ( select rownum rnum, board.* from ";
 	   			board.setQb_subject(rs.getString("QB_SUBJECT"));
 	   			board.setId(rs.getString("id"));
 	   			board.setQb_regdate(rs.getDate("qb_regdate"));
-	
+	   			board.setQb_lev(rs.getInt("qb_lev"));
+	   			board.setQb_seq(rs.getInt("qb_seq"));
+	   			board.setQb_ref(rs.getInt("qb_ref"));
+	   			
 	   			list.add(board);
 	   		}
 			}else if(grade == 0) {						//일반회원 자신의 글만 보이게 생성
-			
-				String sql="select * from ( select rownum rnum, board.* from ";			
-				   sql+=" ( select * from QNA_BOARD order by QB_REF desc, ";		
+				
+				 String sql="select * from ( select rownum rnum, board.* from ";			
+				   sql+=" ( select * from qna_board where qb_ref in(select qb_ref from qna_board where id = ?) order by QB_REF desc, ";		
 				   sql+=" QB_seq asc) board ) ";
-				   sql+=" where rnum >= ? and rnum <= ? and id = ?";
+				   sql+=" where rnum >= ? and rnum <= ?";
 				pstmt = con.prepareStatement(sql);
-		   		pstmt.setInt(1, start);
-		   		pstmt.setInt(2, end);
-		   		pstmt.setString(3, id);
+				pstmt.setString(1, id);
+		   		pstmt.setInt(2, start);
+		   		pstmt.setInt(3, end);
 		   		rs = pstmt.executeQuery();		// SQL문 실행
 		   		
 				
@@ -137,6 +141,9 @@ String sql="select * from ( select rownum rnum, board.* from ";
 		   			board.setQb_subject(rs.getString("QB_SUBJECT"));
 		   			board.setId(rs.getString("id"));
 		   			board.setQb_regdate(rs.getDate("qb_regdate"));
+		   			board.setQb_ref(rs.getInt("qb_ref"));
+		   			board.setQb_lev(rs.getInt("qb_lev"));
+		   			board.setQb_seq(rs.getInt("qb_seq"));
 		
 		   			list.add(board);
 		   		}
@@ -177,9 +184,9 @@ String sql="select * from ( select rownum rnum, board.* from ";
 				board.setId(rs.getString("id"));
 	   			board.setQb_subject(rs.getString("QB_SUBJECT"));
 	   			board.setQb_content(rs.getString("QB_CONTENT"));
-	   			board.setId(rs.getString("qb_ref"));
-	   			board.setId(rs.getString("qb_lev"));
-	   			board.setId(rs.getString("qb_seq"));
+	   			board.setQb_ref(rs.getInt("qb_ref"));
+	   			board.setQb_lev(rs.getInt("qb_lev"));
+	   			board.setQb_seq(rs.getInt("qb_seq"));
 	   			
 			/*	
 	   			board.setBoard_name(rs.getString("board_name"));
@@ -285,15 +292,15 @@ String sql="select * from ( select rownum rnum, board.* from ";
 				pstmt.executeUpdate();
 				pstmt.close();
 				
-				sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,0,0,0)";
+				sql="insert into QNA_BOARD values(qna_board_seq.nextval,?,?,?,sysdate,?,?,?)";
 			       
 	       		pstmt = con.prepareStatement(sql);
 	     		pstmt.setString(1, board.getId());
 	     		pstmt.setString(2, board.getQb_subject());
 	       		pstmt.setString(3, board.getQb_content());
-	       		pstmt.setInt(5, re_ref);
-				pstmt.setInt(6, re_lev+1); //깊이 +1
-				pstmt.setInt(7, re_seq+1); 	//답글 순서 1
+	       		pstmt.setInt(4, re_ref);
+				pstmt.setInt(5, re_lev+1); //깊이 +1
+				pstmt.setInt(6, re_seq+1); 	//답글 순서 1
 				
 				
 				result = pstmt.executeUpdate();  
@@ -331,5 +338,7 @@ String sql="select * from ( select rownum rnum, board.* from ";
 //		}		
 //		return result;
 //	}
+		
+		
 	
 }

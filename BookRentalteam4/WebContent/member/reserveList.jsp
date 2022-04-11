@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,21 +16,22 @@
 				<th>도서번호</th>
 				<th>도서명</th>
 				<th>저자</th>
-				<th>출판사</th>
 				<th>예약신청일</th>
 				<th>대출가능여부</th>
 				<th>예약여부</th>
 				
-			</tr>
+			</tr> 
+			<c:forEach var="rv" items="${reservelist}">
 			<tr>
-				<th>1</th>
-				<th>자바의정석</th>
-				<th>남궁성</th>
-				<th>한빛미디어</th>
-				<th>2022-04-05</th>
+				<th>${rv.book_Num}</th>
+				<th>${rv.book_Name}</th>
+				<th>${rv.writer}</th>
+				<th>${rv.publisher}</th>
+				<th>${rv.reserve_Date }</th>
 				<th>대출가능</th>
 				<td align = center><input type=button value="예약 취소" id="reserveCancle"></td>
-			<tr>
+			</tr>
+			</c:forEach>
 		</table>
 
 	</form>
