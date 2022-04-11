@@ -18,6 +18,7 @@ import service.Login;
 import service.ReviewListAction;
 import service.Update;
 import service.UpdateMember;
+import service.admin_rentlist;
 import service.adminmemberdelete;
 import service.adminmemberdetail;
 import service.adminmemberlist;
@@ -49,6 +50,7 @@ import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
 import service.reserve_add;
+import service.returnbook;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -212,6 +214,14 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 			forward.setPath("./member/rentList.jsp");
 
+						// 반납 처리
+		} else if (command.equals("/returnbook.do")) {
+			try {
+				action = new returnbook();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			// 예약 목록
 		} else if (command.equals("/ReserveList.do")) {
 			forward = new ActionForward();
@@ -307,6 +317,14 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("/membergrademodify.do")) {
 			try {
 				action = new membergrademodify();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//관리자 - 미반납 리스트
+		} else if (command.equals("/adminrentlist.do")) {
+			try {
+				action = new admin_rentlist();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
