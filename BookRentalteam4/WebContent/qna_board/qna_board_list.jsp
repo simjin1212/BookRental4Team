@@ -14,7 +14,8 @@ td{height:30px; font-size:14px;}
 현재 아이디 : ${sessionScope.id} <br>
 현재 등급 : ${sessionScope.member_grade }	<br>
 <c:if test="${sessionScope.member_grade==0 }">
-		<a href="./qna_BoardForm.do">문의 작성하기</a> <br> <!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->		
+		<a href="./qna_BoardForm.do">문의 작성하기</a> <br> <!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->	
+			
 </c:if>
 
 <center>
@@ -37,7 +38,7 @@ td{height:30px; font-size:14px;}
 				<th>작성일</th>
 				
 			</tr>	
-		<c:forEach var="b" items="${boardlist}">			
+		<c:forEach var="b" items="${boardlist}">
 			
 			<tr>
 		<td> 

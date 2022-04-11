@@ -16,7 +16,7 @@ public class qna_BoardListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		//System.out.println("BoardListAction=========cxxxxxxxx");
+		System.out.println("BoardListAction=========cxxxxxxxx");
 		
 		int page = 1;		// 현재 페이지 번호
 		int limit = 10;		// 한 페이지에 출력할 데이터 갯수

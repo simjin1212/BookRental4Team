@@ -24,7 +24,7 @@
          <tr>
             <td colspan = 2 align = center>
             <input align=center type="submit" value="대출 신청">
-            <input type="submit" value="예약 신청">
+            <input type="button" value="예약 신청">
             </td>
          </tr>
       </table>
