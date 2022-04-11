@@ -581,4 +581,47 @@ public class book_dao {
 			}
 			return rent;
 		}
+		// 도서 검색
+		public int rentcheck(int book_num) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select * from rent where book_num=?";
+
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, book_num);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					result = 1; // rent테이블에 도서 있음
+				} else {
+					result = -1; // rent테이블에 도서 없음
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				if (con != null)
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (Exception e) {
+					}
+			}
+
+			return result;
+		}
 }

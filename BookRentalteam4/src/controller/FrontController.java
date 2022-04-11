@@ -507,7 +507,7 @@ public class FrontController extends HttpServlet {
 		}
 	}
 		//-----------------------------------------------예약 -------------------------------------------------
-		// 도서등록
+		// 예약등록
 				if (command.equals("/reserve_add.do")) {
 					try {
 						action = new reserve_add();

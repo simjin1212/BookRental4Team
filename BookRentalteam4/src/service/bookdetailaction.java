@@ -26,9 +26,12 @@ public class bookdetailaction implements Action{
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		
+		
+		
 		book_dao dao = book_dao.getInstance();
 		book_dto book = dao.getDetail(book_Num); // 상세정보 구하기
 		rent_dto rent = dao.getrentDetail(id);
+		
 		
 		
 		// 글내용에서 줄바꿈
@@ -38,6 +41,7 @@ public class bookdetailaction implements Action{
 		request.setAttribute("book", book);
 		request.setAttribute("id", id);
 		request.setAttribute("rent", rent);
+	
 		
 		request.setAttribute("page", page);
 		//request.setAttribute("content", content);

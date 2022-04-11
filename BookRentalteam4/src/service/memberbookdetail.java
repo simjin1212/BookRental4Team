@@ -17,8 +17,10 @@ public class memberbookdetail implements Action {
 		
 		book_dao dao = book_dao.getInstance();
 		book_dto book = dao.getDetail(book_Num); // 상세정보 구하기
+		int rentcheck = dao.rentcheck(book_Num);
 		
 		request.setAttribute("book", book);
+		request.setAttribute("rentcheck", rentcheck);
 
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false); // dispatcher 방식으로 포워딩
