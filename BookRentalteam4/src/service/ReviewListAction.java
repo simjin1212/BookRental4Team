@@ -24,14 +24,18 @@ public class ReviewListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
+		//도서 상세파트의 책 번호
 		int book_Num = Integer.parseInt(request.getParameter("num"));
 		
 		
 		System.out.println("id:" + id);
 		System.out.println("book_Num:" + book_Num);
+		
 		book_dao bkdao = book_dao.getInstance();
 		book_dto book = bkdao.getDetail(book_Num); // 상세정보 구하기
 		int rentcheck = bkdao.rentcheck(book_Num);
+		
+		//도서 대여번호 구하기(rent)에서 사용
 		int rent = bkdao.rent(book_Num);
 		
 		int page = 1;
@@ -40,10 +44,11 @@ public class ReviewListAction implements Action {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-
+		
 		int startRow = (page - 1) * limit + 1;
 		int endRow = page * limit;
-
+		
+		//리뷰
 		review_board_dao dao = review_board_dao.getInstance();
 		int reviewlistcount = dao.rlgetCount();
 		System.out.println("reviewlistcount:" + reviewlistcount);
