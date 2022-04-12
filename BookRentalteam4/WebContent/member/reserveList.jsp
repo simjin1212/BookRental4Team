@@ -28,12 +28,20 @@
 				<th>${rv.book_Num}</th>
 				<th>${rv.book_Name}</th>
 				<th>${rv.writer}</th>
-				<th>${rv.publisher}</th>
+				<th>${rv.publisher} </th>
 				<th>${rv.reserve_Date}</th>
 				<th>${rv.return_date}</th>
-				<th><input type="button" value="대출하기"></th>
+				
+				<th> <c:if test="${empty return_date}">
+				<input type="button" value="대출하기"
+				onClick="location.href='<%=request.getContextPath()%>/rent_add.do?id=${id}&book_num=${rv.book_Num}'">
+				</c:if>
+				<c:if test="${not empty return_date}">
+	 			<input type="button" disabled value="대출불가(대출중)"/>
+				</c:if>
+				</th>
 				<td align=center><input type=button value="예약 취소"
-				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do'"></td>
+				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></td>
 			</tr>
 			</c:forEach>
 		</table>

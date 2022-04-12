@@ -48,8 +48,11 @@
 				<td colspan="2" style="height: 1px;"></td>
 			</tr>
 			<tr align="center" valign="middle">
-				<td colspan="5"><input type=reset value="취소"> <input
-					type=submit value="작성"></td>
+				<td colspan="5">
+				<input type=submit value="작성">
+				<input type=button value="취소"
+				onClick = "location.href='./rentListAction.do?num=${b_num}'"> 
+				</td>
 			</tr>
 		</table>
 	</form>

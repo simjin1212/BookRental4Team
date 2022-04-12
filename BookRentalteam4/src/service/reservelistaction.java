@@ -25,8 +25,13 @@ public class reservelistaction implements Action{
 		List<reserve_dto> reservelist = dao.getreserveList(id);
 		System.out.println("id:"+id);
 		System.out.println("reservelist:" + reservelist);
+		
+		
+	
+		
 	
 		request.setAttribute("reservelist", reservelist);
+		request.setAttribute("id",id);
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);

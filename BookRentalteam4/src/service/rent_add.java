@@ -23,11 +23,14 @@ public class rent_add implements Action{
 		rent_dao dao = rent_dao.getInstance();
 		int result = dao.insert(rent);
 		
+		
+		
 		if(result ==1) System.out.println("대출완료");
+		request.setAttribute("result", result);
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/member_rentlist.do");
+		forward.setPath("./member/prerentlist.jsp");
 		return forward;
 		
 	}

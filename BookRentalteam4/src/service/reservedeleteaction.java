@@ -22,8 +22,10 @@ public class reservedeleteaction implements Action {
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		
+		int book_num = Integer.parseInt(request.getParameter("book_num"));
+		
 		reserve_dao dao = reserve_dao.getInstance();
-		int reservedelete = dao.delete(id);
+		int reservedelete = dao.delete(id, book_num);
 		System.out.println("reservedelete:"+reservedelete);
 		
 		List<reserve_dto> reservedeletelist = dao.getreserveList(id);

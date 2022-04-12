@@ -16,9 +16,9 @@ import service.Delete;
 import service.Idcheck;
 import service.Login;
 import service.ReviewListAction;
-import service.ReviewPagingAction;
 import service.Update;
 import service.UpdateMember;
+import service.admin_rentlist;
 import service.adminmemberdelete;
 import service.adminmemberdetail;
 import service.adminmemberlist;
@@ -49,11 +49,13 @@ import service.qna_BoardModifyAction;
 import service.qna_board_reply;
 import service.qna_board_replyAction;
 import service.rentListAction;
+import service.rent_add;
 import service.rent_numPassingAction;
 import service.reserve_add;
 import service.reservedeleteaction;
 import service.reservelistaction;
 import service.returnbook;
+import service.review_board_detailAction;
 
 @WebServlet("*.do") // do 확장자로 요청하는 요청을 받겠다는 의미
 public class FrontController extends HttpServlet {
@@ -206,6 +208,7 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/rentList.jsp");
+			
 			// 내 정보 보기
 		} else if (command.equals("/UpdateForm.do")) {
 			try {
@@ -235,28 +238,34 @@ public class FrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-			// 리뷰 작성
-		} /*
-			 * else if (command.equals("/review_writeAction.do")) { try { action = new
-			 * review_writeAction(); forward = action.execute(request, response); } catch
-			 * (Exception e) { e.printStackTrace(); } }
-			 */
-		// 대출이력 이동
-		else if (command.equals("/rentListAction.do")) {
+
+			} // 대출이력 이동
+		} else if (command.equals("/rentListAction.do")) {
 			try {
 				action = new rentListAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+			 // 대출 책 번호 전달 Action
 		} else if (command.equals("/rent_numPassingAction.do")) {
 			try {
 				action = new rent_numPassingAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+		} 			
+			// 반납처리
+		} else if (command.equals("/returnbook.do")) {
+			try {
+				action = new returnbook();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+
 			}
+			// 리뷰작성폼 이동
 		} else if (command.equals("/BookWriteFormAction.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
@@ -271,23 +280,40 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/ReviewPagingAction.do")) {
-
-			try {
-				action = new ReviewPagingAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/book_review_writeAction.do")) {
 			try {
 				action = new book_review_writeAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+
+			} // 리뷰게시판 이동
+		} else if (command.equals("/ReviewListAction.do")) {
+			try {
+				action = new ReviewListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			} // 리뷰내역 보기
+		} else if (command.equals("/review_board_detailAction.do")) {
+			try {
+				action = new review_board_detailAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-
+		//대출추가
+		if (command.equals("/rent_add.do")) {
+			try {
+				action = new rent_add();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		// 관리자 -회원리스트
 		if (command.equals("/adminmemberlist.do")) {
 			try {
@@ -495,7 +521,17 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//미반납관리
+		}else if (command.contentEquals("/adminrentlist.do")) {
+			try {
+				action = new admin_rentlist();
+				forward = action.execute(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		// ==================================================예약목록
 		// 예약등록
 		if (command.equals("/reserve_add.do")) {

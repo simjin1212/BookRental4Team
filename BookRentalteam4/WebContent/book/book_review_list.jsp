@@ -33,7 +33,7 @@
             onClick="location.href='./rent_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == 1}">
-	 	<input type="button" disabled value="대출 신청"/>
+	 	<input type="button" disabled value="대출 불가"/>
 	</c:if>
 	
     <c:if test="${rentcheck == 1}">
@@ -41,7 +41,7 @@
             onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == -1}">
-	 	<input type="button" disabled value="예약신청"/>
+	 	<input type="button" disabled value="예약신청불가(대출가능)"/>
 	</c:if>
             </td>
          </tr>
@@ -65,9 +65,12 @@
          <c:set var="num" value="${reviewlistcount - (page-1) * 10}" />
          <c:forEach var="b" items="${reviewlist}">
          
-         <tr height = 10></tr>
+         
          <tr align = center>
-            <td>${b.rb_Subject}</td>         
+            <td>
+            <a href="./review_board_detailAction.do?board_num=${b.rb_Num}&page=${page}&num=${book.book_Num}">			
+			${b.rb_Subject}	</a>
+		</td>         
             <td>${b.id}</td>         
             <td><fmt:formatDate value="${b.rb_Regdate}"
 				            pattern="yyyy-MM-dd HH:mm:ss EEE요일"/></td>         
