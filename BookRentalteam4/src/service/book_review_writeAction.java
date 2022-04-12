@@ -35,7 +35,7 @@ public class book_review_writeAction implements Action {
 
 		
 		/*
-		 * int r_num = Integer.parseInt(request.getParameter("rent_Num")); rent_dao
+		 * int r_num = Integer.parseInt(request.getPara meter("rent_Num")); rent_dao
 		 * r_dao = rent_dao.getInstance();
 		 * 
 		 * List<book_dto> booklist = r_dao.getMatching(r_num);
