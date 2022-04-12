@@ -28,7 +28,7 @@
 				<th>${rv.book_Num}</th>
 				<th>${rv.book_Name}</th>
 				<th>${rv.writer}</th>
-				<th>${rv.publisher}</th>
+				<th>${rv.publisher} </th>
 				<th>${rv.reserve_Date}</th>
 				<th>${rv.return_date}</th>
 				
