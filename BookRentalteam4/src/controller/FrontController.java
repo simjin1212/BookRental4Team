@@ -207,6 +207,7 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./member/rentList.jsp");
+			
 			// 내 정보 보기
 		} else if (command.equals("/UpdateForm.do")) {
 			try {
@@ -254,7 +255,15 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 		} 			
-		
+			// 반납처리
+		} else if (command.equals("/returnbook.do")) {
+			try {
+				action = new returnbook();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			}
 			// 리뷰작성폼 이동
 		} else if (command.equals("/BookWriteFormAction.do")) {
 			forward = new ActionForward();
