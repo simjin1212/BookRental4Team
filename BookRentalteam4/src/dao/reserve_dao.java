@@ -76,6 +76,7 @@ public class reserve_dao {
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 
+
 				while (rs.next()) {
 					
 					reserve_dto reserve = new reserve_dto();
@@ -91,28 +92,22 @@ public class reserve_dao {
 					
 					
 					reservelist.add(reserve);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (Exception e) {
-					}
-				;
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (Exception e) {
-					}
-				;
-				if (con != null)
-					try {
-						con.close();
-					} catch (Exception e) {
-					}
-				;
+
+		try {
+			con = getConnection();
+
+			String sql = "delete from reserve where id=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate(); // SQL문 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)try {pstmt.close();} catch (Exception e) {}
+			if (rs != null)try {rs.close();} catch (Exception e) {}
+			if (con != null)try {con.close();} catch (Exception e) {}
 			}
 
 			return reservelist;
