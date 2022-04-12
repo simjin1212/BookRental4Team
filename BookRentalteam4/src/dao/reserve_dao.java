@@ -41,10 +41,10 @@ public class reserve_dao {
 			try {
 				con = getConnection();
 			
-				String sql = "insert into reserve values(?, ?, ?, sysdate, reserve_seq.nextval)";
+				String sql = "insert into reserve values(?, ?, sysdate, reserve_seq.nextval)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, reserve.getBook_Num());
-				pstmt.setString(2, reserve.getId());				
+				pstmt.setString(2, reserve.getId());
 				
 				result = pstmt.executeUpdate();   // SQL문 실행
 				       
@@ -119,7 +119,7 @@ public class reserve_dao {
 		
 		
 		// 예약 삭제
-		public int delete(String id) {
+		public int delete(String id, int book_num) {
 			int result = 0;
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -127,10 +127,11 @@ public class reserve_dao {
 			try {
 				con = getConnection();
 
-				String sql = "delete from reserve where id=?";
+				String sql = "delete from reserve where id=? and book_num =?";
 
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
+				pstmt.setInt(2, book_num);
 				result = pstmt.executeUpdate(); // SQL문 실행
 
 			} catch (Exception e) {

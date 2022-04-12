@@ -34,11 +34,12 @@ public class memberJoin implements Action{
 		member_dao dao = member_dao.getInstance();
 		int result = dao.insert(member);	// 회원 가입
 		if(result == 1)	System.out.println("회원가입 성공");
-		JOptionPane aa = new JOptionPane();
-		aa.showMessageDialog(null,"회원가입 성공!");
+		
+		request.setAttribute("result", result);
+	
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);  				// dispatcher 방식 포워딩
-		forward.setPath("./member/loginform.jsp");  // 포워딩할 파일명
+		forward.setPath("./member/prejoin.jsp");  // 포워딩할 파일명
 		
 		return forward;
 	}

@@ -27,7 +27,7 @@ public class reserve_add implements Action{
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/member_rentlist.do");
+		forward.setPath("/ReserveList.do");
 		return forward;
 		
 	}

@@ -33,7 +33,7 @@
             onClick="location.href='./rent_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == 1}">
-	 	<input type="button" disabled value="대출 신청"/>
+	 	<input type="button" disabled value="대출 불가"/>
 	</c:if>
 	
     <c:if test="${rentcheck == 1}">
@@ -41,7 +41,7 @@
             onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == -1}">
-	 	<input type="button" disabled value="예약신청"/>
+	 	<input type="button" disabled value="예약신청불가(대출가능)"/>
 	</c:if>
             </td>
          </tr>

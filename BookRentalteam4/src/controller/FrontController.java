@@ -294,7 +294,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		//대출추가
 		if (command.equals("/rent_add.do")) {
 			try {
 				action = new rent_add();
