@@ -19,7 +19,7 @@
 				<th>예약신청일</th>
 				<th>대출가능여부</th>
 				<th>예약여부</th>
-				
+
 			</tr> 
 			<c:forEach var="rv" items="${reservelist}">
 			<tr>
