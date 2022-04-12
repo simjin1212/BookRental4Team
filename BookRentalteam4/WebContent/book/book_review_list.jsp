@@ -27,22 +27,18 @@
          <tr>
             <td colspan = 2 align = center>
             
-     <c:if test="${rent == 1}">      
-            <input type="button" value="대출 신청" 
-            onClick="Location.href='./rent_add.do?book_num=${book.book_Num}&rent_num=${rent.rent_num}&id=${id}'">
-     </c:if>
-     <c:if test="${rent == -1}">
-     		<input type = "button" disabled value = "대출 신청">
-     </c:if>      
             
- <%--    <c:if test="${rentcheck == 1}">
+            <input align=center type="button" value="대출 신청">
+            
+            
+    <c:if test="${rentcheck == 1}">
             <input type="button" value="예약 신청" 
             onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent.rent_num}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == -1}">
-	 	<input type="button" disabled value="예약 신청">
+	 	<input type="button" disabled value="예약신청"/>
 	</c:if>
-  --%>           </td>
+            </td>
          </tr>
       </table>
  
@@ -87,11 +83,11 @@
 <c:if test="${reviewlistcount > 0}">
 
 <!-- 1페이지로 이동 -->
-<a href="./ReviewListAction.do?page=1" style="text-decoration:none"> << </a>
+<a href="./ReviewListAction.do?page=1&num=${book.book_Num}" style="text-decoration:none"> << </a>
 
 <!-- 이전 블럭으로 이동 -->
 <c:if test="${startPage > 10}">
-	<a href="./ReviewListAction.do?page=${startPage-10}">[이전]</a>
+	<a href="./ReviewListAction.do?page=${startPage-10}&num=${book.book_Num}">[이전]</a>
 </c:if>
 
 <!-- 각 블럭에 10개의 페이지 출력 -->
@@ -100,17 +96,17 @@
 		[${i}]
 	</c:if>
 	<c:if test="${i != page}">	<!-- 현재 페이지가 아닌 경우 -->
-		<a href="./ReviewListAction.do?page=${i}">[${i}]</a>
+		<a href="./ReviewListAction.do?page=${i}&num=${book.book_Num}">[${i}]</a>
 	</c:if>
 </c:forEach>
 
 <!-- 다음 블럭으로 이동  -->
 <c:if test="${endPage < pageCount}">
-	<a href="./ReviewListAction.do?page=${startPage+10}">[다음]</a>
+	<a href="./ReviewListAction.do?page=${startPage+10}&num=${book.book_Num}">[다음]</a>
 </c:if>
 
 <!-- 마지막 페이지로 이동 -->
-<a href="./ReviewListAction.do?page=${pageCount}"
+<a href="./ReviewListAction.do?page=${pageCount}&num=${book.book_Num}"
 	style="text-decoration:none"> >> </a>
 
 </c:if>
