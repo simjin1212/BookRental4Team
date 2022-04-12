@@ -18,6 +18,7 @@ import service.Login;
 import service.ReviewListAction;
 import service.Update;
 import service.UpdateMember;
+import service.admin_rentlist;
 import service.adminmemberdelete;
 import service.adminmemberdetail;
 import service.adminmemberlist;
@@ -520,7 +521,17 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//미반납관리
+		}else if (command.contentEquals("/adminrentlist.do")) {
+			try {
+				action = new admin_rentlist();
+				forward = action.execute(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		// ==================================================예약목록
 		// 예약등록
 		if (command.equals("/reserve_add.do")) {
