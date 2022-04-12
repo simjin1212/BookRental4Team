@@ -13,7 +13,14 @@ public class reserve_dto {
 	
 	private String Writer;
 	private String publisher;
+	private Date return_date;
 	
+	public Date getReturn_date() {
+		return return_date;
+	}
+	public void setReturn_date(Date return_date) {
+		this.return_date = return_date;
+	}
 	public String getBook_Name() {
 		return book_Name;
 	}

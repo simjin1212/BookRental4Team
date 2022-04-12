@@ -16,8 +16,9 @@
 				<th>도서번호</th>
 				<th>도서명</th>
 				<th>저자</th>
+				<th>출판사</th>
 				<th>예약신청일</th>
-				<th>대출가능여부</th>
+				<th>현 대출자 반납일</th>
 				<th>예약여부</th>
 				
 			</tr> 
@@ -28,7 +29,8 @@
 				<th>${rv.writer}</th>
 				<th>${rv.publisher}</th>
 				<th>${rv.reserve_Date}</th>
-				<th>대출가능</th>
+				<th>${rv.return_date}</th>
+				<th><input type="button" value="대출하기"></th>
 				<td align = center><input type=button value="예약 취소" id="reserveCancle"></td>
 			</tr>
 			</c:forEach>
