@@ -31,7 +31,7 @@ public class reservelistaction implements Action{
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("./member/reserveList.jsp");
-		 
+		
 		return forward;
 	}
 

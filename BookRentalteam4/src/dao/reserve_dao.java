@@ -126,35 +126,35 @@ public class reserve_dao {
 	}
 
 	// 예약 삭제
-		public int delete(String id) {
-			int result = 0;
-			Connection con = null;
-			PreparedStatement pstmt = null;
+	public int delete(String id) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
-			try {
-				con = getConnection();
+		try {
+			con = getConnection();
 
-				String sql = "delete from member where id=?";
+			String sql = "delete from member where id=?";
 
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				result = pstmt.executeUpdate(); // SQL문 실행
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate(); // SQL문 실행
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (Exception e) {
-					}
-				if (con != null)
-					try {
-						con.close();
-					} catch (Exception e) {
-					}
-			}
-			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
 		}
+		return result;
+	}
 
 }
