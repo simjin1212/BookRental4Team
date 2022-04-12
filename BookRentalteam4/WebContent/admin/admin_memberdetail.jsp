@@ -85,24 +85,24 @@ a{text-decoration:overline; color:#333;}
         <a href="#tab1" class="btn">대출내역/건</a>
         <div id="tab1" class="cont">
         	
-        	<table border=1 height="200" width="700" align=center>
+        	<table border=1>
         <caption align="right"></caption>
         	<tr bgcolor=lightgrey>
-				<th>도서번호</th>
-				<th>도서명</th>
-				<th>저자</th>
-				<th>출판사</th>
-				<th>대출일</th>
-				<th>반납예정일</th>
+				<td>도서번호</td>
+				<td>도서명</td>
+				<td>저자</td>
+				<td>출판사</td>
+				<td>대출일</td>
+				<td>반납예정일</td>
 			</tr>
-		<c:forEach var="rent" items="${rentlist }">
+		<c:forEach var="rent" items="${rentlist}">
 			<tr>
-				<th>${rent.book_Num}</th>
-				<th>${rent.temp_book_Name }</th>
-				<th>${rent.temp_Writer }</th>
-				<th>${rent.temp_Publisher }</th>
-				<th>${rent.rent_Date }</th>
-				<th>${rent.return_Date}</th>
+				<td>${rent.book_Num}</td>
+				<td>${rent.temp_book_Name }</td>
+				<td>${rent.temp_Writer }</td>
+				<td>${rent.temp_Publisher }</td>
+				<td>${rent.rent_Date }</td>
+				<td>${rent.return_Date}</td>
 			</tr>
 		</c:forEach>
 			
@@ -112,18 +112,28 @@ a{text-decoration:overline; color:#333;}
       <li>
         <a href="#tab2" class="btn">예약내역/건</a>
         <div id="tab2" class="cont">
-        <table border=1 height=200 width=700>
-        
+        <table border=1>
+        	<tr>
+				<th>도서번호</th>
+				<th>도서명</th>
+				<th>저자</th>
+				<th>출판사</th>
+				<th>예약신청일</th>
+				<th>현 대출자 반납일</th>
+				<th>강제예약취소</th>
+			</tr> 
         	<c:forEach var="rv" items="${reservelist}">
 			<tr>
 				<th>${rv.book_Num}</th>
-				<th>${rv.book_Name}</th>
+				<th><a href="./ReviewListAction.do?num=${rv.book_Num}">
+					${rv.book_Name }
+				</a></th>
 				<th>${rv.writer}</th>
-				<th>${rv.publisher}</th>
+				<th>${rv.publisher} </th>
 				<th>${rv.reserve_Date}</th>
-					<th><input type=button value="!!!대출하기!!!"></th>			
-				
-				<td align = center><input type=button value="예약 취소" id="reserveCancle"></td>
+				<th>${rv.return_date}</th>
+				<th align=center><input type=button value="강제 예약 취소"
+				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></th>
 			</tr>
 			</c:forEach>
 			</table>

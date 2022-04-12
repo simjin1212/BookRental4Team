@@ -26,6 +26,7 @@
 				<th>출판사</th>
 				<th>대출일</th>
 				<th>반납일</th> 
+				<th>강제반납</th>
 			</tr>
 			<c:forEach var="r" items="${rentlist}">
 			<tr>
@@ -37,6 +38,7 @@
 				<td>${r.temp_Publisher}</td>
 				<td><fmt:formatDate value="${r.rent_Date}" pattern="yyyy-MM-dd"/></td>
 				<td>${r.return_Date}</td>
+				<td align = center><input type=button value="강제 반납" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
 			</tr>
 			</c:forEach>
 		</table>
