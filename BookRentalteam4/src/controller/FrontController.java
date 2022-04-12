@@ -104,10 +104,6 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		
-
-		
-
 			// 도서 상세
 		} else if (command.equals("/bookDetailAction.do")) {
 			try {
@@ -254,21 +250,21 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/rent_numPassingAction.do")) {
+		} else if (command.equals("/rent_numPassingAction.do")) {
 			try {
 				action = new rent_numPassingAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/BookWriteFormAction.do")) {
+		} else if (command.equals("/BookWriteFormAction.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./book/book_review_write.jsp");
 
 			// 리뷰게시판 이동
 		} else if (command.equals("/ReviewListAction.do")) {
-	
+
 			try {
 				action = new ReviewListAction();
 				forward = action.execute(request, response);
@@ -276,15 +272,14 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/ReviewPagingAction.do")) {
-	
+
 			try {
 				action = new ReviewPagingAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if (command.equals("/book_review_writeAction.do")) {
+		} else if (command.equals("/book_review_writeAction.do")) {
 			try {
 				action = new book_review_writeAction();
 				forward = action.execute(request, response);
@@ -501,7 +496,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//==================================================예약목록
+		// ==================================================예약목록
 		// 예약등록
 		if (command.equals("/reserve_add.do")) {
 			try {
@@ -510,17 +505,17 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//예약목록
-		}else if(command.equals("/ReserveList.do")) {
+			// 예약목록
+		} else if (command.equals("/ReserveList.do")) {
 			try {
 				action = new reservelistaction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			//예약취소
-		}else if(command.equals("/reservedelete.do")) {
+
+			// 예약취소
+		} else if (command.equals("/reservedelete.do")) {
 			try {
 				action = new reservedeleteaction();
 				forward = action.execute(request, response);
@@ -538,9 +533,6 @@ public class FrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
-		
-	
-		
 
 	} // doProcess() end
 

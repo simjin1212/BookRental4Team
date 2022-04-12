@@ -31,7 +31,8 @@
 				<th>${rv.reserve_Date}</th>
 				<th>${rv.return_date}</th>
 				<th><input type="button" value="대출하기"></th>
-				<td align = center><input type=button value="예약 취소" id="reserveCancle"></td>
+				<td align=center><input type=button value="예약 취소"
+						onClick="location.href='<%=request.getContextPath()%>/reservedelete.do'"></td>
 			</tr>
 			</c:forEach>
 		</table>
