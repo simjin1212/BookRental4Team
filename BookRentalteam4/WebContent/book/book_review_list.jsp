@@ -65,9 +65,12 @@
          <c:set var="num" value="${reviewlistcount - (page-1) * 10}" />
          <c:forEach var="b" items="${reviewlist}">
          
-         <tr height = 10></tr>
+         
          <tr align = center>
-            <td>${b.rb_Subject}</td>         
+            <td>
+            <a href="./review_board_detailAction.do?board_num=${b.rb_Num}&page=${page}&num=${book.book_Num}">			
+			${b.rb_Subject}	</a>
+		</td>         
             <td>${b.id}</td>         
             <td><fmt:formatDate value="${b.rb_Regdate}"
 				            pattern="yyyy-MM-dd HH:mm:ss EEE요일"/></td>         

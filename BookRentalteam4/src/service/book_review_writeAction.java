@@ -33,7 +33,6 @@ public class book_review_writeAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 
-		
 		/*
 		 * int r_num = Integer.parseInt(request.getParameter("rent_Num")); rent_dao
 		 * r_dao = rent_dao.getInstance();
@@ -43,8 +42,6 @@ public class book_review_writeAction implements Action {
 		 * request.setAttribute("r_num", r_num); request.setAttribute("booklist",
 		 * booklist);
 		 */
-		 
-
 		MultipartRequest multi = new MultipartRequest(request, path, // 업로드 경로
 				size, // 파일 크기
 				"utf-8", // 파일명 (한글일 경우) 인코딩
@@ -65,7 +62,6 @@ public class book_review_writeAction implements Action {
 		forward.setRedirect(false);
 		forward.setPath("/ReviewListAction.do");
 		return forward;
-
 	}
 
 }

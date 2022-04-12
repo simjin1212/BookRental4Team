@@ -154,5 +154,39 @@ public class review_board_dao {
 			}
 		}
 	
-	
+		public review_board_dto getDetail(int board_num) {
+			review_board_dto board = new review_board_dto();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql="select * from review_board where rb_num = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, board_num);
+				rs = pstmt.executeQuery();		// SQL문 실행
+				
+				if(rs.next()) {
+					board.setBook_Num(rs.getInt("book_Num"));
+					board.setRb_Num(rs.getInt("rb_Num"));
+					board.setId(rs.getString("id"));
+					board.setRent_Num(rs.getInt("rent_Num"));
+					board.setRb_Subject(rs.getString("rb_Subject"));
+					board.setRb_Content(rs.getString("rb_Content"));
+					board.setRb_File(rs.getString("rb_File"));
+					board.setRb_Regdate(rs.getTimestamp("rb_Regdate"));
+					board.setRb_Readcount(rs.getString("rb_Readcount"));
+				}			
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try { rs.close();}catch(Exception e) {}
+				if(pstmt != null) try { pstmt.close();}catch(Exception e) {}
+				if(con != null) try { con.close();}catch(Exception e) {}
+			}		
+			return board;
+		}
 }
