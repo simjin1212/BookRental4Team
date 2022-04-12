@@ -69,7 +69,7 @@ public class ReviewListAction implements Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		
+		System.out.println("rent:"+rent);
 		request.setAttribute("rentcheck", rentcheck);
 		request.setAttribute("rent", rent);
 		request.setAttribute("page", page);

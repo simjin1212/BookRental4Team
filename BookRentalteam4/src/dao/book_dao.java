@@ -586,7 +586,7 @@ public class book_dao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		int num = 0;
 		try {
 			con = getConnection();
 
@@ -629,7 +629,7 @@ public class book_dao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		int rent_num = 0;
 		try {
 			con = getConnection();
 
@@ -640,9 +640,7 @@ public class book_dao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				result = -1; // rent테이블에 도서 있음
-			} else {
-				result = 1; // rent테이블에 도서 없음
+				 rent_num = rs.getInt("rent_num");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -664,7 +662,7 @@ public class book_dao {
 				}
 		}
   
-		return result;
+		return rent_num;
 	}
 	
 	public rent_dto getrentDetail(String id) {
