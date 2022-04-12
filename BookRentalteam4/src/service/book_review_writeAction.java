@@ -23,9 +23,9 @@ public class book_review_writeAction implements Action {
 
 		System.out.println("ReviewWriteACTION");
 		request.setCharacterEncoding("utf-8");
-
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println("request getContentType : " + request.getContentType());
+
 		String path = request.getRealPath("rb_upload");
 		System.out.println("path: " + path);
 		int size = 10 * 1024 * 1024;
@@ -33,16 +33,9 @@ public class book_review_writeAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 
-		/*
-		 * int r_num = Integer.parseInt(request.getPara meter("rent_Num")); rent_dao
-		 * r_dao = rent_dao.getInstance();
-		 * 
-		 * List<book_dto> booklist = r_dao.getMatching(r_num);
-		 * 
-		 * request.setAttribute("r_num", r_num); request.setAttribute("booklist",
-		 * booklist);
-		 */
-		MultipartRequest multi = new MultipartRequest(request, path, // 업로드 경로
+
+		MultipartRequest multi = new MultipartRequest(request, 
+				path, // 업로드 경로
 				size, // 파일 크기
 				"utf-8", // 파일명 (한글일 경우) 인코딩
 				new DefaultFileRenamePolicy()); // 중복 파일명 해결
