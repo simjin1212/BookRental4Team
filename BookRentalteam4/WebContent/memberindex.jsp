@@ -10,7 +10,7 @@
 
 
 <script>
-	location.href="./loginform.do";
+	location.href="./loginform.do" ;
 	
 </script>
 </body>
