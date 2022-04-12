@@ -134,7 +134,7 @@ public class reserve_dao {
 		try {
 			con = getConnection();
 
-			String sql = "delete from member where id=?";
+			String sql = "delete from reserve where id=?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);

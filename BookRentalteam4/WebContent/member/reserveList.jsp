@@ -30,7 +30,7 @@
 					<th>${rv.writer}</th>
 					<th>${rv.publisher}</th>
 					<th>${rv.reserve_Date}</th>
-					<th>대출가능</th>
+					<th>대출가능</th> 
 					<td align=center><input type=button value="예약 취소"
 						onClick="location.href='<%=request.getContextPath()%>/reservedelete.do'"></td>
 				</tr>
