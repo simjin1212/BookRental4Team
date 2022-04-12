@@ -3,6 +3,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -263,6 +264,7 @@ public class rent_dao {
 		
 		return result;
 	}
+	
 	
 	
 

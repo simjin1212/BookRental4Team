@@ -2,6 +2,7 @@
 
 package dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
+import dto.member_board_dto;
 import dto.rent_dto;
 import dto.reserve_dto;
 
@@ -66,14 +67,15 @@ public class reserve_dao {
 			try {
 				con = getConnection();
 
-				String sql = "select rs.book_Num, rs.id, rs.reserve_Date, rs.reserve_Num, bk.book_Name, bk.Writer, bk.publisher from reserve rs, book bk ";
-				sql += "where rs.book_num = bk.book_num and rs.id = ?";
+				String sql = "select rs.book_Num, rs.id, rs.reserve_Date, rs.reserve_Num, bk.book_Name, bk.Writer, bk.publisher, rt.return_date from reserve rs, book bk, rent rt";
+				sql += " where rs.book_num = bk.book_num and bk.book_num = rt.book_num and rs.id = ?";
 				// 전체 게시글 목록
 				System.out.println("id:" + id);
 				System.out.println(sql);
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
+
 
 				while (rs.next()) {
 					
@@ -86,35 +88,66 @@ public class reserve_dao {
 					reserve.setBook_Name(rs.getString("book_Name"));
 					reserve.setWriter(rs.getString("writer"));
 					reserve.setPublisher(rs.getString("publisher"));
+					reserve.setReturn_date(rs.getDate("return_date"));
 					
 					
 					reservelist.add(reserve);
 				}
+				
+			} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (pstmt != null)
+						try {
+							pstmt.close();
+						} catch (Exception e) {
+						}
+					if (con != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+					if (rs != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+				}
+			return reservelist;
+		}
+
+		
+		
+		// 예약 삭제
+		public int delete(String id) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "delete from reserve where id=?";
+
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				result = pstmt.executeUpdate(); // SQL문 실행
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (Exception e) {
-					}
-				;
 				if (pstmt != null)
 					try {
 						pstmt.close();
 					} catch (Exception e) {
 					}
-				;
 				if (con != null)
 					try {
 						con.close();
 					} catch (Exception e) {
 					}
-				;
 			}
-
-			return reservelist;
+			return result;
 		}
-	
-	
+
 }

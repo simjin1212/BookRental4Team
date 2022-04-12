@@ -51,6 +51,7 @@ import service.rentListAction;
 import service.rent_add;
 import service.rent_numPassingAction;
 import service.reserve_add;
+import service.reservedeleteaction;
 import service.reservelistaction;
 import service.returnbook;
 import service.review_board_detailAction;
@@ -243,23 +244,33 @@ public class FrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-
-			} // 대출 책 번호 전달 Action
+			}
+		
+			 // 대출 책 번호 전달 Action
 		} else if (command.equals("/rent_numPassingAction.do")) {
 			try {
 				action = new rent_numPassingAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			
-			} // 리뷰작성폼 이동
+		} 			
+		
+			// 리뷰작성폼 이동
 		} else if (command.equals("/BookWriteFormAction.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./book/book_review_write.jsp");
-		
-		} // 리뷰 작성폼 양식 전달(Multipart)
-		else if (command.equals("/book_review_writeAction.do")) {
+
+			// 리뷰게시판 이동
+		} else if (command.equals("/ReviewListAction.do")) {
+
+			try {
+				action = new ReviewListAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/book_review_writeAction.do")) {
 			try {
 				action = new book_review_writeAction();
 				forward = action.execute(request, response);
@@ -514,6 +525,15 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("/ReserveList.do")) {
 			try {
 				action = new reservelistaction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// 예약취소
+		} else if (command.equals("/reservedelete.do")) {
+			try {
+				action = new reservedeleteaction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
