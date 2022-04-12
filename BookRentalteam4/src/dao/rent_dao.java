@@ -137,7 +137,7 @@ public class rent_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select count(*) from rent";
+			String sql = "select count(*) from rent ";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -160,7 +160,39 @@ public class rent_dao {
 		}
 		return result;
 	}
-	
+	// 대출권수 확인
+		public int regetCount(String id) {
+			int result = 0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				con = getConnection();
+
+				String sql = "select count(*) from rent where id like '%"+id+"%' ";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					result = rs.getInt(1); // count(*)
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+					}
+				if (con != null)
+					try {
+						con.close();
+					} catch (Exception e) {
+					}
+			}
+			return result;
+		}
 	//미반납도서 목록
 	public List<rent_dto> adminRentList(int start, int end) {
 		List<rent_dto> rentlist = new ArrayList<rent_dto>();

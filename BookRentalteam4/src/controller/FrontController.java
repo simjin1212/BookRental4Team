@@ -16,6 +16,7 @@ import service.Delete;
 import service.Idcheck;
 import service.Login;
 import service.ReviewListAction;
+import service.ReviewPagingAction;
 import service.Update;
 import service.UpdateMember;
 import service.adminmemberdelete;
@@ -273,7 +274,16 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/book_review_writeAction.do")) {
+		} else if (command.equals("/ReviewPagingAction.do")) {
+	
+			try {
+				action = new ReviewPagingAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (command.equals("/book_review_writeAction.do")) {
 			try {
 				action = new book_review_writeAction();
 				forward = action.execute(request, response);

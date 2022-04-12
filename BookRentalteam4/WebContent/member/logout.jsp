@@ -6,5 +6,5 @@
 
 <script>
 	alert("로그 아웃");
-	location.href="./index.jsp";
+	location.href="./memberindex.jsp";
 </script>  

@@ -31,7 +31,7 @@ public class rentListAction implements Action {
 		 */
 		
 		rent_dao dao = rent_dao.getInstance();
-		int rentcount = dao.getCount();
+		int rentcount = dao.regetCount(id);
 		System.out.println("rentcount:"+rentcount);
 		
 		List<rent_dto> rentlist = dao.getRentList(id);

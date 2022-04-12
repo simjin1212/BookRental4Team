@@ -6,16 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.book_dao;
 import dao.review_board_dao;
-import dto.book_dto;
 import dto.review_board_dto;
 
-public class ReviewListAction implements Action {
+public class ReviewPagingAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		
 		System.out.println("작동완료");
 
 		request.setCharacterEncoding("utf-8");
@@ -24,16 +23,7 @@ public class ReviewListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
-		int book_Num = Integer.parseInt(request.getParameter("num"));
-		
-		
-		System.out.println("id:" + id);
-		System.out.println("book_Num:" + book_Num);
-		book_dao bkdao = book_dao.getInstance();
-		book_dto book = bkdao.getDetail(book_Num); // 상세정보 구하기
-		int rentcheck = bkdao.rentcheck(book_Num);
-		int rent = bkdao.rent(book_Num);
-		
+	
 		int page = 1;
 		int limit = 10;
 
@@ -56,6 +46,10 @@ public class ReviewListAction implements Action {
 		int startPage = ((page - 1) / 10) * limit + 1;
 		int endPage = startPage + 10 - 1;
 
+		System.out.println("page:" + page);
+		System.out.println("startpage:" + startPage);
+		System.out.println("endpage:" + endPage);
+
 		if (endPage > pageCount)
 			endPage = pageCount;
 		request.setAttribute("page", page);
@@ -65,13 +59,6 @@ public class ReviewListAction implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
-		request.setAttribute("rentcheck", rentcheck);
-		request.setAttribute("rent", rent);
-		request.setAttribute("page", page);
-		
-		request.setAttribute("book", book);
-		request.setAttribute("book_Num", book_Num);
-
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("./book/book_review_list.jsp");

@@ -62,7 +62,7 @@ public class review_board_dao {
 		}
 		
 		//총 게시글 수
-		public int getCount() {
+		public int rlgetCount() {
 			int result = 0;
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -89,7 +89,7 @@ public class review_board_dao {
 		}
 		
 		// 글목록
-		public List<review_board_dto> getList(int start, int end){
+		public List<review_board_dto> getList(int start, int end, String id){
 			List<review_board_dto> list = new ArrayList<review_board_dto>();
 			Connection con  = null;
 			PreparedStatement pstmt = null;
@@ -98,11 +98,13 @@ public class review_board_dao {
 			try {
 				con = getConnection();
 
-	String sql="select * from review_board where rb_num >= ? and rb_num <=?";
+				String sql="select * from review_board where rb_num >= ? and rb_num <=? and id = ? ";
 		   
 		   		pstmt = con.prepareStatement(sql);
 		   		pstmt.setInt(1, start);
 		   		pstmt.setInt(2, end);
+		   		pstmt.setString(3, id);
+		   		
 		   		rs = pstmt.executeQuery();		// SQL문 실행
 		   		
 		   		while(rs.next()) {

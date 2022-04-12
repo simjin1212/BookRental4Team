@@ -27,18 +27,22 @@
          <tr>
             <td colspan = 2 align = center>
             
+     <c:if test="${rent == 1}">      
+            <input type="button" value="대출 신청" 
+            onClick="Location.href='./rent_add.do?book_num=${book.book_Num}&rent_num=${rent.rent_num}&id=${id}'">
+     </c:if>
+     <c:if test="${rent == -1}">
+     		<input type = "button" disabled value = "대출 신청">
+     </c:if>      
             
-            <input align=center type="button" value="대출 신청">
-            
-            
-    <c:if test="${rentcheck == 1}">
+ <%--    <c:if test="${rentcheck == 1}">
             <input type="button" value="예약 신청" 
             onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent.rent_num}&id=${id}'">
 	</c:if>
 	<c:if test="${rentcheck == -1}">
-	 	<input type="button" disabled value="예약신청"/>
+	 	<input type="button" disabled value="예약 신청">
 	</c:if>
-            </td>
+  --%>           </td>
          </tr>
       </table>
  
