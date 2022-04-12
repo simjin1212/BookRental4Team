@@ -42,13 +42,15 @@ public class review_board_dao {
 			try {
 				con = getConnection();
 					
-				String sql="insert into review_board values(10,review_board_seq.nextval,?,1,?,?,?,sysdate,0)";
+				String sql="insert into review_board values(?,review_board_seq.nextval,?,?,?,?,?,sysdate,0)";
 				
 				pstmt=con.prepareStatement(sql); 
-				pstmt.setString(1, reviewboard.getId());
-				pstmt.setString(2, reviewboard.getRb_Subject());
-				pstmt.setString(3, reviewboard.getRb_Content());
-				pstmt.setString(4, reviewboard.getRb_File());
+				pstmt.setInt(1, reviewboard.getBook_Num());
+				pstmt.setString(2, reviewboard.getId());
+				pstmt.setInt(3, reviewboard.getRent_Num());
+				pstmt.setString(4, reviewboard.getRb_Subject());
+				pstmt.setString(5, reviewboard.getRb_Content());
+				pstmt.setString(6, reviewboard.getRb_File());
 			
 				result = pstmt.executeUpdate();   // SQL문 실행
 					       
