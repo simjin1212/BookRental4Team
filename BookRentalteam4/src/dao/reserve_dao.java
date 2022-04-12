@@ -68,7 +68,7 @@ public class reserve_dao {
 				con = getConnection();
 
 				String sql = "select rs.book_Num, rs.id, rs.reserve_Date, rs.reserve_Num, bk.book_Name, bk.Writer, bk.publisher, rt.return_date from reserve rs, book bk, rent rt";
-				sql += "where rs.book_num = bk.book_num and bk.book_num = rt.book_num and rs.id = ?";
+				sql += " where rs.book_num = bk.book_num and bk.book_num = rt.book_num and rs.id = ?";
 				// 전체 게시글 목록
 				System.out.println("id:" + id);
 				System.out.println(sql);
