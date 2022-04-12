@@ -23,7 +23,7 @@
 
 			</tr> 
 			<c:forEach var="rv" items="${reservelist}">
-<<<<<<< HEAD
+
 			<tr>
 				<th>${rv.book_Num}</th>
 				<th>${rv.book_Name}</th>
@@ -33,17 +33,7 @@
 				<th>${rv.return_date}</th>
 				<th><input type="button" value="대출하기"></th>
 				<td align=center><input type=button value="예약 취소"
-=======
-				<tr>
-					<th>${rv.book_Num}</th>
-					<th>${rv.book_Name}</th>
-					<th>${rv.writer}</th>
-					<th>${rv.publisher}</th>
-					<th>${rv.reserve_Date}</th>
-					<th>대출가능</th> 
-					<td align=center><input type=button value="예약 취소"
->>>>>>> branch 'master' of https://github.com/simjin1212/BookRental4Team.git
-						onClick="location.href='<%=request.getContextPath()%>/reservedelete.do'"></td>
+				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do'"></td>
 			</tr>
 			</c:forEach>
 		</table>

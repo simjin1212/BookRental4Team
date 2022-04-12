@@ -92,26 +92,31 @@ public class reserve_dao {
 					
 					
 					reservelist.add(reserve);
-
-		try {
-			con = getConnection();
-
-			String sql = "delete from reserve where id=?";
-
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			result = pstmt.executeUpdate(); // SQL문 실행
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null)try {pstmt.close();} catch (Exception e) {}
-			if (rs != null)try {rs.close();} catch (Exception e) {}
-			if (con != null)try {con.close();} catch (Exception e) {}
-			}
-
+				}
+				
+			} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (pstmt != null)
+						try {
+							pstmt.close();
+						} catch (Exception e) {
+						}
+					if (con != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+					if (rs != null)
+						try {
+							con.close();
+						} catch (Exception e) {
+						}
+				}
 			return reservelist;
 		}
+
+		
 		
 		// 예약 삭제
 		public int delete(String id) {
