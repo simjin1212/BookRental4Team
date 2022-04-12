@@ -51,6 +51,7 @@ import service.qna_board_replyAction;
 import service.rentListAction;
 import service.rent_numPassingAction;
 import service.reserve_add;
+import service.reservedeleteaction;
 import service.reservelistaction;
 import service.returnbook;
 
@@ -513,6 +514,15 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/ReserveList.do")) {
 			try {
 				action = new reservelistaction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//예약취소
+		}else if(command.equals("/reservedelete.do")) {
+			try {
+				action = new reservedeleteaction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
