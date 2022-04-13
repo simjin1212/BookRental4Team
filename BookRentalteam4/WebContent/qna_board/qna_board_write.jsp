@@ -43,7 +43,7 @@
 		<td colspan="5" style="border-top: 0;">			
 			<input type=submit value="등록">
 			<input type=reset value="취소" onClick="location.href='./qna_BoardListAction.do' ">
-			
+			    
 		</td>
 	</tr>
 </table>
