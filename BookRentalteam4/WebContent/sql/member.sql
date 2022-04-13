@@ -9,7 +9,7 @@ truncate table review_board;
 truncate table rent; 
 alter table member add rent_count int default 0;
 
-insert into rent values(rent_seq.nextval, 13, 'test', sysdate, sysdate+14);
+insert into rent values(rent_seq.nextval, 1, 'pikachu', sysdate, sysdate+14);
 
 
 alter sequence rent_seq increment by 1;
