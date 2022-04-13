@@ -38,7 +38,7 @@
 <body>
 	<!-- 상단 nav -->
 	<%@ include file="top.jsp"%>
-
+ 
 	<!-- 메인 화면 -->
 	<%@ include file="mainindex.jsp"%>
 </body>
