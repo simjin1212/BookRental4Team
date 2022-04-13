@@ -42,7 +42,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 <title>도서 검색</title>
 </head>
 
@@ -91,8 +91,22 @@
 	</script>
 <body style="padding-top: 120px; z-index: 1;">
 <%@ include file="../top.jsp"%>
+<c:if test="${!empty sessionScope.id}">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<ul class="admin_page">
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/UpdateForm.do"> MENU</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/UpdateForm.do">내 정보</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/rentListAction.do">대출 목록</a> </li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/ReserveList.do">예약 목록</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">회원게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">1:1문의 게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/DeleteMember.do">회원탈퇴</a></li>
+</ul>
+</c:if>
 	<form action="book/book_search.jsp" method="post"  align=center cellpadding = 15px>
-		<div class="container col-sm-8">
+		<div style="margin-top:1%; margin-left: 20%; width:60%;">
 		
 		<table align = center valign = center cellpadding = 15px>
 	        <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 검색 목록</div>

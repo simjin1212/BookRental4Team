@@ -15,7 +15,7 @@
  <%@ include file="../top.jsp"%>
 
 
-	<c:if test="${sessionScope.member_grade==1}">
+<c:if test="${sessionScope.member_grade==1}">
 	<c:if test="${!empty sessionScope.id}">
 	<ul class="admin_page">
 <%-- <c:if test="${sessionScope.id != null}"> --%>
@@ -30,13 +30,30 @@
 	<li class="menu"> <a href="<%=request.getContextPath()%>/adminrentlist.do">대출 관리 </a> </li>
 	 
 	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
-</ul>
+	</ul>
+	</c:if>
 </c:if>
+	<c:if test="${sessionScope.member_grade==0}">
+		<c:if test="${!empty sessionScope.id}">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<ul class="admin_page">
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/UpdateForm.do"> MENU</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/UpdateForm.do">내 정보</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/rentListAction.do">대출 목록</a> </li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/ReserveList.do">예약 목록</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">회원게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">1:1문의 게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/DeleteMember.do">회원탈퇴</a></li>
+</ul>
+		</c:if>
+	</c:if>
 <!-- nav 끝 -->
 		<h5>~관리자님 환영합니다~</h5>
 		<br>
 		<!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->
-	</c:if>
+
 	<div style="margin-top:1%; margin-left: 20%; width:60%;">
 		<table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
 			<thead>
