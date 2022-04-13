@@ -13,6 +13,29 @@
 <!-- 유효성 검사 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+
+<style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+</style>
  </head>
 
 
@@ -21,41 +44,40 @@
 
 <form action="<%=request.getContextPath() %>/member_board_write.do" method="post"  name="writeform" 
 	  enctype="multipart/form-data" id="writeform" name="writeform"> <!-- 이 객체로 getParameter 할 것 -->
-<div class="container col-sm-6">	   
+<div class="container col-sm-8">	   
 
 <table cellpadding="0" cellspacing="0" align=center border=0 class="table" style="font-family: 'Nanum Gothic', sans-serif;"> 
-<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">작성</div></td></tr>
+<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
 <tr>  
-		<th>제목</th>
-		<td>
-			<input name="mb_subject" id="mb_subject" type="text" maxlength="100" 
+		<td colspan="2">
+			<input name="mb_subject" id="mb_subject" type="text" maxlength="100"  placeholder="제목" 
 				style="height:30px; width:100%; border: 0; text-indent: 10px;" value="" />
 		</td>
 	</tr>
 	<tr> 
  
 		<td colspan="2">
-			<textarea name="mb_content" id="mb_content" cols="75" rows="15"
-			style="text-indent: 10px;"></textarea>
+			<textarea name="mb_content" id="mb_content" rows="15" placeholder="내용"
+			style="text-indent: 10px; width:100%;"></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td style="font-family: 'Nanum Gothic', sans-serif; font-size:12">
-			<div align="center" >파일</div>
+		<td style="font-family: 'Nanum Gothic', sans-serif;">
+			<div align="center" style="font-weight:bold; ">파일</div>
 		</td>
 		<td>
 			<input name="mb_file" type="file" style="width:100%;"/>
 		</td>
 	</tr>
-	<tr bgcolor="cccccc">
+	<tr >
 		<td colspan="2" style="height:1px;">
 		</td>
 	</tr>
-	<tr><td colspan="2" style="border: 0;">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5" style="border-top: 0;">			
-			<input type=submit value="등록">
-			<input type=reset value="취소">
+			<input type=submit value="등록" class="btn btn-primary  btn-sm flex-shrink-0">
+			<input type=reset value="취소"  class="btn btn-primary  btn-sm flex-shrink-0">
+			<input type="button" class="btn btn-primary  btn-sm flex-shrink-0" value="목록" onClick="location.href='./member_board_list.do'">
 		</td>
 	</tr>
 </table>

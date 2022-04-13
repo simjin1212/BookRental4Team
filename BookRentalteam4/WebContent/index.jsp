@@ -32,6 +32,6 @@
   <%@ include file="top.jsp" %> 
   
   <!-- 메인 화면 -->
-    <%@ include file="main.jsp" %>
+   <%@ include file="mainindex.jsp" %>
   </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

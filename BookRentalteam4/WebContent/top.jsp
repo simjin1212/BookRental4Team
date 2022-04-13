@@ -30,17 +30,18 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                      <c:if test="${empty sessionScope.id }">
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/joinform.do"><span>JOIN</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/loginform.do"><span>LogIn</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/joinform.do"><span>JOIN</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/loginform.do"><span>LogIn</span></a></li>
                      </c:if>
                      <c:if test="${not empty sessionScope.id }">
                      	<c:if test="${sessionScope.member_grade==0 }">
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/main.jsp"><span>My Page</span></a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/main.jsp"><span>My Page</span></a></li>
                         </c:if>
                         <c:if test="${sessionScope.member_grade==1 }">
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/admin_main.jsp"><span>Admin Page</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_main.jsp"><span>Admin Page</span></a></li>
                         </c:if>
-                        <li class="nav-item"><a class="nav-link"  href="./Logout.do"><span>LogOut</span></a></li>
+                        <li class="nav-item"><a class="nav-link"  href="${pageContext.request.contextPath}/Logout.do"><span>LogOut</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member_board_list.do"><span>MemberBoard</span></a></li>
                      </c:if>
                     </ul>

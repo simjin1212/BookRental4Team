@@ -31,7 +31,7 @@
 	<tr>
 	<td colspan=4 align="left" style="border-top:0;"> <c:if test="${not empty find}">[${find }] 검색 결과  총 ${listcount} 개</c:if></td>
 		<c:if test="${sessionScope.member_grade==1 }">
-		<td colspan=4 align="right" style="border-top:0;"><input type="submit" class="btn btn-outline-secondary btn-sm"  value="삭제"></td>
+		<td colspan=4 align="right" style="border-top:0;"><input type="submit" class="btn btn-primary  btn-sm flex-shrink-0"  value="삭제"></td>
 		</c:if>
 		<!-- 삭제는 관리자가 들어갈 때만 보이게 설정... checked 위에. -->
 	</tr>
@@ -40,7 +40,8 @@
 
 <div class="container col-sm-8">
 <table border="0" width="600" align="center" class="table table-hover" style="font-family: 'Nanum Gothic', sans-serif;"> 
-	<tr align="center">   
+ <thead>
+	<tr align="center" >   
 		<th width="60">No.</th>
 		<th width="400">Subject</th>
 		<th width="80">Writer</th>
@@ -51,6 +52,8 @@
 </c:if>
 		<!-- 관리자가 들어갈 때만 컬럼이 보이게 설정 -->
 	</tr>
+	</thead>
+	<tbody>
 <!-- 글이 없다면 -->
 <c:if test="${listcount==0 }">
 	<tr> 
@@ -103,21 +106,22 @@
 	</tr>
 	</c:forEach>
 	
-</c:if> 
+</c:if>
+</tbody> 
 </table>
  </div>
  </form>
 
 <div class="container col-sm-8" style="font-family: 'Nanum Gothic', sans-serif;">
 
-		<div style="float:left;"><input type="button" class="btn btn-outline-secondary btn-sm" value="   목록   " onClick="location.href='./member_board_list.do'"></div>
+		<div style="float:left;"><input type="button" class="btn btn-primary  btn-sm flex-shrink-0" value="   목록   " onClick="location.href='./member_board_list.do'"></div>
 	<c:if test="${not empty sessionScope.id }">
-		<div style="float:right;"><input type="button" class="btn btn-outline-secondary btn-sm" value="   작성   " onClick="location.href='./member_board_writeform.do'"></div>
+		<div style="float:right;"><input type="button" class="btn btn-primary  btn-sm flex-shrink-0"  value="   작성   " onClick="location.href='./member_board_writeform.do'"></div>
 	</c:if>
 
 </div>
 
-<div class="container text-center" style="font-family: 'Nanum Gothic', sans-serif;">
+<div class="container text-center" style="font-family: 'Nanum Gothic', sans-serif; ">
 <!-- 페이지 목록 -->
 <c:if test="${listcount>0}"> <!-- 글이 존재하는 경우에만 페이지 출력 -->
 <!-- 1페이지로 -->
