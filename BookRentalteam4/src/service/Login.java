@@ -73,6 +73,7 @@ public class Login implements Action{
 		forward.setRedirect(false);    			// dispatcher 방식으로 포워딩
 //		forward.setPath("./member/main.jsp");   // 포워딩할 파일 설정
 		forward.setPath("./member/premain.jsp");   // 포워딩할 파일 설정
+//		forward.setPath("./index.jsp");
 		
 		return forward;
 	}

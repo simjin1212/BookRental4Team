@@ -1,21 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
+
 <head>
-	<title>게시판</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
-	
-</head> 
-<body>
-현재 아이디:  ${sessionScope.id }<br>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+<!-- 유효성 검사 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+ </head>
+
+
+<body style="padding-top:120px; z-index:1;">
+   <%@ include file="../top.jsp" %>
+
 <form action="<%=request.getContextPath() %>/member_board_write.do" method="post"  name="writeform" 
 	  enctype="multipart/form-data" id="writeform" name="writeform"> <!-- 이 객체로 getParameter 할 것 -->
-	   
-	  <center>자유게시판</center> <br>
-<table cellpadding="0" cellspacing="0" align=center border=1>
+<div class="container col-sm-6">	   
 
+<table cellpadding="0" cellspacing="0" align=center border=0 class="table" style="font-family: 'Nanum Gothic', sans-serif;"> 
+<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">작성</div></td></tr>
 <tr>  
 		<th>제목</th>
 		<td>
@@ -26,12 +35,12 @@
 	<tr> 
  
 		<td colspan="2">
-			<textarea name="mb_content" id="mb_content" cols="60" rows="15"
+			<textarea name="mb_content" id="mb_content" cols="75" rows="15"
 			style="text-indent: 10px;"></textarea>
 		</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12">
+		<td style="font-family: 'Nanum Gothic', sans-serif; font-size:12">
 			<div align="center" >파일</div>
 		</td>
 		<td>
@@ -50,6 +59,7 @@
 		</td>
 	</tr>
 </table>
+</div>
 </form>
 
 </body>

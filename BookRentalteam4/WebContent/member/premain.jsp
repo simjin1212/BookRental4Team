@@ -6,13 +6,13 @@
 <c:if test="${admincheck == 1 }">
 	<script>
 		alert("관리자 계정입니다!!!!");
-	    location.href="./admin/admin_main.jsp";
+	    location.href="./index.jsp";
 	</script>
 </c:if> 
 
 <c:if test="${admincheck == -1 }">
 	<script>
 		alert("일반회원입니다!")
-	    location.href="./member/main.jsp";
+	    location.href="./index.jsp";
 	</script>
 </c:if>   
