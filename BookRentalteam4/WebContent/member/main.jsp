@@ -36,7 +36,7 @@
 	 <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a> <br><br>
 	 <a href="<%=request.getContextPath()%>/Logout.do"><h5>로그아웃</h5></a> <br>
 	 <a href="<%=request.getContextPath()%>/DeleteMember.do"><h5>회원탈퇴</h5></a> <br>
-	
+
 </c:if>
 
 <!-- 세션이 없는 경우 -->
