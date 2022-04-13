@@ -3,8 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<head>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+</head>
+   <%@ include file="./admin_main.jsp" %>
+
+<body style=" z-index:1;">
+    <div class="container" style="float: right; margin-left:20%; padding-top:120px; ">
 글갯수 : ${listcount} 개
-<center>
+
 <title>회원목록</title>
       <table border=1 width=700 align=center>
         <caption>회원 목록</caption>
@@ -85,3 +95,5 @@
 
 </c:if>
 </center>
+</div>
+</body>
