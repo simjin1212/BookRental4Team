@@ -2,22 +2,28 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>신규도서 등록</title>
-</head>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+
 <!-- 외부 자바스크립트 파일 불러오기 -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/admin/bookupdate.js"></script>
+<body style="padding-top:120px; z-index:1;">
+   <%@ include file="../top.jsp" %>
 
-<body>
 <form action="<%=request.getContextPath()%>/bookupdate.do"  method="post" enctype="multipart/form-data">
-<table border=1 width=600 align=center>
-	<caption>신규도서 등록</caption>			
+<div class="container col-sm-6">	
+
+<table cellpadding="0" cellspacing="0" align=center border=0 class="table" style="font-family: 'Nanum Gothic', sans-serif;">
+	
 	<!-- <tr><td>도서번호(ISBN)</td>		순차로 대체
 		<td><input type=text id="book_num" name="book_num">
 		</td>
 	</tr> -->
+	<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 작성</div></td></tr>
 	<tr><td>도서명</td>
 		<td><input type=text id="book_name" name="book_name"></td>
 	</tr>
@@ -62,6 +68,7 @@
 		</td>
 	</tr>		
 </table>
+</div>
 </form>
 
 

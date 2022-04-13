@@ -21,6 +21,7 @@ public class reservedeleteaction implements Action {
 		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
+		int member_grade = (int)session.getAttribute("member_grade");
 		
 		int book_num = Integer.parseInt(request.getParameter("book_num"));
 		
@@ -33,10 +34,11 @@ public class reservedeleteaction implements Action {
 		
 		request.setAttribute("reservedelete", reservedelete);
 		request.setAttribute("reservedeletelist", reservedeletelist);
+		request.setAttribute("member_grade", member_grade);
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./member/reserveList.jsp");
+		forward.setPath("./admin/prereservedel.jsp");
 		
 		return forward;
 	}
