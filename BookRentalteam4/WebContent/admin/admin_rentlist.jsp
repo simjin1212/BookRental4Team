@@ -47,7 +47,7 @@
 				<td>${r.temp_Writer }</td>
 				<td>${r.temp_Publisher}</td>
 				<td><fmt:formatDate value="${r.rent_Date}" pattern="yyyy-MM-dd"/></td>
-				<td>${r.return_Date}</td>
+				<td>${r.return_Date} </td>
 				<td align = center><input type=button value="강제 반납" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
 			</tr>
 			</c:forEach>
