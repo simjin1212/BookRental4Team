@@ -1,15 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <html>
 <head>
-	<title>게시판</title>
+
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+	
+	<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+<!-- 유효성 검사 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="<%=request.getContextPath() %>/member_board/script.js"></script>
 </head> 
-<body>
-현재 아이디:  ${sessionScope.id }<br>
-<form action="<%=request.getContextPath() %>/member_board_reply.do" method="post" 
+<body style="padding-top:120px; z-index:1;">
+   <%@ include file="../top.jsp" %>
+<form action="<%=request.getContextPath() %>/member_board_reply.do" method="post" name='writeform' 
 	  enctype="multipart/form-data" > <!-- 이 객체로 getParameter 할 것 -->
 	  
 <input type=hidden name="mb_num" value="${board.mb_Num }">
@@ -17,12 +27,14 @@
 <input type=hidden name="mb_lev" value="${board.mb_LEV }">
 <input type=hidden name="mb_seq" value="${board.mb_SEQ}">
 <input type=hidden name="page" value="${page}">
- <br>
-<table cellpadding="0" cellspacing="0" align=center border=1>
+
+<div style="margin-top:1%; margin-left: 20%; width:60%;">   
+
+<table cellpadding="0" cellspacing="0" align=center border=0 class="table" style="font-family: 'Nanum Gothic', sans-serif;"> 
+<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
 
 <tr>  
-		<th>제목</th>
-		<td>
+	<td colspan="2">
 			<input name="mb_subject" id="mb_subject" type="text" maxlength="100" 
 				style="height:30px; width:100%; border: 0; text-indent: 10px;" value="Re: ${board.mb_Subject }" />
 		</td>
@@ -30,33 +42,34 @@
 	<tr> 
  
 		<td colspan="2">
-			<textarea name="mb_content" id="mb_content" cols="60" rows="15"
-			style="text-indent: 10px;">
+			<textarea name="mb_content" id="mb_content" rows="15"
+			style="text-indent: 10px; width:100%;">
 
 ========================
 ${board.mb_Content } </textarea>
 		</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12">
-			<div align="center" >파일</div>
+		<td style="font-family: 'Nanum Gothic', sans-serif;">
+			<div align="center" style="font-weight:bold; ">파일</div>
 		</td>
 		<td>
 			<input name="mb_file" type="file" style="width:100%;"/>
 		</td>
 	</tr>
-	<tr bgcolor="cccccc">
+	<tr >
 		<td colspan="2" style="height:1px;">
 		</td>
 	</tr>
-	<tr><td colspan="2" style="border: 0;">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
-		<td colspan="5" style="border-top: 0;">			
-			<input type=submit value="등록">
-			<input type=reset value="취소">
+		<td colspan="5" style="border-top: 0;">				
+			<input type=submit value="등록" class="btn btn-primary  btn-sm flex-shrink-0">
+			<input type=reset value="취소"  class="btn btn-primary  btn-sm flex-shrink-0">
+			<input type="button" class="btn btn-primary  btn-sm flex-shrink-0" value="목록" onClick="location.href='./member_board_list.do'">
 		</td>
 	</tr>
 </table>
+</div>
 </form>
 
 </body>

@@ -8,11 +8,15 @@
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 
 <!-- 게시판 유효성 검사 파일 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/member_board/script.js"></script>
+
+  <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
+  
  </head>
  
 
@@ -20,12 +24,30 @@
    
 <body style="padding-top:120px; z-index:1;">
    <%@ include file="../top.jsp" %>
+    <!-- 세션이 있는 경우 -->
+<c:if test="${sessionScope.member_grade==1}">
+  <ul class="admin_page">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/admin/admin_main.jsp"> ADMIN</a></li>
+ 
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">게시판 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminmemberlist.do">회원 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/booklistaction.do">도서 관리</a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminrentlist.do">대출 관리 </a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
+</ul>
+</c:if>
+
  <!-- 다중삭제기능  -->
  <form action="<%=request.getContextPath() %>/member_board_multidel.do" method="post" name="form1" id="form1">
      
  <input type=hidden id="page" name="page" value="${page }"> <!-- multidel로 넘어갈 page 정보 -->
  
-<div class="container col-sm-8">
+ <div style="margin-top:1%; margin-left: 20%; width:60%;">
 <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 <tr><td colspan=8 style="border:0;">
 <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
@@ -39,7 +61,7 @@
 	</table>
 </div>
 
-<div class="container col-sm-8">
+ <div style="margin-top:1%; margin-left: 20%; width:60%;">
 <table border="0" width="600" align="center" class="table table-hover" style="font-family: 'Nanum Gothic', sans-serif;"> 
  <thead>
 	<tr align="center" >   
@@ -112,8 +134,7 @@
 </table>
  </div>
  </form>
-
-<div class="container col-sm-8" style="font-family: 'Nanum Gothic', sans-serif;">
+ <div style="margin-top:1%; margin-left: 20%; width:60%; font-family: 'Nanum Gothic', sans-serif;">
 
 		<div style="float:left;"><input type="button" class="btn btn-primary  btn-sm flex-shrink-0" value="   목록   " onClick="location.href='./member_board_list.do'"></div>
 	<c:if test="${not empty sessionScope.id }">
@@ -122,7 +143,7 @@
 
 </div>
 
-<div class="container text-center" style="font-family: 'Nanum Gothic', sans-serif; ">
+ <div class="container text-center" style="margin-left:12%; font-family: 'Nanum Gothic', sans-serif;">
 <!-- 페이지 목록 -->
 <c:if test="${listcount>0}"> <!-- 글이 존재하는 경우에만 페이지 출력 -->
 <!-- 1페이지로 -->
@@ -152,13 +173,13 @@
 <br>
 <form name="form2" id="form2" action="<%=request.getContextPath() %>/member_board_list.do" method="post" >
 <div class="container text-center d-flex align-items-center" style="font-family: 'Nanum Gothic', sans-serif; width:30%">
-			<select name="sel" class="form-control form-control-sm text-center" id="sel1" style="width:20%">
+			<select name="sel" class="form-control form-control-sm text-center" id="sel1" style="width:40%">
 				<option value="all">제목+내용</option>
 				<option value="id">작성자</option>
 				<option value="mb_subject">제목</option>
 				<option value="mb_content">내용</option>
 			</select>
-			<input type=text  name="find" id="find"  class="form-control form-control-sm" aria-label="Search" style="width:60%">
+			<input type=text  name="find" id="find"  class="form-control form-control-sm" aria-label="Search" >
 			<button type="submit"  class="btn btn-primary  btn-sm flex-shrink-0" id="searchBtn" style="width:20%">검색</button>
 </div>
 </form>

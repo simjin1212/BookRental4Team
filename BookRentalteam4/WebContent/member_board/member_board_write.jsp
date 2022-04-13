@@ -14,28 +14,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/member_board/script.js"></script>
 
-<style>
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
 
-</style>
  </head>
 
 
@@ -44,7 +23,7 @@
 
 <form action="<%=request.getContextPath() %>/member_board_write.do" method="post"  name="writeform" 
 	  enctype="multipart/form-data" id="writeform" name="writeform"> <!-- 이 객체로 getParameter 할 것 -->
-<div class="container col-sm-8">	   
+<div style="margin-top:1%; margin-left: 20%; width:60%;">   
 
 <table cellpadding="0" cellspacing="0" align=center border=0 class="table" style="font-family: 'Nanum Gothic', sans-serif;"> 
 <tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
