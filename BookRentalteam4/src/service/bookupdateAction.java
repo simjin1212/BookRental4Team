@@ -40,6 +40,8 @@ public class bookupdateAction implements Action{
 		int result = dao.insert(book);	// 도서 작성
 		if(result == 1)	System.out.println("도서기입 성공");
 		
+		request.setAttribute("path",path);
+		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);  				// dispatcher 방식 포워딩
 		forward.setPath("/booklistaction.do");  // 포워딩할 파일명
