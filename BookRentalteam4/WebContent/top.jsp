@@ -17,12 +17,12 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
   </head>
   <body >
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="position:fixed; top:0; width:100%; z-index:3;">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+                <a class="navbar-brand" href="#page-top"><img src="${pageContext.request.contextPath}/assets/img/navbar-logo.svg" alt="..." /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i> 
@@ -30,17 +30,17 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                      <c:if test="${empty sessionScope.id }">
-                        <li class="nav-item"><a class="nav-link" href="./joinform.do"><span>JOIN</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="./loginform.do"><span>LogIn</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/joinform.do"><span>JOIN</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/loginform.do"><span>LogIn</span></a></li>
                      </c:if>
                      <c:if test="${not empty sessionScope.id }">
                      	<c:if test="${sessionScope.member_grade==0 }">
-                        <li class="nav-item"><a class="nav-link" href="./member/main.jsp"><span>My Page</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/main.jsp"><span>My Page</span></a></li>
                         </c:if>
                         <c:if test="${sessionScope.member_grade==1 }">
-                        <li class="nav-item"><a class="nav-link" href="./admin/admin_main.jsp"><span>Admin Page</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_main.jsp"><span>Admin Page</span></a></li>
                         </c:if>
-                        <li class="nav-item"><a class="nav-link"  href="./Logout.do"><span>LogOut</span></a></li>
+                        <li class="nav-item"><a class="nav-link"  href="${pageContext.request.contextPath}/Logout.do"><span>LogOut</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member_board_list.do"><span>MemberBoard</span></a></li>
                      </c:if>
                     </ul>

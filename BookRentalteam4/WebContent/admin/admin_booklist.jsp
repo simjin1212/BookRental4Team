@@ -3,21 +3,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <a href="./bookupdateform.do">도서 작성</a> <br>
-도서 개수 : ${listcount} 개<br>
 
-      <table border=1 width=700 align=center>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="padding-top:120px; z-index:1;">
+<%@ include file="../top.jsp" %>
+
+
+
+<div class="container col-sm-20">
+도서 개수 : ${listcount} 개<br>
+  <p>현재 시스템에 입력되있는 도서의 목록입니다</p>  
+            
+  <table border="0" width="600" align="center" class="table table-hover" style="font-family: 'Nanum Gothic', sans-serif;">
+    
         <caption align="right">
         <input type="text" name="text" placeholder="검색어">
         <input type="submit" value="검색"></caption>
-        
-		<tr bgcolor=lightgrey>
+        <thead>
+		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
+		</thead>
+		<tr align ="center">
 		<th>도서번호</th>
 		<th>도서명</th>
 		<th>글쓴이</th>
 		<th>출판사</th>
 		<th>장르</th>
-		
 		</tr>
+		
+		 <tbody>
 	<c:set var="num" value="${listcount - (page-1) * 10}" />
 	<c:forEach var="b" items="${booklist}">
 		<tr>
@@ -33,8 +60,18 @@
 			
 		</tr>
 		
-</c:forEach>
+	</c:forEach>
+</tbody>
 </table> <br><br>
+</div>
+<div class="container col-sm-8" style="font-family: 'Nanum Gothic', sans-serif;">
+
+		<div style="float:left;"><input type="button" class="btn btn-outline-secondary btn-sm" value="   목록   " onClick="location.href='./member_board_list.do'"></div>
+	<c:if test="${not empty sessionScope.id }">
+		<div style="float:right;"><input type="button" class="btn btn-outline-secondary btn-sm" value="   작성   " onClick="location.href='./member_board_writeform.do'"></div>
+	</c:if>
+
+</div>
 		
 		
 		<!-- 페이지 처리 -->
