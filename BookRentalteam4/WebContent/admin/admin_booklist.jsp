@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- 리얼패스 경로  ${path} <br>
 <a href="./bookupdateform.do">도서 작성</a> <br>
 도서 개수 : ${listcount} 개<br>
 
