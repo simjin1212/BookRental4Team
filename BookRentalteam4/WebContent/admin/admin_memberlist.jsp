@@ -40,7 +40,7 @@
 
 
 <!-- 회원관리 테이블 -->
-    <div style="margin-top:1%; margin-left: 30%; width:50%;">
+    <div style="margin-top:1%; margin-left: 20%; width:60%;">
     <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 <tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">회원목록</div></td></tr>
 	<tr>
