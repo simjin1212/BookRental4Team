@@ -6,7 +6,7 @@ public class review_board_dto {
 	private int book_Num; /* 도서번호 */
 	private int rb_Num; /* 게시판번호 */
 	private String id; /* iD */
-	private Number rent_Num; /* 대여번호 */
+	private int rent_Num; /* 대여번호 */
 	private String rb_Subject; /* 제목 */
 	private String rb_Content; /* 내용 */
 	private String rb_File;/* 첨부파일 */
@@ -37,11 +37,11 @@ public class review_board_dto {
 		this.id = id;
 	}
 
-	public Number getRent_Num() {
+	public int getRent_Num() {
 		return rent_Num;
 	}
 
-	public void setRent_Num(Number rent_Num) {
+	public void setRent_Num(int rent_Num) {
 		this.rent_Num = rent_Num;
 	}
 

@@ -19,29 +19,22 @@
 				<th>출판사</th>
 				<th>예약신청일</th>
 				<th>현 대출자 반납일</th>
-				<th>예약여부</th>
+				<th>예약취소</th>
 
 			</tr> 
 			<c:forEach var="rv" items="${reservelist}">
 
 			<tr>
 				<th>${rv.book_Num}</th>
-				<th>${rv.book_Name}</th>
+				<th><a href="./ReviewListAction.do?num=${rv.book_Num}">
+					${rv.book_Name }
+				</a></th>
 				<th>${rv.writer}</th>
 				<th>${rv.publisher} </th>
 				<th>${rv.reserve_Date}</th>
 				<th>${rv.return_date}</th>
-				
-				<th> <c:if test="${empty return_date}">
-				<input type="button" value="대출하기"
-				onClick="location.href='<%=request.getContextPath()%>/rent_add.do?id=${id}&book_num=${rv.book_Num}'">
-				</c:if>
-				<c:if test="${not empty return_date}">
-	 			<input type="button" disabled value="대출불가(대출중)"/>
-				</c:if>
-				</th>
-				<td align=center><input type=button value="예약 취소"
-				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></td>
+				<th align=center><input type=button value="예약 취소"
+				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></th>
 			</tr>
 			</c:forEach>
 		</table>

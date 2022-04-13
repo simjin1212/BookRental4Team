@@ -52,7 +52,8 @@ public class ReviewListAction implements Action {
 		review_board_dao dao = review_board_dao.getInstance();
 		int reviewlistcount = dao.rlgetCount();
 		System.out.println("reviewlistcount:" + reviewlistcount);
-
+		System.out.println("startrow:"+startRow);
+		System.out.println("endrow:"+endRow);
 		List<review_board_dto> reviewlist = dao.getList(startRow, endRow, id);
 		System.out.println("reviewlist:" + reviewlist);
 
