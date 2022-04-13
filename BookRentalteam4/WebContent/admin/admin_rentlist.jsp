@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-총 대출도서 : ${rentcount} 권 <br>
+
 <%-- <%
 	int count = ((Integer)request.getAttribute("listcount")).intValue();
 %> --%>
@@ -18,15 +18,16 @@
 <meta charset="UTF-8">
 </head>
 <body style="padding-top:120px; z-index:1;">
+<%@ include file="../top.jsp" %>
 
-<div class="container col-sm-8">
+<div class="container col-sm-12">
+총 대출도서 : ${rentcount} 권 <br>
+		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
+			<thead>
+		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
+		</thead>
 
-		<table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
-			<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">현재 대출내역</div></td></tr>
-
-			
-			
-			<tr>
+			<tr align ="center"  bgcolor = lightgrey>
 				<th> No. </th>
 				<th> ID </th>
 				<th>도서번호</th>
@@ -51,6 +52,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		</div>
 
 <!-- 페이지 목록 -->
 <center>

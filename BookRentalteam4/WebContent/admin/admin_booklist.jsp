@@ -25,11 +25,9 @@
 
 <div class="container col-sm-20">
 도서 개수 : ${listcount} 개<br>
-  <p>현재 시스템에 입력되있는 도서의 목록입니다</p>  
-            
+
   <table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
     
-        
         
         <thead>
 		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
