@@ -2,24 +2,37 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-글갯수 : ${listcount} 개
-<center>
-<title>회원목록</title>
-      <table border=1 width=700 align=center>
+<div class="container">
+  <h2>회원목록</h2>
+  <p>현재 사용중인 회원의 목록입니다</p>            
+
+  <table class="table table-striped">
+
+
         <caption>회원 목록</caption>
+        <thead>
 		<tr bgcolor=lightgrey>
 		<th>번호</th>
 		<th>ID</th>
 		<th>이름</th>
 		<th>전화번호</th>
 		<th>이메일</th>
-		<th>대출내역/건</th>
-		<th>예약내역/건</th>
-		
-		
-		</tr>
-		
+
+	</tr>
+	</thead>
+	<tbody>
 		<c:set var="num" value="${listcount - (page-1) * 10}" />
 	<c:forEach var="m" items="${memberlist}">
 	<tr>
@@ -43,14 +56,11 @@
 		${m.phone1} - ${m.phone2} - ${m.phone3}
 		</td>
 		<td>${m.mailid} @ ${m.domain}</td>
-		
-		<td>3</td>
-		<td>2</td>
-		
 	</tr>
 	</c:forEach>
 
 </table> <br><br>
+</div>
 
 <!-- 페이지 처리 -->
 <center>
