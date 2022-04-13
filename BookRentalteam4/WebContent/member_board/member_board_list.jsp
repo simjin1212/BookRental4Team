@@ -14,7 +14,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/member_board/script.js"></script>
  </head>
-
+ 
 
 
    
