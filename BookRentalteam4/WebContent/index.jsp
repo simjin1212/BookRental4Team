@@ -18,7 +18,7 @@
 	href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
 
 <!--     Bootstrap CSS -->
-
+ 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 
