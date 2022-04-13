@@ -17,7 +17,7 @@
 
 현재 아이디 : ${sessionScope.id } <br>
 현재 등급 : ${sessionScope.member_grade } <br>
-
+   
 
 <center>
 	<c:if test="${sessionScope.member_grade==1}">
