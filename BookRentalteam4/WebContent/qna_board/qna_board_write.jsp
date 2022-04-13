@@ -45,7 +45,7 @@
 			<input type=reset value="취소" onClick="location.href='./qna_BoardListAction.do' ">
 			    
 		</td>
-	</tr>
+	</tr>    
 </table>
 </div>
 </form>
