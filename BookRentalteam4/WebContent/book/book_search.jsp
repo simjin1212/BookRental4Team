@@ -1,3 +1,4 @@
+<%@page import="service.booklistaction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dto.book_dto"%>
@@ -105,6 +106,7 @@
 			<input type="submit" value="검색">
 		</table>
 		<tr height = 150> <br> </tr>
+		
 		<table align="center" valign = center cellpadding = 15px>
 		
 		<tr border = 1 style="font-size:20px; color:#331B3F;">
@@ -114,16 +116,16 @@
 			<td width = 150 align = center valign = "center">저자</td>
 			<td width = 150 align = center valign = "center">출판사</td>
 		</tr>
-		</table>
+		
 		<%
 			//  전체 목록
 			if (count > 0 && fcount == 0) {
 				for (int i = 0; i < list.size(); i++) {
 					book_dto book = (book_dto) list.get(i);
 		%>
-		<table align="center" valign = center cellpadding = 15px>
-		<tr>
-			<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%> " style="width:150px; height:150px;"/></td>
+		
+		<tr align =center>
+			<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%>" style="width:150px; height:150px;"/></td>
 			<td width = 150 align = center valign = center><%=number--%></td>
 			<td width = 150 align = center valign = center><a
 				href="./ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
@@ -142,8 +144,8 @@
 					book_dto book = (book_dto) flist.get(i);
 		%>
 
-		<tr>
-		<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%> " style="width:150px; height:150px;"/></td>
+		<tr align=center>
+		<td><img src = "<%=request.getContextPath()%>/admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover() %> " style="width:150px; height:150px;"/></td>
 			<td><%=fnumber--%></td>
 			<td><a
 				href="./memberbookdetail.do?no=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
@@ -151,6 +153,7 @@
 			</a></td>
 			<td><%=book.getWriter()%></td>
 			<td><%=book.getPublisher()%></td>
+			
 		</tr>
 
 		<%

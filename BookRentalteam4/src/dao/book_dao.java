@@ -225,7 +225,7 @@ public class book_dao {
 
 				book.setBook_Num(rs.getInt("book_num"));
 				book.setBook_Name(rs.getString("book_name"));
-				book.setBook_Cover(rs.getString("book_cover"));
+				book.setBook_Cover(rs.getString("book_Cover"));
 				book.setWriter(rs.getString("writer"));
 				book.setPublisher(rs.getString("publisher"));
 				book.setGenre(rs.getString("genre"));
@@ -240,6 +240,7 @@ public class book_dao {
 
 			}
 			System.out.println("데이터 리스트에 저장완료");
+			System.out.println("bookcover"+rs.getString("book_Cover"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -429,7 +430,7 @@ public class book_dao {
 		try {
 			con = getConnection();
 
-			String sql = "select * from ( select rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks ";
+			String sql = "select * from ( select book_cover, rownum rnum, book_num, book_name, Writer, Publisher, genre, Writer_talks ";
 			sql += "from (select * from book where  " + sel + " like '%" + find + "%' order by book_num desc)) ";
 			sql += "where rnum >= ? and rnum <= ?";
 
@@ -442,7 +443,7 @@ public class book_dao {
 			while (rs.next()) {
 
 				book_dto book = new book_dto();
-
+				book.setBook_Cover(rs.getString("book_Cover"));
 				book.setBook_Num(rs.getInt("book_num"));
 				book.setBook_Name(rs.getString("book_name"));
 				book.setWriter(rs.getString("Writer"));
@@ -489,7 +490,7 @@ public class book_dao {
 			con = getConnection();
 
 			String sql = "select * from ( select rownum rnum, BOOK_NUM, ";
-			sql += "BOOK_NAME, WRITER, PUBLISHER, GENRE, WRITER_TALKS from ";
+			sql += "BOOK_NAME, WRITER, PUBLISHER, GENRE, WRITER_TALKS, book_cover from ";
 			sql += "(select * from book order by BOOK_NUM desc)) ";
 			sql += "where rnum >= ? and rnum <= ?";
 
@@ -501,7 +502,8 @@ public class book_dao {
 
 			while (rs.next()) {
 				book_dto book = new book_dto();
-
+				
+				book.setBook_Cover(rs.getString("book_Cover"));
 				book.setBook_Num(rs.getInt("book_num"));
 				book.setBook_Name(rs.getString("book_name"));
 				book.setWriter(rs.getString("Writer"));

@@ -17,7 +17,6 @@
 		<td colspan=2 align=center>
 			<c:if test="${book.book_Cover != null}">
 					<img src = "./admin/bookfileupload.jsp?file_name=${book.book_Cover} " style="width:300px; height:300px;"/>
-
 			</c:if>
 		</td>
 	</tr>	
