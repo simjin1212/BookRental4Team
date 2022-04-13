@@ -107,14 +107,12 @@
 		<tr height = 150> <br> </tr>
 		<table align="center" valign = center cellpadding = 15px>
 		
-		<tr border = 1 style="font-size:25px; color:#331B3F;">
+		<tr border = 1 style="font-size:20px; color:#331B3F;">
 			<td width = 150 align = center valign = "center">책 표지</td>
 			<td width = 150 align = center valign = "center">도서 번호</td>
 			<td width = 150 align = center valign = "center">도서 이름</td>
 			<td width = 150 align = center valign = "center">저자</td>
 			<td width = 150 align = center valign = "center">출판사</td>
-			<td width = 150 align = center valign = "center">장르</td>
-			<td width = 150 align = center valign = "center">작가의 말</td>
 		</tr>
 		</table>
 		<%
@@ -125,7 +123,7 @@
 		%>
 		<table align="center" valign = center cellpadding = 15px>
 		<tr>
-			<td width = 150 align = center valign = center>이미지 </td>
+			<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%> " style="width:150px; height:150px;"/></td>
 			<td width = 150 align = center valign = center><%=number--%></td>
 			<td width = 150 align = center valign = center><a
 				href="./ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
@@ -133,8 +131,6 @@
 			</a></td>
 			<td width = 150 align = center valign = center><%=book.getWriter()%></td>
 			<td width = 150 align = center valign = center><%=book.getPublisher()%></td>
-			<td width = 150 align = center valign = center><%=book.getGenre()%></td>
-			<td width = 150 align = center valign = center><%=book.getWriter_talks()%></td>
 		</tr>
 
 		<%
@@ -147,6 +143,7 @@
 		%>
 
 		<tr>
+		<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%> " style="width:150px; height:150px;"/></td>
 			<td><%=fnumber--%></td>
 			<td><a
 				href="./memberbookdetail.do?no=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
@@ -154,8 +151,6 @@
 			</a></td>
 			<td><%=book.getWriter()%></td>
 			<td><%=book.getPublisher()%></td>
-			<td><%=book.getGenre()%></td>
-			<td><%=book.getWriter_talks()%></td>
 		</tr>
 
 		<%

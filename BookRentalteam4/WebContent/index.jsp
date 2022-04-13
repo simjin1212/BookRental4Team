@@ -55,11 +55,5 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" />
   </head>
-  <body>
-  <!-- 상단 nav -->
-  <%@ include file="top.jsp" %> 
   
-  <!-- 메인 화면 -->
-   <%@ include file="mainindex.jsp" %>
-  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

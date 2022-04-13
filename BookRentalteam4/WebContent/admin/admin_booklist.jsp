@@ -16,14 +16,34 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  
+  <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 </head>
 
 <body style="padding-top:120px; z-index:1;">
 <%@ include file="../top.jsp" %>
+<!-- 세션이 있는 경우 --><!-- nav -->
+<c:if test="${!empty sessionScope.id}">
+  <ul class="admin_page">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<li class="admin" > <a style="text-decoration: none;" href="<%=request.getContextPath()%>/admin/admin_main.jsp">ADMIN</a></li>
+
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">게시판 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminmemberlist.do">회원 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/booklistaction.do">도서 관리</a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminrentlist.do">대출 관리 </a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
+</ul>
+</c:if>
+<!-- nav 끝 -->
 
 
 
-<div class="container col-sm-20">
+ <div style="margin-top:1%; margin-left: 20%; width:60%;">
 도서 개수 : ${listcount} 개<br>
 
   <table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
@@ -43,7 +63,7 @@
 		 <tbody>
 	<c:set var="num" value="${listcount - (page-1) * 10}" />
 	<c:forEach var="b" items="${booklist}">
-		<tr>
+		<tr align = "center">
 			<td>${b.book_Num}
 			<c:set var="num" value="${num-1}" />
 			</td>
@@ -60,7 +80,7 @@
 </tbody>
 </table> <br><br>
 </div> 
-<div class="container col-sm-15" style="font-family: 'Nanum Gothic', sans-serif;">
+<div style="font-family: 'Nanum Gothic', sans-serif; margin-top:1%; margin-left: 20%; width:60%;">
        	<div style="float:right;">
         <input  type="button" class="btn btn-outline-secondary btn-sm" value="   도서 등록     " onClick="location.href='./bookupdateform.do' ">
      	</div>

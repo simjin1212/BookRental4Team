@@ -17,10 +17,9 @@
 </head>
 <%--    <%@ include file="./admin_main.jsp" %> --%>
 
-<!-- nav -->
-<body style="padding-top:120px;">
+<body style="padding-top:120px; z-index:1;">
   <%@ include file="../top.jsp" %>
- <!-- 세션이 있는 경우 -->
+ <!-- 세션이 있는 경우 --><!-- nav -->
 <c:if test="${!empty sessionScope.id}">
   <ul class="admin_page">
 <%-- <c:if test="${sessionScope.id != null}"> --%>
@@ -37,10 +36,11 @@
 	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
 </ul>
 </c:if>
+<!-- nav 끝 -->
 
 
 <!-- 회원관리 테이블 -->
-    <div style="margin-top:1%; margin-left: 30%; width:50%;">
+    <div style="margin-top:1%; margin-left: 20%; width:60%;">
     <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 <tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">회원목록</div></td></tr>
 	<tr>
@@ -85,6 +85,7 @@
 
 </table> <br><br>
 </div>
+
 
 <!-- 페이지 처리 -->
   <div class="container text-center" style="margin-left:12%; font-family: 'Nanum Gothic', sans-serif;">
