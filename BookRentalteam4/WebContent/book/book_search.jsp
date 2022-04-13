@@ -108,13 +108,13 @@
 		<table align="center" valign = center cellpadding = 15px>
 		
 		<tr border = 1 style="font-size:25px; color:#331B3F;">
-			<th width = 150 align = center valign = "center">책 표지</th>
-			<th width = 150 align = center valign = "center">도서 번호</th>
-			<th width = 150 align = center valign = "center">도서 이름</th>
-			<th width = 150 align = center valign = "center">저자</th>
-			<th width = 150 align = center valign = "center">출판사</th>
-			<th width = 150 align = center valign = "center">장르</th>
-			<th width = 150 align = center valign = "center">작가의 말</th>
+			<td width = 150 align = center valign = "center">책 표지</td>
+			<td width = 150 align = center valign = "center">도서 번호</td>
+			<td width = 150 align = center valign = "center">도서 이름</td>
+			<td width = 150 align = center valign = "center">저자</td>
+			<td width = 150 align = center valign = "center">출판사</td>
+			<td width = 150 align = center valign = "center">장르</td>
+			<td width = 150 align = center valign = "center">작가의 말</td>
 		</tr>
 		</table>
 		<%
