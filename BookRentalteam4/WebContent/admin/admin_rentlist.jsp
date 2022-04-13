@@ -11,12 +11,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>대출 목록</title>
 </head>
-<body>
-		<table border=1 width=900 align=center cellpadding = 5px>
-			<caption><h2>대출 목록</h2></caption>
+<body style="padding-top:120px; z-index:1;">
+
+<div class="container col-sm-8">
+
+		<table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
+			<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">현재 대출내역</div></td></tr>
+
+			
+			
 			<tr>
 				<th> No. </th>
 				<th> ID </th>
