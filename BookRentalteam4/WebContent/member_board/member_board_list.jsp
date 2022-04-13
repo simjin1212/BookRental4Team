@@ -6,7 +6,7 @@
 
 <head>
 <!-- 폰트 -->
- 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 
@@ -27,7 +27,8 @@
  
 <div class="container col-sm-8">
 <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
-<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
+<tr><td colspan=8 style="border:0;">
+<div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">자유게시판</div></td></tr>
 	<tr>
 	<td colspan=4 align="left" style="border-top:0;"> <c:if test="${not empty find}">[${find }] 검색 결과  총 ${listcount} 개</c:if></td>
 		<c:if test="${sessionScope.member_grade==1 }">

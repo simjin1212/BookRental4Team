@@ -100,7 +100,7 @@ public class review_board_dao {
 			try {
 				con = getConnection();
 
-				String sql="select * from review_board where rb_num >= ? and rb_num <=? and id = ? ";
+				String sql="select * from review_board where rb_num >= ? and rb_num <=? and id = ? order by rb_num asc";
 		   
 		   		pstmt = con.prepareStatement(sql);
 		   		pstmt.setInt(1, start);

@@ -4,20 +4,30 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-총 대출도서 : ${rentcount} 권 <br>
+
 <%-- <%
 	int count = ((Integer)request.getAttribute("listcount")).intValue();
 %> --%>
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 폰트 -->
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>대출 목록</title>
 </head>
-<body>
-		<table border=1 width=900 align=center cellpadding = 5px>
-			<caption><h2>대출 목록</h2></caption>
-			<tr>
+<body style="padding-top:120px; z-index:1;">
+<%@ include file="../top.jsp" %>
+
+<div class="container col-sm-12">
+총 대출도서 : ${rentcount} 권 <br>
+		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
+			<thead>
+		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
+		</thead>
+
+			<tr align ="center"  bgcolor = lightgrey>
 				<th> No. </th>
 				<th> ID </th>
 				<th>도서번호</th>
@@ -35,13 +45,14 @@
 				<td>${r.book_Num}</td>
 				<td>${r.temp_book_Name}</td>
 				<td>${r.temp_Writer }</td>
-				<td>${r.temp_Publisher}</td>
+				<td>${r.temp_Publisher} </td>
 				<td><fmt:formatDate value="${r.rent_Date}" pattern="yyyy-MM-dd"/></td>
-				<td>${r.return_Date}</td>
+				<td>${r.return_Date} </td>
 				<td align = center><input type=button value="강제 반납" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
 			</tr>
 			</c:forEach>
 		</table>
+		</div>
 
 <!-- 페이지 목록 -->
 <center>
