@@ -47,19 +47,24 @@
 	</tr>
 	</table>
   <table class="table table-striped" align="center" >
-	<tr bgcolor=lightgrey>
-		<th>번호</th>
+	<tr bgcolor=lightgrey align="center">
+		<th>관리자/일반계정</th>
 		<th>ID</th>
 		<th>이름</th>
 		<th>전화번호</th>
 		<th>이메일</th>
 	</tr>
 
-		<c:set var="num" value="${listcount - (page-1) * 10}" />
+		
 	<c:forEach var="m" items="${memberlist}">
-	<tr>
-		<td>${num}
-			<c:set var="num" value="${num-1}" />
+	<tr align="center">
+		<td>
+		<c:if test="${m.member_Grade == 0}">
+			일반계정
+		</c:if>
+		<c:if test="${m.member_Grade == 1}">
+			관리자
+		</c:if>
 		</td>
 		<td>
 		<a style="text-decoration:none" href="./admin_memberdetail.do?id=${m.id}&page=${page}">

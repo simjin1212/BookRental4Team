@@ -162,7 +162,7 @@
 		<td><img src = "<%=request.getContextPath()%>/admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover() %> " style="width:150px; height:150px;"/></td>
 			<td><%=fnumber--%></td>
 			<td><a
-				href="/ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
+				href="<%=request.getContextPath() %>/ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
 					<%=book.getBook_Name()%>
 			</a></td>
 			<td><%=book.getWriter()%></td>

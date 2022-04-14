@@ -58,7 +58,7 @@
 				<th>강제반납</th>
 			</tr>
 			<c:forEach var="r" items="${rentlist}">
-			<tr>
+			<tr align ="center">
 				<th>${r.rent_Num }</th>
 				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</th>
 				<td>${r.book_Num}</td>
