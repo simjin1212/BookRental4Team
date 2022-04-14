@@ -22,7 +22,7 @@
   <body >
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="position:fixed; top:0; width:100%; z-index:3;">
             <div class="container">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/assets/img/navbar-logo.svg" alt="..." /></a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="..." /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i> 
