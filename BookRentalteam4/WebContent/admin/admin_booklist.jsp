@@ -19,6 +19,24 @@
   
   <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 </head>
+<!-- 유효성검사 -->
+<script>
+		$(document).ready(function() {
+			$("form").submit(function() {
+				if ($("select").val() == "") {
+					alert("검색할 항목을 선택");
+					return false;
+				}
+				if ($("#find").val() == "") {
+					alert("검색어를 입력하세요");
+					$("#find").focus();
+					return false;
+				}
+			});
+		});
+	</script>
+
+
 
 <body style="padding-top:120px; z-index:1;">
 <%@ include file="../top.jsp" %>
@@ -84,10 +102,7 @@
        	<div style="float:right;">
         <input  type="button" class="btn btn-outline-secondary btn-sm" value="   도서 등록     " onClick="location.href='./bookupdateform.do' ">
      	</div>
-		<div style="folat:left;">
-        <input style="WIDTH: 200pt; HEIGHT: 30pt" type="text" name="text" placeholder="검색어">
-        <input style="WIDTH: 60pt; HEIGHT: 30pt" type="submit" value="검색">
-       	</div>	
+	
  </div>
 		<!-- 페이지 처리 -->
 <center>

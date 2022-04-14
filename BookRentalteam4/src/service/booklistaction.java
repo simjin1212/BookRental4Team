@@ -22,8 +22,9 @@ public class booklistaction implements Action{
 	if(request.getParameter("page") != null) {
 		page = Integer.parseInt(request.getParameter("page"));
 	}
-	
 	book_dao dao= book_dao.getInstance();
+
+	
 	int listcount = dao.getCount();
 	System.out.println(listcount);
 	
@@ -54,7 +55,10 @@ public class booklistaction implements Action{
 			forward.setRedirect(false);    // dispatcher 방식으로 포워딩
 			forward.setPath("./admin/admin_booklist.jsp");
 			
-	return forward;
+	return forward; 
+
+	
+	
 	}
 
 }

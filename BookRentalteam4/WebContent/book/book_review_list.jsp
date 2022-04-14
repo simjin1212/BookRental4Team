@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -19,8 +19,22 @@
 </head>
 <body style="padding-top:120px; z-index:1;">
 <%@ include file="../top.jsp" %>
+<c:if test="${!empty sessionScope.id}">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<ul class="admin_page">
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/UpdateForm.do"> MENU</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/UpdateForm.do">내 정보</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/rentListAction.do">대출 목록</a> </li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/ReserveList.do">예약 목록</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">회원게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">1:1문의 게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/DeleteMember.do">회원탈퇴</a></li>
+</ul>
+</c:if>
 	<form method="post" action="<%=request.getContextPath() %>/member/main.jsp" >
-		<div class="container col-sm-8">
+		<div style="margin-top:1%; margin-left: 20%; width:60%;">
 		<div align = "right">ID : ${sessionScope.id}</div>
 	 	<table border = 0 width=450 align=center cellpadding=15px class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 	         <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서상세페이지</div>
@@ -57,7 +71,7 @@
 	  </table>
 	</div>
 	      
-	<div class="container col-sm-8">      
+	<div style="margin-top:1%; margin-left: 20%; width:60%;">      
 	      <table border = 0 width=450 align=center cellpadding=15px class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 	        <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서리뷰</div>
 		     <tr align = center style = font-size:25px; >
