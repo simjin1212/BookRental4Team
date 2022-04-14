@@ -7,9 +7,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 <!-- --------------------------------------------------------------- -->
@@ -107,7 +106,7 @@
 </c:if>
 	<form action="book/book_search.jsp" method="post"  align=center cellpadding = 15px>
 		<div style="margin-top:1%; margin-left: 20%; width:60%;">
-		
+<!-- 		
 		<table align = center valign = center cellpadding = 15px>
 	        <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 검색 목록</div>
 			<select align = center name="sel">
@@ -119,18 +118,38 @@
 			<input type="text" name="find" id="find" placeholder="검색어">
 			<input type="submit" value="검색">
 		</table>
-		<tr height = 150> <br> </tr>
+		 -->
+	<table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
+	<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 검색 목록</div></td></tr>
+	<tr><td colspan=4 align="left" style="border:1;"> <c:if test="${not empty find}">[${find }] 검색 결과  총 ${fcount} 개</c:if></td>
+	</tr>
+	</table>
 		
-		<table align="center" valign = center cellpadding = 15px>
+		<div class="container text-center d-flex align-items-center" style="font-family: 'Nanum Gothic', sans-serif; width:100%">
+			<select name="sel" class="form-control form-control-sm text-center" id="sel1" style="width:20%">
+				<option value="">검색</option>
+				<option value="BOOK_NAME">제목</option>
+				<option value="WRITER">저자</option>
+				<option value="PUBLISHER">출판사</option>
+			</select>
+			&nbsp;&nbsp;
+			<input type=text  name="find" id="find"  class="form-control form-control-sm" aria-label="Search" >
+			 &nbsp;&nbsp;
+			<button type="submit"  class="btn btn-primary  btn-sm flex-shrink-0" id="searchBtn" style="width:10%">검색</button>
+</div>
 		
-		<tr border = 1 style="font-size:20px; color:#331B3F;">
-			<td width = 150 align = center valign = "center">책 표지</td>
-			<td width = 150 align = center valign = "center">도서 번호</td>
-			<td width = 150 align = center valign = "center">도서 이름</td>
-			<td width = 150 align = center valign = "center">저자</td>
-			<td width = 150 align = center valign = "center">출판사</td>
+		<br><br><br>	
+		
+		<table align="center" valign = center cellpadding = 15px class="table table-hover" style="font-family: 'Nanum Gothic', sans-serif;">
+		<thead>
+		<tr style="vertical-align :middle; text-align:center; font-size:15px; color:#331B3F; background-color:lightgray">
+			<th width = 150 align = center valign = "center">책 표지</th>
+			<th width = 50 align = center valign = "center">No.</th>
+			<th width = 250 align = center valign = "center">도서명</th>
+			<th width = 150 align = center valign = "center">저자</th>
+			<th width = 150 align = center valign = "center">출판사</th>
 		</tr>
-		
+		</thead>
 		<%
 			//  전체 목록
 			if (count > 0 && fcount == 0) {
@@ -138,15 +157,15 @@
 					book_dto book = (book_dto) list.get(i);
 		%>
 		
-		<tr align =center>
+		<tr style="vertical-align :middle; text-align:center;">
 			<td><img src = "./admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover()%>" style="width:150px; height:150px;"/></td>
-			<td width = 150 align = center valign = center><%=number--%></td>
-			<td width = 150 align = center valign = center><a
+			<td width = 50 ><%=number--%></td>
+			<td width = 250 ><a style="text-decoration:none; vertical-align :middle; text-align:center; font-weight:bolder;"
 				href="./ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
 					<%=book.getBook_Name()%>
 			</a></td>
-			<td width = 150 align = center valign = center><%=book.getWriter()%></td>
-			<td width = 150 align = center valign = center><%=book.getPublisher()%></td>
+			<td width = 150 ><%=book.getWriter()%></td>
+			<td width = 150 ><%=book.getPublisher()%></td>
 		</tr>
 
 		<%
@@ -162,7 +181,7 @@
 		<td><img src = "<%=request.getContextPath()%>/admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover() %> " style="width:150px; height:150px;"/></td>
 			<td><%=fnumber--%></td>
 			<td><a
-				href="<%=request.getContextPath() %>/ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
+				href="<%=request.getContextPath()%>/ReviewListAction.do?num=<%=book.getBook_Num()%>&pageNum=<%=currentPage%>">
 					<%=book.getBook_Name()%>
 			</a></td>
 			<td><%=book.getWriter()%></td>
@@ -292,7 +311,7 @@
 
 			}
 		%>
-	
+	<br><br><br><br><br>
 </body>
 
 </html>

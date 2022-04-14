@@ -9,7 +9,8 @@
 <!-- 폰트 -->
  	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 
   <!-- <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,22 +63,20 @@
 
 
  <div style="margin-top:1%; margin-left: 20%; width:60%;">
-도서 개수 : ${listcount} 개<br>
-
-  <table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
-    
-        
-        <thead>
+     <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
-		</thead>
+		<tr><td colspan=4 align="left" style="border:0; font-weight:bold; ">현재 도서 : ${listcount} 권</td></tr>
+	</table>
+  <table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;"> 
+        <thead>
 		<tr align ="center"  bgcolor = lightgrey>
 		<th>도서번호</th>
 		<th>도서명</th>
 		<th>글쓴이</th>
 		<th>출판사</th>
 		<th>장르</th>
-		</tr>
-		
+		</tr>		
+		</thead>	
 		 <tbody>
 	<c:set var="num" value="${listcount - (page-1) * 10}" />
 	<c:forEach var="b" items="${booklist}">

@@ -14,7 +14,7 @@
 <!-- 폰트 -->
  	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 
 <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
@@ -40,12 +40,12 @@
 <!-- nav 끝 -->
 
 <div style="margin-top:1%; margin-left: 20%; width:60%;">
-총 대출도서 : ${rentcount} 권 <br>
-		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
-			<thead>
+     <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">현재 대출중인 목록</div></td></tr>
-		</thead>
-
+		<tr><td colspan=4 align="left" style="border:0; font-weight:bold; ">총 대출도서 : ${rentcount} 권</td></tr>
+	</table>
+		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
+<thead>
 			<tr align ="center"  bgcolor = lightgrey>
 				<th> No. </th>
 				<th> ID </th>
@@ -57,17 +57,18 @@
 				<th>반납일</th> 
 				<th>강제반납</th>
 			</tr>
+</thead>
 			<c:forEach var="r" items="${rentlist}">
-			<tr align ="center">
+			<tr style="vertical-align :middle; text-align:center;">
 				<th>${r.rent_Num }</th>
-				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</th>
+				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</a></th>
 				<td>${r.book_Num}</td>
 				<td>${r.temp_book_Name}</td>
 				<td>${r.temp_Writer }</td>
 				<td>${r.temp_Publisher} </td>
 				<td><fmt:formatDate value="${r.rent_Date}" pattern="yyyy-MM-dd"/></td>
 				<td>${r.return_Date} </td>
-				<td align = center><input type=button value="강제 반납" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
+				<td align = center><input type=button class="btn btn-outline-danger btn-sm" value="강제 반납" id="return" onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>
 			</tr>
 			</c:forEach>
 		</table>
