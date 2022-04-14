@@ -48,7 +48,7 @@
 	<tr align=center><th width="30%">도서명</th>
 		<td width="50%">${book.book_Name}</td>
 	</tr>
-	<tr align=center><th>도서번호(ISBN)</th>
+	<tr align=center><th>도서번호(ISBN) </th>
 		<td>${book.book_Num}
 		</td>
 	</tr>
