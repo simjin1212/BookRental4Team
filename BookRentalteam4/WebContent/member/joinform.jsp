@@ -7,11 +7,13 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>회원가입 화면 샘플 - Bootstrap</title> 
+<title>회원가입</title> 
 <!-- Bootstrap CSS --> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-<style> body { min-height: 100vh; background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c)); background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%); } 
+<style> body { min-height: 100vh; } 
 .input-form { max-width: 680px; 
 margin-top: 80px; 
 padding: 32px; 
@@ -49,22 +51,23 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 <div class="container"> 
 <div class="input-form-backgroud row"> 
 <div class="input-form col-md-12 mx-auto"> 
-<h4 class="mb-3">회원가입</h4> 
+ <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">회원가입</div>
+
 <form class="validation-form" novalidate> 
 
-<div class="col-md-6 mb-3"> 
+<div class="col-md-4 mb-3"> 
 <label for="id">ID</label> 
 <input type="text" class="form-control" id="id" name="id" placeholder="" value="" required> 
 <input type=button value="ID중복검사" id="idcheck">
 <div id="myid"></div>
 <div class="invalid-feedback"> ID를 입력해주세요. </div> 
 </div> <br />
-<div class="col-md-6 mb-3"> 
+<div class="col-md-4 mb-3"> 
 <label for="pw">비밀번호</label> 
 <input type="password" class="form-control" id="passwd" name="passwd" placeholder="" value="" required> 
 <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
 </div>
-<div class="col-md-6 mb-3"> 
+<div class="col-md-4 mb-3"> 
 <label for="name">이름</label> 
 <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required> 
 <div class="invalid-feedback"> 이름을 입력해주세요. </div> 
@@ -116,7 +119,7 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 <div class="invalid-feedback"> 핸드폰 번호를 입력해주세요. </div> 
 </div> 
 
-<div class="col-md-6 mb-3"> 
+<div class="col-md-4 mb-3"> 
 <label for="post">우편번호</label> 
 <input type="text" class="form-control"size=5 id="post" name="post" placeholder="" value="" required> 
 <input type=button value="우편번호검색" onClick="openDaumPostcode()">
@@ -133,14 +136,14 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 <div class="row"> 
 </div> 
 <button class="btn btn-primary btn-lg btn-block" type="submit" value="회원가입">회원가입</button> 
-<button class="btn btn-primary btn-lg btn-block" type="reset" value="취소">취소</button> 
+<button class="btn btn-primary btn-lg btn-block" type="button" onClick = "history.go(-1)" value="취소">취소</button> 
 </form> 
 </div> 
 </div>
 </div> 
 <script> window.addEventListener('load', () => { const forms = document.getElementsByClassName('validation-form'); 
 Array.prototype.filter.call(forms, (form) => { form.addEventListener('submit', function (event) { 
-	if (form.checkValidity() === false) { event.preventDefault(); event.stopPropagation(); }
+	if (form.checkValidity() == false) { event.preventDefault(); event.stopPropagation(); }
 	form.classList.add('was-validated'); }, false); }); }, false); 
 	</script> 
 </body> 
