@@ -36,7 +36,7 @@
                      <c:if test="${not empty sessionScope.id }">
                      	<c:if test="${sessionScope.member_grade==0 }">
 
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/main.jsp"><span>My Page</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/UpdateForm.do"><span>My Page</span></a></li>
                         </c:if>
                         <c:if test="${sessionScope.member_grade==1 }">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/booklistaction.do"><span>Admin Page</span></a></li>
