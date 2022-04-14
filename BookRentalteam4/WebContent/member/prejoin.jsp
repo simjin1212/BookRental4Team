@@ -5,6 +5,6 @@
 <c:if test="${result == 1 }">
 	<script>
 	alert("회원가입 성공!!!!");
-	location.href="./member/main.jsp";
+	location.href="<%=request.getContextPath()%>/index.jsp"
 	</script>
 </c:if>
