@@ -25,16 +25,17 @@ public class member_board_view implements Action {
 		board = dao.getDetail(num); //상세정보 구하기
 
 		String content = board.getMb_Content().replace("\n", "<br>"); //본문 출력 형식
-		
+
 		//저장된 첨부파일 주소
-		   String sDownloadPath = request.getRealPath("mb_upload");
-		   String sFilePath = sDownloadPath+"\\"; //+ "\\" + board.getUpload();
+		   String sDownloadPath = request.getSession().getServletContext().getRealPath("mb_upload");
+		   String sFilePath = sDownloadPath+"\\"+board.getMb_File(); //+ "\\" + board.getUpload();
 		   System.out.println("sFilePath="+sFilePath); 
 		   
 			//servlet 단위로 이동---> request 영역으로 공유
 			request.setAttribute("page", nowpage);
 			request.setAttribute("board", board);
 			request.setAttribute("content", content);
+			request.setAttribute("sFilePath", sFilePath);
 		
 		ActionForward forward=new ActionForward();
 		forward.setRedirect(false);
