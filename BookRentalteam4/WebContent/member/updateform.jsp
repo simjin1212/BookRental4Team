@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 <title>회원정보 수정</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -22,13 +26,42 @@
 	}
 </script>
 </head>
-<body>
+<body style="padding-top:120px; z-index:1;">
+  <!-- 상단 nav -->
+  <%@ include file="../top.jsp" %> 
+  <c:if test="${!empty sessionScope.id}">
+  	<ul class="admin_page">
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/UpdateForm.do"> MENU</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/UpdateForm.do">내 정보</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/rentListAction.do">대출 목록</a> </li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/ReserveList.do">예약 목록</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">회원게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">1:1문의 게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/DeleteMember.do">회원탈퇴</a></li>
+</ul>
+
 	<form method="post" action="<%=request.getContextPath()%>/Update.do">
 		<input type="hidden" name="id" value="${member.id}">
-		<table border=1 width=500 align=center cellpadding=5px>
-			<caption>
-				<h2>내 정보 수정</h2>
-			</caption>
+		
+ <div style="margin-top:1%; margin-left: 20%; width:60%;">
+<table align="center" valign = center cellpadding = 15px>
+<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">내 정보 수정</div></td></tr>
+	<tr>
+	<td colspan=4 align="left" style="border-top:0;"> <c:if test="${not empty find}">[${find }] 검색 결과  총 ${listcount} 개</c:if></td>
+		<c:if test="${sessionScope.member_grade==1 }">
+		<td colspan=4 align="right" style="border-top:0;"><input type="submit" class="btn btn-outline-secondary btn-sm"  value="삭제"></td>
+		</c:if>
+		<!-- 삭제는 관리자가 들어갈 때만 보이게 설정... checked 위에. -->
+	</tr>
+	</table>
+</div>
+		
+		
+		
+
+		<table border=1 width=800 align=center cellpadding=5px>
 			<tr>
 				<td>ID</td>
 				<td><input type=text id="id" name="id" disabled="disabled"
@@ -92,8 +125,8 @@
 				<td colspan=2 align=center><input type=submit value="수정">
 					<input type=reset value="취소"></td>
 			</tr>
-
 		</table>
 	</form>
+</c:if>
 </body>
 </html>
