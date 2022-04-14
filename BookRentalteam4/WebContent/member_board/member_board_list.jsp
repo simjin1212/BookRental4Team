@@ -74,6 +74,7 @@
 
  <div style="margin-top:1%; margin-left: 20%; width:60%;">
 <table border="0" width="600" align="center" class="table table-hover" style="font-family: 'Nanum Gothic', sans-serif;"> 
+<thead>
 	<tr align="center">   
 		<th width="60">No.</th>
 		<th width="400">Subject</th>
@@ -85,6 +86,7 @@
 </c:if>
 		<!-- 관리자가 들어갈 때만 컬럼이 보이게 설정 -->
 	</tr>
+	</thead>
 <!-- 글이 없다면 -->
 <c:if test="${listcount==0 }">
 	<tr> 

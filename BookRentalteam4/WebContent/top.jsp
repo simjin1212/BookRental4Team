@@ -39,7 +39,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/main.jsp"><span>My Page</span></a></li>
                         </c:if>
                         <c:if test="${sessionScope.member_grade==1 }">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_main.jsp"><span>Admin Page</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/booklistaction.do"><span>Admin Page</span></a></li>
                         </c:if>
                         <li class="nav-item"><a class="nav-link"  href="${pageContext.request.contextPath}/Logout.do"><span>LogOut</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member_board_list.do"><span>MemberBoard</span></a></li>

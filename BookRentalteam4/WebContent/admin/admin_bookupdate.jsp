@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
 <!-- 폰트 -->
  	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +12,27 @@
 <!-- 외부 자바스크립트 파일 불러오기 -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/admin/bookupdate.js"></script>
+ <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
+</head>
 <body style="padding-top:120px; z-index:1;">
    <%@ include file="../top.jsp" %>
+<c:if test="${!empty sessionScope.id}">
+  <ul class="admin_page">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<li class="admin" > <a style="text-decoration: none;" href="<%=request.getContextPath()%>/admin/admin_main.jsp">ADMIN</a></li>
+
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">게시판 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminmemberlist.do">회원 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/booklistaction.do">도서 관리</a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminrentlist.do">대출 관리 </a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
+</ul>
+</c:if>
+<!-- nav 끝 -->
 
 <form action="<%=request.getContextPath()%>/bookupdate.do"  method="post" enctype="multipart/form-data">
 <div class="container col-sm-6">	

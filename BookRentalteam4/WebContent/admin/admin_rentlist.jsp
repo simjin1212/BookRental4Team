@@ -16,15 +16,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
+
+<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 </head>
 <body style="padding-top:120px; z-index:1;">
 <%@ include file="../top.jsp" %>
+<c:if test="${!empty sessionScope.id}">
+  <ul class="admin_page">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<li class="admin" > <a style="text-decoration: none;" href="<%=request.getContextPath()%>/admin/admin_main.jsp">ADMIN</a></li>
 
-<div class="container col-sm-12">
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">게시판 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminmemberlist.do">회원 관리</a> </li>
+
+	<li class="menu"> <a href="<%=request.getContextPath()%>/booklistaction.do">도서 관리</a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/adminrentlist.do">대출 관리 </a> </li>
+	 
+	<li class="menu"> <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">문의 관리</a> </li>
+</ul>
+</c:if>
+<!-- nav 끝 -->
+
+<div style="margin-top:1%; margin-left: 20%; width:60%;">
 총 대출도서 : ${rentcount} 권 <br>
 		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
 			<thead>
-		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">도서 목록</div></td></tr>
+		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">현재 대출중인 목록</div></td></tr>
 		</thead>
 
 			<tr align ="center"  bgcolor = lightgrey>

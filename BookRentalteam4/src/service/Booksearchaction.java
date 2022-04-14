@@ -32,7 +32,6 @@ public class Booksearchaction implements Action {
 
 		List<book_dto> booklist = dao.getList(); // 서브쿼리 두번작성해야함
 		System.out.println("booklist :" + booklist);
-
 		// 총 페이지
 		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
 
@@ -41,6 +40,8 @@ public class Booksearchaction implements Action {
 
 		if (endPage > pageCount)
 			endPage = pageCount;
+		
+		
 		
 		request.setAttribute("page", booklist);
 		request.setAttribute("listcount", listcount);

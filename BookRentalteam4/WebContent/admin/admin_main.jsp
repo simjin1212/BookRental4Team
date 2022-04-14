@@ -21,7 +21,7 @@
 <c:if test="${!empty sessionScope.id}">
   <ul class="admin_page">
 <%-- <c:if test="${sessionScope.id != null}"> --%>
-	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/admin/admin_main.jsp"> ADMIN</a></li>
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/booklistaction.do"> ADMIN</a></li>
  
 	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">게시판 관리</a> </li>
 

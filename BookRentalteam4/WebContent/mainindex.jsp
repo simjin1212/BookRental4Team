@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +13,19 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
 </head>
 <body>
  <%--   <%@ include file="top.jsp" %> --%>
- 
+ <c:set var="book_name" value="book_name"/>
    <div class="s006" style="z-index:2;">
       <form method="post" action="<%=request.getContextPath() %>/book/book_search.jsp" name="search">
-      <input type=hidden name="sel" id="sel" value="book_name">
+      <input type=hidden name="sel" id="sel" value=${book_name }>
         <fieldset>
           <legend>What are you looking for?</legend>
           <div class="inner-form">
@@ -32,8 +39,10 @@
             </div>
           </div>
           <div class="suggestion-wrap">
-            <span>New Arrivals</span>
-            <span>Ladies</span>
+          <c:set var="s1" value="홍길동전" />
+          <c:set var="s2" value="수능특강" />
+            <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s1}">${s1 }</a></span>
+            <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s2}">${s2 }</a></span>
             <span>Mens</span>
             <span>Accessories</span>
             <span>Sale</span>

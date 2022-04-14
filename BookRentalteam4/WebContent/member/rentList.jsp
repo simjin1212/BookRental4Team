@@ -13,14 +13,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
-
+ <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 <!-- --------------------------------------------------------------- -->
 <title>대출 목록</title>
 </head>
 <body style="padding-top:120px; z-index:1;">
 <%@ include file="../top.jsp" %>
+<c:if test="${!empty sessionScope.id}">
+<%-- <c:if test="${sessionScope.id != null}"> --%>
+	<br>
+	<ul class="admin_page">
+	<li class="admin"> <a style="text-decoration: none;" href="<%=request.getContextPath()%>/member.main.jsp"> MENU</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/UpdateForm.do">내 정보</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/booksearchaction.do">도서검색</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/rentListAction.do">대출 목록</a> </li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/ReserveList.do">예약 목록</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/member_board_list.do">회원게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/qna_BoardListAction.do">1:1문의 게시판</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/Logout.do">로그아웃</a></li>
+	<li class="menu" > <a href="<%=request.getContextPath()%>/DeleteMember.do">회원탈퇴</a></li>
+</ul>
+</c:if>
 	<form method="post"  >
-	<div class="container col-sm-8">
+	<div style="margin-top:1%; margin-left: 20%; width:60%;">
 	<div align = "right">총 대출도서 : ${rentcount} 권</div>
 	
 	<table border = 0 width=450 align=center cellpadding=15px class="table" style="font-family: 'Nanum Gothic', sans-serif;">
