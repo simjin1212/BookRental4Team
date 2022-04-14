@@ -42,7 +42,7 @@
 <div style="margin-top:1%; margin-left: 20%; width:60%;">
      <table border="0" width="600" align="center" class="table" style="font-family: 'Nanum Gothic', sans-serif;">
 		<tr><td colspan=8 style="border:0;"><div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">현재 대출중인 목록</div></td></tr>
-		<td colspan=4 align="left" style="border:0; font-weight:bold; ">총 대출도서 : ${rentcount} 권</td>
+		<tr><td colspan=4 align="left" style="border:0; font-weight:bold; ">총 대출도서 : ${rentcount} 권</td></tr>
 	</table>
 		<table border="0" width="800" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
 <thead>
@@ -61,7 +61,7 @@
 			<c:forEach var="r" items="${rentlist}">
 			<tr style="vertical-align :middle; text-align:center;">
 				<th>${r.rent_Num }</th>
-				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</th>
+				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</a></th>
 				<td>${r.book_Num}</td>
 				<td>${r.temp_book_Name}</td>
 				<td>${r.temp_Writer }</td>

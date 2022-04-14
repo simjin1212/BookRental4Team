@@ -7,7 +7,8 @@
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
  <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" />
 </head>
 
@@ -67,6 +68,15 @@
 			<th>작성자</th>
 			<th>작성일</th>
 			</tr>
+			
+			<!-- 글이 없다면 -->
+<c:if test="${listcount==0 }">
+	<tr> 
+		<td align="center" colspan=6 > <h5>글이 없습니다</h5> </td>
+	</tr>
+</c:if>	
+			<!-- 글이 존재함 -->
+			
 			<c:forEach var="b" items="${boardlist}">
 			<tr>
 				<td><c:if test="${b.qb_lev>0}">
