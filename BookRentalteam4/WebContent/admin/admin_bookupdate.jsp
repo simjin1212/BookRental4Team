@@ -66,9 +66,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="font-family:돋음; font-size:12">
-			<div align="center">책표지</div>
-		</td>
+		<td>책표지</td>
 		<td>
 			<input name="book_cover" type="file"/>
 		</td>
