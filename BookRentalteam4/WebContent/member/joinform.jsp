@@ -53,8 +53,6 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 <div class="input-form col-md-12 mx-auto"> 
  <div style="font-family: 'Black Han Sans', sans-serif; font-size:40px; color:#6f42c1;">회원가입</div>
 
-<form class="validation-form" novalidate> 
-
 <div class="col-md-4 mb-3"> 
 <label for="id">ID</label> 
 <input type="text" class="form-control" id="id" name="id" placeholder="" value="" required> 
