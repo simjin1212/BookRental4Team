@@ -47,7 +47,7 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 </script>
 </head> 
 <body> 
-<form method="post" action="<%=request.getContextPath()%>/BookRentalteam4/memberjoin.do">
+<form method="post" action="<%=request.getContextPath()%>/memberjoin.do">
 <div class="container"> 
 <div class="input-form-backgroud row"> 
 <div class="input-form col-md-12 mx-auto"> 
