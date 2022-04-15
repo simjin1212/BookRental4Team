@@ -13,7 +13,8 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 
 <!-- --------------------------------------------------------------- -->
 
@@ -39,9 +40,7 @@
 				<td>
 					<!-- 첨부파일이 있을때만 첨부파일 출력 --> 
 					<c:if test="${board.rb_File!=null}">
-						<img src="${path}/${board.rb_File }" width=400 height=400><br>
-						<a href="./file_down.jsp?file_name=${board.rb_File}">
-							${board.rb_File} </a>
+						<img src="./book/rb_upload.jsp?file_name=${board.rb_File}" width=400 height=400><br>
 					</c:if>
 				</td>
 			</tr>

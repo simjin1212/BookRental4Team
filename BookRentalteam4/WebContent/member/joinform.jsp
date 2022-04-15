@@ -7,7 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>회원가입</title> 
@@ -47,7 +48,7 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 </script>
 </head> 
 <body> 
-<form method="post" action="<%=request.getContextPath()%>/BookRentalteam4/memberjoin.do">
+<form method="post" action="<%=request.getContextPath()%>/memberjoin.do">
 <div class="container"> 
 <div class="input-form-backgroud row"> 
 <div class="input-form col-md-12 mx-auto"> 
