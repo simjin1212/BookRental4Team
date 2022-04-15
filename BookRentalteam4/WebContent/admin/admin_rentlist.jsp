@@ -58,9 +58,11 @@
 				<th>강제반납</th>
 			</tr>
 </thead>
+		<c:set var="num" value="1"/>
 			<c:forEach var="r" items="${rentlist}">
 			<tr style="vertical-align :middle; text-align:center;">
-				<th>${r.rent_Num }</th>
+				<th>${num+(page-1)*10}</th>
+				<c:set var="num" value="${num+1 }"/>
 				<th><a href="./admin_memberdetail.do?id=${r.id }&page=1" style="text-decoration:none">${r.id }</a></th>
 				<td>${r.book_Num}</td>
 				<td>${r.temp_book_Name}</td>
