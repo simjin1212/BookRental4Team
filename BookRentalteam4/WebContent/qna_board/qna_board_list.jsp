@@ -51,8 +51,6 @@
 		</c:if>
 	</c:if>
 <!-- nav 끝 -->
-		<h5>~관리자님 환영합니다~</h5>
-		<br>
 		<!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->
 
 	<div style="margin-top:1%; margin-left: 20%; width:60%;">
@@ -63,10 +61,10 @@
 						style="font-family: 'Black Han Sans', sans-serif; font-size: 40px; color: #6f42c1;">1:1게시판</div></td>
 			</tr>
 			<thead>
-			<tr bgcolor=lightgrey>   
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
+			<tr bgcolor=lightgrey style="vertical-align :middle; text-align:center;">   
+			<th width="60%">제목</th>
+			<th width="20%">작성자</th>
+			<th width="20%">작성일</th>
 			</tr>
 			
 			<!-- 글이 없다면 -->
@@ -81,10 +79,10 @@
 			<tr>
 				<td><c:if test="${b.qb_lev>0}">
 				&nbsp;ㄴ
-			</c:if> <a href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">${b.qb_subject }</a>
+			</c:if> <a style="text-decoration:none" href="./qna_BoardDetailAction.do?qb_num=${b.qb_num}&page=${page}">${b.qb_subject }</a>
 				</td>
-				<td>${b.id}</td>
-				<td><fmt:formatDate value="${b.qb_regdate}"
+				<td align=center>${b.id}</td>
+				<td align=center><fmt:formatDate value="${b.qb_regdate}"
 									pattern="yy.MM.dd" /></td>
 							<!-- 날짜 표기 시, date클래스 객체 생성해 현재시간 구해서 비교해보고
 		날짜가 같으면 시간만 표시, 날짜가 다를 경우 작성 날짜가 뜨도록 변경 -->
@@ -133,10 +131,10 @@
 <c:if test="${sessionScope.member_grade==0 }">
 
 
-<div class="container col-sm-8" style="font-family: 'Nanum Gothic', sans-serif;">
+<div class="container col-sm-7" style="font-family: 'Nanum Gothic', sans-serif;">
 <div style="float:right;"><input type="button" class="btn btn-outline-secondary btn-sm" value=" 문의 작성   " onClick="location.href='./qna_BoardForm.do'"></div>
 	</c:if>
-<div class="container text-center d-flex align-items-center" style="font-family: 'Nanum Gothic', sans-serif; width:30%">
+<div class="container text-center d-flex align-items-center" style="font-family: 'Nanum Gothic', sans-serif; width:50%">
 			<select name="sel" class="form-control form-control-sm text-center" id="sel1" style="width:20%">
 				<option value="0">제목</option>
          		<option value="1">작성자</option>
