@@ -36,8 +36,7 @@
 			<td>파일</td>
 			<td colspan=3>
 			<c:if test="${board.mb_File!=null}">
-				<img src="${sFilePath }" width=400 height=400><br>
-				<a href="${pageContext.request.contextPath}/member_board/file_down.jsp?file_name=${board.mb_File}">${board.mb_File}</a>
+				<img src="./member_board/upload.jsp?file_name=${board.mb_File}" width=500 height=400>
 			</c:if>
 			</td>		
 			</tr> 

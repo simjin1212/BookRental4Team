@@ -41,11 +41,14 @@
           <div class="suggestion-wrap">
           <c:set var="s1" value="홍길동전" />
           <c:set var="s2" value="수능특강" />
+          <c:set var="s3" value="코스모스" />
+          <c:set var="s4" value="전우치전" />
+          <c:set var="s5" value="헤드헌터" />
             <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s1}">${s1 }</a></span>
             <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s2}">${s2 }</a></span>
-            <span>Mens</span>
-            <span>Accessories</span>
-            <span>Sale</span>
+            <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s3}">${s3 }</a></span>
+            <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s4}">${s4 }</a></span>
+            <span><a style="text-decoration:none; color:#fff;" href="<%=request.getContextPath() %>/book/book_search.jsp?sel=${book_name }&find=${s5}">${s5 }</a></span>
           </div>
         </fieldset>
       </form>

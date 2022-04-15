@@ -56,9 +56,10 @@
 
 				</tr> 
 			<c:forEach var="rv" items="${reservelist}">
-
+			<c:set var="num" value="1"/>
 			<tr style="vertical-align :middle; text-align:center;">
-				<td>${rv.book_Num}</td>
+				<td>${num}</td>
+			<c:set var="num" value="${num+1 }"/>
 				<td><a style="text-decoration:none" href="./ReviewListAction.do?num=${rv.book_Num}">
 					${rv.book_Name }
 				</a></td>

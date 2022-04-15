@@ -54,9 +54,11 @@
 				<th>반납</th>
 
 			</tr>
-			<c:forEach var="r" items="${rentlist}">
+			<c:set var="num" value="${rentcount-(rentcount-1)}"/>
+			<c:forEach var="r" items="${rentlist}"> 
 			<tr style="vertical-align :middle; text-align:center;">
-				<td>${r.rent_Num}</td>
+				<td>${num}</td>
+				<c:set var="num" value="${num+1 }"/>
 				<td>${r.temp_book_Name }</td>
 				<td>${r.temp_Writer }</td>
 				<td>${r.temp_Publisher }</td>

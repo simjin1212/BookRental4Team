@@ -112,12 +112,12 @@
 				<th width="20%">반납예정일</th>
 			</tr>
 		<c:forEach var="rent" items="${rentlist}">
-			<tr>
+			<tr style="vertical-align :middle; text-align:center;">
 				<td>${rent.book_Num}</td>
 				<td>${rent.temp_book_Name }</td>
 				<td>${rent.temp_Writer }</td>
 				<td>${rent.temp_Publisher }</td>
-				<td>${rent.rent_Date }</td>
+				<td><fmt:formatDate value="${rent.rent_Date}" pattern="yyyy-MM-dd"/></td>
 				<td>${rent.return_Date}</td>
 			</tr>
 		</c:forEach>
@@ -135,18 +135,16 @@
 				<th width="15%">강제예약취소</th>
 			</tr> 
         	<c:forEach var="rv" items="${reservelist}">
-			<tr>
-				<th>${rv.book_Num}</th>
-				<th><a href="./ReviewListAction.do?num=${rv.book_Num}">
-					${rv.book_Name }
-				</a></th>
-				<th>${rv.writer}</th>
-				<th>${rv.publisher} </th>
-				<th>${rv.reserve_Date}</th>
-				<th>${rv.return_date}</th>
-				<th align=center><input type=button value="강제 예약 취소" class="btn btn-outline-danger"
-				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></th>
-			</tr>
+			<tr style="vertical-align :middle; text-align:center;">
+				<td>${rv.book_Num}</td>
+				<td>${rv.book_Name}</td>
+				<td>${rv.writer}</td>
+				<td>${rv.publisher} </td>
+				<td><fmt:formatDate value="${rv.reserve_Date}" pattern="yyyy-MM-dd"/></td>
+				<td>${rv.return_date}</td>
+				<td align=center><input type=button value="강제 예약 취소" class="btn btn-outline-danger btn-sm"
+				onClick="location.href='<%=request.getContextPath()%>/reservedelete.do?book_num=${rv.book_Num}'"></td>
+			</tr> 
 			</c:forEach>
 			</table>
 			</div>

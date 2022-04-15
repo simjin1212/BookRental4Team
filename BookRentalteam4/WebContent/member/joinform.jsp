@@ -137,7 +137,6 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 <button class="btn btn-primary btn-lg btn-block" type="button" onClick = "history.go(-1)" value="취소">취소</button> 
 
 
-</form> 
 </div> 
 </div>
 </div> 
