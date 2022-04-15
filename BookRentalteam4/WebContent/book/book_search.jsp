@@ -222,7 +222,7 @@
 				// 이전 블럭으로 이동
 				if (startPage > 10) {
 		%>
-		<a href="book_search.jsp?pagseNum=<%=startPage - 10%>"><%="[이전]"%></a>
+		<a href="<%=request.getContextPath()%>/book/book_search.jsp?pagseNum=<%=startPage - 10%>"><%="[이전]"%></a>
 		<%
 			} else {
 		%>
@@ -239,7 +239,7 @@
 		<%
 			} else {
 		%>
-		<a href="book_search.jsp?pageNum=<%=i%>"><%=i%></a>
+		<a href="<%=request.getContextPath()%>/book/book_search.jsp?pageNum=<%=i%>"><%=i%></a>
 		<%
 			}
 				}
@@ -247,7 +247,7 @@
 				// 다음 블럭으로 이동
 				if (endPage < pageCount) {
 		%>
-		<a href="book_search.jsp.jsp?pageNum=<%=startPage + 10%>"><%="[다음]"%></a>
+		<a href="<%=request.getContextPath()%>/book/book_search.jsp?pageNum=<%=startPage + 10%>"><%="[다음]"%></a>
 		<%
 			} else {
 		%>
@@ -274,7 +274,7 @@
 				if (startPage > 10) {
 		%>
 		<a
-			href="book_search.jsp.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>"><%="[이전]"%></a>
+			href="<%=request.getContextPath()%>/book/book_search.jsp?pageNum=<%=startPage - 10%>&sel=<%=sel%>&find=<%=find%>"><%="[이전]"%></a>
 		<%
 			} else {
 		%>
@@ -292,7 +292,7 @@
 			} else {
 		%>
 		<a
-			href="book_search.jsp.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>"><%=i%></a>
+			href="<%=request.getContextPath()%>/book/book_search.jsp?pageNum=<%=i%>&sel=<%=sel%>&find=<%=find%>"><%=i%></a>
 		<%
 			}
 				}
@@ -301,7 +301,7 @@
 				if (endPage < pageCount) {
 		%>
 		<a
-			href="book_search.jsp?pageNum=<%=startPage + 10%>&sel=<%=sel%>&find=<%=find%>"><%="[다음]"%></a>
+			href="<%=request.getContextPath()%>/book/book_search.jsp?pageNum=<%=startPage + 10%>&sel=<%=sel%>&find=<%=find%>"><%="[다음]"%></a>
 		<%
 			} else {
 		%>
