@@ -40,9 +40,7 @@
 				<td>
 					<!-- 첨부파일이 있을때만 첨부파일 출력 --> 
 					<c:if test="${board.rb_File!=null}">
-						<img src="${path}/${board.rb_File }" width=400 height=400><br>
-						<a href="./file_down.jsp?file_name=${board.rb_File}">
-							${board.rb_File} </a>
+						<img src="./book/rb_upload.jsp?file_name=${board.rb_File}" width=400 height=400><br>
 					</c:if>
 				</td>
 			</tr>
