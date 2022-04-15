@@ -85,7 +85,7 @@
 			<c:set var="num" value="${num-1}" />
 			</td>
 			<td>
-			<a href="./bookDetailAction.do?book_Num=${b.book_Num}&page=${page}">${b.book_Name}</a>
+			<a style="text-decoration: none;" href="./bookDetailAction.do?book_Num=${b.book_Num}&page=${page}">${b.book_Name}</a>
 			</td>
 			<td>${b.writer}</td>
 			<td>${b.publisher}</td>

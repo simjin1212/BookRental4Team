@@ -5,6 +5,9 @@
 	<title>qna</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/board/script.js"></script>
+ 	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Josefin+Sans:wght@500&family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
 table{ width:800px;}
