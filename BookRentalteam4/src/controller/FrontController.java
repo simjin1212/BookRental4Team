@@ -287,14 +287,6 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 
-			} // 리뷰게시판 이동
-		} else if (command.equals("/ReviewListAction.do")) {
-			try {
-				action = new ReviewListAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-
 			} // 리뷰내역 보기
 		} else if (command.equals("/review_board_detailAction.do")) {
 			try {

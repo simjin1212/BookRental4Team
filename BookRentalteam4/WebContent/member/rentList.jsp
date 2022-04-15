@@ -66,7 +66,7 @@
 				<td>${r.return_Date}</td>
 				<td align = center>
 					<input type=button value="리뷰 작성" id="reviewWrite"  class="btn btn-outline-secondary btn-sm" 
-						   onClick="location.href='<%=request.getContextPath()%>/rent_numPassingAction.do?book_Num=${r.book_Num}'">
+						   onClick="location.href='<%=request.getContextPath()%>/rent_numPassingAction.do?book_Num=${r.book_Num}&rent_num=${r.rent_Num}'">
 				</td>
 				<td align = center><input type=button value="반납 신청" id="return" class="btn btn-outline-secondary btn-sm"  
 							onClick="location.href='<%=request.getContextPath()%>/returnbook.do?num=${r.rent_Num}' "></td>

@@ -91,7 +91,7 @@ public class review_board_dao {
 		}
 		
 		// 글목록
-		public List<review_board_dto> getList(int start, int end, String id){
+		public List<review_board_dto> getList(int start, int end, int book_Num){
 			List<review_board_dto> list = new ArrayList<review_board_dto>();
 			Connection con  = null;
 			PreparedStatement pstmt = null;
@@ -100,12 +100,12 @@ public class review_board_dao {
 			try {
 				con = getConnection();
 
-				String sql="select * from review_board where rb_num >= ? and rb_num <=? and id = ? order by rb_num asc";
+				String sql="select * from review_board where rb_num >= ? and rb_num <=? and book_num = ? order by rb_num asc";
 		   
 		   		pstmt = con.prepareStatement(sql);
 		   		pstmt.setInt(1, start);
 		   		pstmt.setInt(2, end);
-		   		pstmt.setString(3, id);
+		   		pstmt.setInt(3, book_Num);
 		   		
 		   		rs = pstmt.executeQuery();		// SQL문 실행
 		   		

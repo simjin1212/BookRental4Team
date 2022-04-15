@@ -176,7 +176,7 @@
 				for (int i = 0; i < flist.size(); i++) {
 					book_dto book = (book_dto) flist.get(i);
 		%>
-
+		
 		<tr align=center>
 		<td><img src = "<%=request.getContextPath()%>/admin/bookfileupload.jsp?file_name=<%=book.getBook_Cover() %> " style="width:150px; height:150px;"/></td>
 			<td><%=fnumber--%></td>

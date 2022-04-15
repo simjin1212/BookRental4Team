@@ -26,7 +26,7 @@ public class ReviewListAction implements Action {
 		
 		//도서 상세파트의 책 번호
 		int book_Num = Integer.parseInt(request.getParameter("num"));
-		
+		System.out.println("bnum :" + book_Num);
 		
 		System.out.println("id:" + id);
 		System.out.println("book_Num:" + book_Num);
@@ -54,7 +54,7 @@ public class ReviewListAction implements Action {
 		System.out.println("reviewlistcount:" + reviewlistcount);
 		System.out.println("startrow:"+startRow);
 		System.out.println("endrow:"+endRow);
-		List<review_board_dto> reviewlist = dao.getList(startRow, endRow, id);
+		List<review_board_dto> reviewlist = dao.getList(startRow, endRow, book_Num);
 		System.out.println("reviewlist:" + reviewlist);
 
 		int pageCount = reviewlistcount / limit + ((reviewlistcount % limit == 0) ? 0 : 1);

@@ -15,6 +15,10 @@ public class rent_numPassingAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		int b_num = Integer.parseInt(request.getParameter("book_Num"));
+		int r_num = Integer.parseInt(request.getParameter("rent_num"));
+		
+		System.out.println("b num:" + b_num);
+		System.out.println("r num:" + r_num);
 		
 		book_dao dao = book_dao.getInstance();
 		String book = dao.getMatching(b_num);
@@ -22,6 +26,7 @@ public class rent_numPassingAction implements Action {
 		 
 		request.setAttribute("book", book);
 		request.setAttribute("b_num", b_num);
+		request.setAttribute("r_num", r_num);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

@@ -25,15 +25,17 @@ public class book_review_writeAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println("request getContentType : " + request.getContentType());
-
 		String path = request.getRealPath("rb_upload");
 		System.out.println("path: " + path);
 		int size = 10 * 1024 * 1024;
-
+		
+		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-
-
+		int b_num = Integer.parseInt(request.getParameter("num"));
+		int r_num = Integer.parseInt(request.getParameter("r_num"));
+		System.out.println("b_num :" + b_num);
+		System.out.println("r_num :" + r_num);
 		MultipartRequest multi = new MultipartRequest(request, 
 				path, // 업로드 경로
 				size, // 파일 크기
@@ -41,11 +43,14 @@ public class book_review_writeAction implements Action {
 				new DefaultFileRenamePolicy()); // 중복 파일명 해결
 
 		review_board_dto rb = new review_board_dto();
-		rb.setId(id);
+		rb.setId(id);		
+		rb.setBook_Num(b_num);
+		rb.setRent_Num(r_num);
 		rb.setRb_Subject(multi.getParameter("rb_subject"));
 		rb.setRb_Content(multi.getParameter("rb_content"));
 		rb.setRb_File(multi.getFilesystemName("rb_file"));
 
+		
 		review_board_dao dao = review_board_dao.getInstance();
 		int result = dao.insert(rb);
 		if (result == 1)

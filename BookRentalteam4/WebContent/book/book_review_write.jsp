@@ -35,7 +35,7 @@
 </ul>
 </c:if>
 	<form method="post" enctype="multipart/form-data"
-		action="<%=request.getContextPath()%>/book_review_writeAction.do?num=${b_num}">
+		action="<%=request.getContextPath()%>/book_review_writeAction.do?num=${b_num}&r_num=${r_num}">
 		<div style="margin-top:1%; margin-left: 20%; width:60%;">
 
 			<table border=0 width=450 align=center cellpadding=15px class="table"

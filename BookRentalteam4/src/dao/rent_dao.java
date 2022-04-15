@@ -43,12 +43,12 @@ public class rent_dao {
 		try {
 			con = getConnection();
 
-			String sql = "insert into rent values(?,?,?,sysdate,sysdate+14)";
+			String sql = "insert into rent values(rent_seq.nextval,?,?,sysdate,sysdate+14)";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, rent.getRent_Num());
-			pstmt.setInt(2, rent.getBook_Num());
-			pstmt.setString(3, rent.getId());
+			
+			pstmt.setInt(1, rent.getBook_Num());
+			pstmt.setString(2, rent.getId());
 
 			result = pstmt.executeUpdate(); // SQL문 실행
 
