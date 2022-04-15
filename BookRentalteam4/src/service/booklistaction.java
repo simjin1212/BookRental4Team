@@ -22,16 +22,17 @@ public class booklistaction implements Action{
 	if(request.getParameter("page") != null) {
 		page = Integer.parseInt(request.getParameter("page"));
 	}
-	book_dao dao= book_dao.getInstance();
-
 	
+	int startRow = (page - 1) * limit + 1;
+	int endRow = page * limit;
+	book_dao dao= book_dao.getInstance();
 	int listcount = dao.getCount();
 	System.out.println(listcount);
 	
-	List<book_dto> booklist = dao.getList();
+	List<book_dto> booklist = dao.getbookList(startRow,endRow);
+	System.out.println("booklist:" + booklist);
 	
-	request.setAttribute("listcount", listcount);
-	request.setAttribute("booklist", booklist);
+
 	
 	
 	
@@ -42,6 +43,10 @@ public class booklistaction implements Action{
 			int endPage = startPage + 10 - 1;			// 10, 20, 30...
 			
 			if(endPage > pageCount) endPage = pageCount;
+		
+			
+			
+			
 			
 			request.setAttribute("page", page);
 			request.setAttribute("listcount", listcount);

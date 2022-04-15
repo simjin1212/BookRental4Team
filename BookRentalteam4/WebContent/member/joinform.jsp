@@ -47,7 +47,7 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 </script>
 </head> 
 <body> 
-<form method="post" action="/BookRentalteam4/memberjoin.do">
+<form method="post" action="<%=request.getContextPath()%>/BookRentalteam4/memberjoin.do">
 <div class="container"> 
 <div class="input-form-backgroud row"> 
 <div class="input-form col-md-12 mx-auto"> 
@@ -135,10 +135,13 @@ box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) }
 </div> 
 <button class="btn btn-primary btn-lg btn-block" type="submit" value="회원가입">회원가입</button> 
 <button class="btn btn-primary btn-lg btn-block" type="button" onClick = "history.go(-1)" value="취소">취소</button> 
+
+
 </form> 
 </div> 
 </div>
 </div> 
+</form>
 <script> window.addEventListener('load', () => { const forms = document.getElementsByClassName('validation-form'); 
 Array.prototype.filter.call(forms, (form) => { form.addEventListener('submit', function (event) { 
 	if (form.checkValidity() == false) { event.preventDefault(); event.stopPropagation(); }

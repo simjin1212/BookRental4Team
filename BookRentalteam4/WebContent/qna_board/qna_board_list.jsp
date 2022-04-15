@@ -56,14 +56,14 @@
 		<!-- 일반회원일 때만 문의 작성하기 보이게 만들기 -->
 
 	<div style="margin-top:1%; margin-left: 20%; width:60%;">
-		<table border="0" width="600" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
+		<table border="0" width="300" align="center" class="table table-striped" style="font-family: 'Nanum Gothic', sans-serif;">
 			<thead>
 			<tr>
-				<td colspan=8 style="border: 0;"><div
+				<td colspan=8 style="border: 1;"><div
 						style="font-family: 'Black Han Sans', sans-serif; font-size: 40px; color: #6f42c1;">1:1게시판</div></td>
 			</tr>
 			<thead>
-			<tr align="center" bgcolor=lightgrey>   
+			<tr bgcolor=lightgrey>   
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
