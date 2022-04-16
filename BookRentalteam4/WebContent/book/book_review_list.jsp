@@ -52,16 +52,30 @@
 	         <tr height = 100>
 	            <td colspan = 2 align = center valign = center>
 	   			    <c:if test="${rentcheck == -1}">
+	   			    	<c:if test = "${!empty sessionScope.id}">
 				            <input type="button" value="대출 신청" 
 				            onClick="location.href='./rent_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
+						</c:if>					
+						
+						<c:if test = "${empty sessionScope.id}">
+							<input type="button" value="대출 신청" 
+				            onClick="location.href='<%=request.getContextPath()%>/member/nonlogin.jsp' "/>
+				        </c:if>
 					</c:if>
 					<c:if test="${rentcheck == 1}">
 					 	<input type="button" disabled value="대출 불가"/>
 					</c:if>
 					
 				    <c:if test="${rentcheck == 1}">
+				    <c:if test = "${!empty sessionScope.id}">
 				            <input type="button" value="예약 신청" 
 				            onClick="location.href='./reserve_add.do?book_num=${book.book_Num}&rent_num=${rent}&id=${id}'">
+						</c:if>					
+						
+						<c:if test = "${empty sessionScope.id}">
+							<input type="button" value="예약신청" 
+				            onClick="location.href='<%=request.getContextPath()%>/member/nonlogin.jsp' "/>
+				        </c:if>
 					</c:if>
 					<c:if test="${rentcheck == -1}">
 					 	<input type="button" disabled value="예약신청불가(대출가능)"/>
